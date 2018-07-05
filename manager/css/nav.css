@@ -1,0 +1,67 @@
+nav {
+  box-shadow: 0 0.8px 4px rgba(0, 0, 0, 0.4);
+  background-color: #292b2c;
+  width: 100%;
+  overflow: hidden;
+  height: 55px;
+  line-height: 55px;
+  transition: all 0.3s ease;
+}
+nav #nav-slogan {
+  text-align: center;
+  color: white;
+  font-size: 23px;
+  cursor: default;
+}
+nav li {
+  list-style: none;
+  text-align: center;
+}
+nav a {
+  font-size: 17px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+nav a:hover {
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+nav #nav-corner {
+  color: white;
+  margin: 9.5px 0;
+}
+nav #nav-corner p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  cursor: default;
+  text-align: right;
+}
+nav #nav-corner #nav-logout {
+  cursor: pointer;
+}
+nav #nav-bars {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+nav .bars-active {
+  color: black !important;
+  background-color: white;
+}
+#nav-dropdown {
+  display: none;
+  text-align: center;
+  padding: 15px 0;
+  box-shadow: 0 0.8px 3px rgba(0, 0, 0, 0.4);
+}
+#nav-dropdown a {
+  font-size: 20px;
+  color: #9999ff;
+}
+#nav-dropdown hr {
+  width: 150px;
+  margin: 8px auto;
+}
