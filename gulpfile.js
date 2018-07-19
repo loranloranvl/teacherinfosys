@@ -3,19 +3,28 @@ var fileinclude = require('gulp-file-include');
 var less = require('gulp-less');
 var browserSync = require('browser-sync').create();
 var cachebust = require('gulp-cache-bust');
+var watch = require('gulp-watch');
 
 gulp.task('default', function() {
 	console.log('gulp here');
 });
 
-gulp.task('fileinclude', function() {
-	gulp.src('client/src/*.html')
+gulp.task('include-client', function() {
+	return gulp.src('client/src/*.html')
 		.pipe(fileinclude({
 			prefix: '@@',
 			basepath: '@file'
 		}))
 		.pipe(gulp.dest('client'));
-	gulp.src('manager/src/*.html')
+});
+
+gulp.task('include-client-watch', ['include-client'], function(done) {
+	browserSync.reload();
+	done();
+})
+
+gulp.task('include-manager', function() {
+	return gulp.src('manager/src/*.html')
 		.pipe(fileinclude({
 			prefix: '@@',
 			basepath: '@file'
@@ -23,31 +32,66 @@ gulp.task('fileinclude', function() {
 		.pipe(gulp.dest('manager'));
 });
 
-gulp.task('less', function() {
-	gulp.src('client/less/*.less')
+gulp.task('include-manager-watch', ['include-manager'], function(done) {
+	browserSync.reload();
+	done();
+})
+
+gulp.task('less-client', function() {
+	return 	gulp.src('client/less/*.less')
 		.pipe(less().on('error', function(err) {
-		console.error(err.toString());
-		this.emit('end');
-	}))
+			console.error(err.toString());
+			this.emit('end');
+		}))
 		.pipe(gulp.dest('client/css'));
-	gulp.src('manager/less/*.less')
+})
+
+gulp.task('less-client-watch', ['less-client'], function(done) {
+	browserSync.reload();
+	done();
+})
+
+gulp.task('less-manager', function() {
+	return gulp.src('manager/less/*.less')
 		.pipe(less().on('error', function(err) {
-		console.error(err.toString());
-		this.emit('end');
-	}))
+			console.error(err.toString());
+			this.emit('end');
+		}))
 		.pipe(gulp.dest('manager/css'));
 });
 
+gulp.task('less-manager-watch', ['less-manager'], function(done) {
+	browserSync.reload();
+	done();
+})
 
-gulp.task('watch', ['fileinclude', 'less'], function() {
+var inits = [
+	'include-client',
+	'include-manager',
+	'less-client',
+	'less-manager'
+];
+
+var scripts = [
+	'client/js/*.js', 
+	'manager/js/*.js',
+	'shared/common.js'
+];
+
+gulp.task('watch', inits, function() {
 	browserSync.init({
 		server: {
 			baseDir: './'
 		},
 		port: 3000
 	});
-	gulp.watch(['client/src/**/*.html', 'manager/src/**/*.html'], ['fileinclude', browserSync.reload]);
-	gulp.watch(['client/less/**/*.less', 'manager/less/**/*.less'], ['less', browserSync.reload]);
+	gulp.watch(['client/src/*.html', 'client/src/partials/*.html'],
+		['include-client-watch']);
+	gulp.watch(['manager/src/*.html', 'manager/src/partials/*.html'],
+		['include-manager-watch']);
+	gulp.watch('client/less/*.less', ['less-client-watch']);
+	gulp.watch('manager/less/*.less', ['less-manager-watch']);
+	gulp.watch(scripts).on('change', browserSync.reload);
 });
 
 

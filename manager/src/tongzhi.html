@@ -8,7 +8,96 @@
 </head>
 <body>
 @@include('./partials/nav.html')
-	<h1>tongzh</h1>
+<div id="main">
+	<div class="am-avg-sm-1" id="tongzhis">
+		<!-- ajax here -->
+	</div>
+</div>
+<script type="text/x-handlebars-template" id="ht-tongzhis">
+	<div class="am-u-lg-4 am-show-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+		{{#each this}}
+			{{#if index0}}
+				{{> tongzhi}}
+			{{/if}}
+		{{/each}}
+	</div>
+	<div class="am-u-lg-4 am-show-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+		{{#each this}}
+			{{#if index1}}
+				{{> tongzhi}}
+			{{/if}}
+		{{/each}}
+	</div>
+	<div class="am-u-lg-4 am-show-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+		{{#each this}}
+			{{#if index2}}
+				{{> tongzhi}}
+			{{/if}}
+		{{/each}}
+	</div>
+	<div class="am-u-sm-12 am-hide-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+		{{#each this}}
+			{{> tongzhi}}
+		{{/each}}
+	</div>
+	
+	{{#unless this}}
+	<p class="none">
+		没有找到已发送的通知
+	</p>
+	{{/unless}}
+</script>
+
+<script type="text/x-handlebars-template" id="ht-tongzhi-partial">
+	<li class="tongzhi">
+		<div class="container">
+			<p class="title">{{title}}</p>
+			<p class="channel">
+				<span class="sender">{{name}}</span> 
+				<i class="am-icon-angle-double-right"></i> 
+				<span class="sendee" data-type="{{type}}"></span>
+			</p>
+			<p class="content">{{content}}</p>
+			<p class="date">{{updated_at}}</p>
+			<div class="files" data-urls="{{attach_url}}">
+				
+			</div>
+		</div>
+	</li>
+</script>
+
+<script type="text/x-handlebars-template" id="ht-files">
+{{#each this}}
+	<hr>
+	{{#if dual}}
+		{{#with data}}
+		<div class="dual">
+			<p class="name">{{name}}</p>
+			<ul class="am-avg-sm-2">
+				{{#if isdoc}}
+				<li><a href="{{mswordurl}}">
+					<i class="am-icon-file-word-o"> doc</i>
+				</a></li>
+				{{else}}
+				<li><a href="{{mswordurl}}">
+					<i class="am-icon-file-word-o"> docx</i>
+				</a></li>
+				{{/if}}
+				<li style="border-left: 1.4px solid #eee;"><a href="{{pdfurl}}">
+					<i class="am-icon-file-pdf-o"> pdf</i>
+				</a></li>
+			</ul>
+		</div>
+		{{/with}}
+	{{else}}
+		{{#with data}}
+		<p class="singular">
+			<a href="{{url}}" data-name="{{name}}">{{name}}</a>
+		</p>
+		{{/with}}
+	{{/if}}
+{{/each}}
+</script>
 </body>
 <script src="./js/tongzhi.js"></script>
 </html>

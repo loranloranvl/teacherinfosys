@@ -5,7 +5,10 @@ nav {
   overflow: hidden;
   height: 55px;
   line-height: 55px;
-  transition: all 0.3s ease;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
 }
 nav #nav-slogan {
   text-align: center;
@@ -21,6 +24,7 @@ nav a {
   font-size: 17px;
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
 }
 nav a:hover {
   color: rgba(255, 255, 255, 0.9);
@@ -36,15 +40,15 @@ nav #nav-corner p {
   line-height: 18px;
   cursor: default;
   text-align: right;
+  width: 100%;
 }
-nav #nav-corner #nav-logout {
+nav #nav-corner #nav-logout span {
   cursor: pointer;
 }
 nav #nav-bars {
   color: white;
   font-size: 30px;
   text-align: center;
-  cursor: pointer;
   transition: all 0.2s ease;
 }
 nav .bars-active {
@@ -56,6 +60,11 @@ nav .bars-active {
   text-align: center;
   padding: 15px 0;
   box-shadow: 0 0.8px 3px rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 1;
+  top: 50px;
+  right: 0;
+  background-color: white;
 }
 #nav-dropdown a {
   font-size: 20px;
@@ -64,4 +73,55 @@ nav .bars-active {
 #nav-dropdown hr {
   width: 150px;
   margin: 8px auto;
+}
+#btn {
+  position: relative;
+  cursor: pointer;
+}
+#btn div {
+  position: absolute;
+  left: 0;
+}
+#btn-cover1,
+#btn-cover2 {
+  top: 7.5px;
+  height: 40px;
+  color: transparent;
+}
+#btn-cover1 {
+  width: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  z-index: 1;
+  border-radius: 1px;
+}
+#btn-cover2 {
+  background-color: #292b2c;
+  z-index: 2;
+  border: 2px solid #292b2c;
+  transition: all 0.3s ease;
+  width: 80%;
+  margin-left: 10%;
+}
+#btn-cover3 {
+  background-color: #292b2c;
+  z-index: 2;
+  border: 2px solid #292b2c;
+  transition: all 0.3s ease;
+  height: 20px;
+  top: 17.5px;
+  color: transparent;
+  width: 100%;
+}
+#btn-content {
+  width: 100%;
+  top: 0;
+  z-index: 4;
+  color: rgba(255, 255, 255, 0.9);
+}
+#btn-content:hover {
+  color: white;
+}
+#btn-content:hover + div {
+  border-color: transparent;
+  background-color: transparent;
 }

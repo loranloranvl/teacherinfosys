@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="./css/nav.css">
 <script src="../shared/jquery.min.js"></script>
 <script src="../shared/amazeui.min.js"></script>
+<script src="../shared/handlebars.min.js"></script>
 <script src="../shared/layer/layer.js"></script>
 <script src="../shared/common.js"></script>
 <script src="./js/nav.js"></script>
@@ -40,10 +41,16 @@
         </ul>
     </div>
     <div class="am-u-lg-7 am-show-lg">
-        <ul class="am-avg-sm-6">
-            <li><a href="teaching.html?dontdeletethis">教学页面</a></li>
-            <li><a href="filesharing.html?dontdeletethis">文件系统</a></li>
-            <li><a href="tongzhi.html?dontdeletethis">通知系统</a></li>
+        <ul class="am-g">
+            <li class="am-u-lg-2"><a href="teaching.html?dontdeletethis">教学页面</a></li>
+            <li class="am-u-lg-2"><a href="filesharing.html?dontdeletethis">文件系统</a></li>
+            <li class="am-u-lg-2"><a href="tongzhi.html?dontdeletethis">通知系统</a></li>
+            <li class="am-u-lg-2" id="btn">
+                <div id="btn-cover1">a</div>
+                <div id="btn-cover2">a</div>
+                <div id="btn-content">发送通知</div>
+                <div id="btn-cover3">a</div>
+            </li>
         </ul>
     </div>
     <div class="am-u-sm-2 am-show-sm" id="nav-bars">
@@ -51,7 +58,11 @@
     </div>
     <div class="am-u-lg-2 am-show-lg" id="nav-corner">
         <p>欢迎您 王小明</p>
-        <p id="nav-logout"><i class="am-icon-sign-out"></i>退出系统</p>
+        <p id="nav-logout">
+            <span>
+                <i class="am-icon-sign-out"> 退出系统</i>
+            </span>
+        </p>
     </div>
 </nav>
 <div id="nav-dropdown">
@@ -59,7 +70,97 @@
     <div><a href="filesharing.html?dontdeletethis">文件系统</a></div><hr>
     <div><a href="tongzhi.html?dontdeletethis">通知系统</a></div>
 </div>
-	<h1>tongzh</h1>
+
+<div id="main">
+	<div class="am-avg-sm-1" id="tongzhis">
+		<!-- ajax here -->
+	</div>
+</div>
+<script type="text/x-handlebars-template" id="ht-tongzhis">
+	<div class="am-u-lg-4 am-show-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+		{{#each this}}
+			{{#if index0}}
+				{{> tongzhi}}
+			{{/if}}
+		{{/each}}
+	</div>
+	<div class="am-u-lg-4 am-show-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+		{{#each this}}
+			{{#if index1}}
+				{{> tongzhi}}
+			{{/if}}
+		{{/each}}
+	</div>
+	<div class="am-u-lg-4 am-show-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+		{{#each this}}
+			{{#if index2}}
+				{{> tongzhi}}
+			{{/if}}
+		{{/each}}
+	</div>
+	<div class="am-u-sm-12 am-hide-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+		{{#each this}}
+			{{> tongzhi}}
+		{{/each}}
+	</div>
+	
+	{{#unless this}}
+	<p class="none">
+		没有找到已发送的通知
+	</p>
+	{{/unless}}
+</script>
+
+<script type="text/x-handlebars-template" id="ht-tongzhi-partial">
+	<li class="tongzhi">
+		<div class="container">
+			<p class="title">{{title}}</p>
+			<p class="channel">
+				<span class="sender">{{name}}</span> 
+				<i class="am-icon-angle-double-right"></i> 
+				<span class="sendee" data-type="{{type}}"></span>
+			</p>
+			<p class="content">{{content}}</p>
+			<p class="date">{{updated_at}}</p>
+			<div class="files" data-urls="{{attach_url}}">
+				
+			</div>
+		</div>
+	</li>
+</script>
+
+<script type="text/x-handlebars-template" id="ht-files">
+{{#each this}}
+	<hr>
+	{{#if dual}}
+		{{#with data}}
+		<div class="dual">
+			<p class="name">{{name}}</p>
+			<ul class="am-avg-sm-2">
+				{{#if isdoc}}
+				<li><a href="{{mswordurl}}">
+					<i class="am-icon-file-word-o"> doc</i>
+				</a></li>
+				{{else}}
+				<li><a href="{{mswordurl}}">
+					<i class="am-icon-file-word-o"> docx</i>
+				</a></li>
+				{{/if}}
+				<li style="border-left: 1.4px solid #eee;"><a href="{{pdfurl}}">
+					<i class="am-icon-file-pdf-o"> pdf</i>
+				</a></li>
+			</ul>
+		</div>
+		{{/with}}
+	{{else}}
+		{{#with data}}
+		<p class="singular">
+			<a href="{{url}}" data-name="{{name}}">{{name}}</a>
+		</p>
+		{{/with}}
+	{{/if}}
+{{/each}}
+</script>
 </body>
 <script src="./js/tongzhi.js"></script>
 </html>

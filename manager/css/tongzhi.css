@@ -1,0 +1,68 @@
+.outline {
+  outline: 0.8px solid rgba(230, 0, 0, 0.6);
+}
+.none {
+  text-align: center;
+  font-size: 28px;
+  margin: 40px;
+  color: #999;
+}
+#main {
+  margin: 75px 20px;
+}
+@media screen and (min-width: 641px) {
+  #main {
+    margin: 80px 30px;
+  }
+}
+@media screen and (min-width: 1025px) {
+  #main {
+    margin: 80px 40px;
+  }
+}
+.tongzhi {
+  vertical-align: bottom;
+  display: inline-block;
+  width: 100%;
+}
+.tongzhi .container {
+  vertical-align: bottom;
+  min-height: 100px;
+  box-shadow: 1px 1.5px 4px rgba(4, 0, 0, 0.3);
+  background-color: white;
+  margin: 5px;
+  padding: 15px 10px;
+}
+.tongzhi .container p {
+  margin: 10px;
+}
+.tongzhi .container .title {
+  margin-top: 0;
+  text-align: center;
+  font-size: 22px;
+  color: #333;
+}
+.tongzhi .container .channel {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+}
+.tongzhi .container .channel .sendee {
+  border-bottom: 1.5px dashed #999;
+  cursor: pointer;
+}
+.tongzhi .container .content {
+  text-align: justify;
+  font-size: 16px;
+  color: #333;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+.tongzhi .container .date {
+  text-align: right;
+  font-size: 18px;
+  color: #999;
+}
+.tongzhi .container .files * {
+  text-align: center;
+}
