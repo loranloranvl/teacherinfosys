@@ -1,0 +1,666 @@
+.o {
+  outline: 1px solid red;
+}
+#mp-mailicon {
+  width: 120px;
+  height: 120px;
+}
+.mp-dialog {
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 28px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  padding: 10px 0;
+}
+.mp-dialog .mp-title {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.mp-dialog .mp-title span {
+  color: #4d79ff;
+}
+.mp-dialog .mp-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+}
+.mp-dialog .mp-tinytitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.mp-dialog .mp-radio,
+.mp-dialog .mp-radio tr,
+.mp-dialog .mp-radio td {
+  border: 1px solid #aaa;
+}
+.mp-dialog > div > button {
+  width: 92px;
+  margin: 0 25px;
+}
+.mp-dialog > div > button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 14px 0 rgba(0, 0, 0, 0.19);
+}
+#mp-dialog1 {
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 28px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  padding: 10px 0;
+  width: 600px;
+  position: relative;
+  bottom: 30px;
+}
+#mp-dialog1 .mp-title {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+#mp-dialog1 .mp-title span {
+  color: #4d79ff;
+}
+#mp-dialog1 .mp-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+}
+#mp-dialog1 .mp-tinytitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#mp-dialog1 .mp-radio,
+#mp-dialog1 .mp-radio tr,
+#mp-dialog1 .mp-radio td {
+  border: 1px solid #aaa;
+}
+#mp-dialog1 > div > button {
+  width: 92px;
+  margin: 0 25px;
+}
+#mp-dialog1 > div > button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 14px 0 rgba(0, 0, 0, 0.19);
+}
+#mp-dialog1 .mp-radio {
+  width: 480px;
+  margin: 25px auto 40px;
+}
+#mp-dialog2-1 {
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 28px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  padding: 10px 0;
+  width: 800px;
+}
+#mp-dialog2-1 .mp-title {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+#mp-dialog2-1 .mp-title span {
+  color: #4d79ff;
+}
+#mp-dialog2-1 .mp-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+}
+#mp-dialog2-1 .mp-tinytitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#mp-dialog2-1 .mp-radio,
+#mp-dialog2-1 .mp-radio tr,
+#mp-dialog2-1 .mp-radio td {
+  border: 1px solid #aaa;
+}
+#mp-dialog2-1 > div > button {
+  width: 92px;
+  margin: 0 25px;
+}
+#mp-dialog2-1 > div > button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 14px 0 rgba(0, 0, 0, 0.19);
+}
+#mp-dialog2-1 #mp2-1-accordion {
+  width: 640px;
+  margin: 25px auto;
+}
+#mp-dialog2-1 #mp2-1-accordion .am-panel-hd {
+  cursor: pointer;
+  font-size: 20px;
+}
+#mp-dialog2-2 {
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 28px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  padding: 10px 0;
+  width: 800px;
+}
+#mp-dialog2-2 .mp-title {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+#mp-dialog2-2 .mp-title span {
+  color: #4d79ff;
+}
+#mp-dialog2-2 .mp-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+}
+#mp-dialog2-2 .mp-tinytitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#mp-dialog2-2 .mp-radio,
+#mp-dialog2-2 .mp-radio tr,
+#mp-dialog2-2 .mp-radio td {
+  border: 1px solid #aaa;
+}
+#mp-dialog2-2 > div > button {
+  width: 92px;
+  margin: 0 25px;
+}
+#mp-dialog2-2 > div > button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 14px 0 rgba(0, 0, 0, 0.19);
+}
+#mp-dialog2-2 #mp2-2-accordion {
+  width: 536px;
+  margin: 25px auto;
+}
+#mp-dialog2-2 #mp2-2-accordion .am-panel-hd {
+  cursor: pointer;
+  font-size: 20px;
+}
+#mp-dialog2-3 {
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 28px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  padding: 10px 0;
+  width: 900px;
+}
+#mp-dialog2-3 .mp-title {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+#mp-dialog2-3 .mp-title span {
+  color: #4d79ff;
+}
+#mp-dialog2-3 .mp-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+}
+#mp-dialog2-3 .mp-tinytitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#mp-dialog2-3 .mp-radio,
+#mp-dialog2-3 .mp-radio tr,
+#mp-dialog2-3 .mp-radio td {
+  border: 1px solid #aaa;
+}
+#mp-dialog2-3 > div > button {
+  width: 92px;
+  margin: 0 25px;
+}
+#mp-dialog2-3 > div > button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 14px 0 rgba(0, 0, 0, 0.19);
+}
+#mp-dialog2-3 #mp2-3-accordion {
+  width: 720px;
+  margin: 25px auto;
+}
+#mp-dialog2-3 #mp2-3-accordion .am-panel-hd {
+  cursor: pointer;
+  font-size: 20px;
+}
+#mp-dialog3 {
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 28px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  padding: 10px 0;
+  width: 800px;
+}
+#mp-dialog3 .mp-title {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+#mp-dialog3 .mp-title span {
+  color: #4d79ff;
+}
+#mp-dialog3 .mp-subtitle {
+  font-size: 16px;
+  font-weight: 300;
+}
+#mp-dialog3 .mp-tinytitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#mp-dialog3 .mp-radio,
+#mp-dialog3 .mp-radio tr,
+#mp-dialog3 .mp-radio td {
+  border: 1px solid #aaa;
+}
+#mp-dialog3 > div > button {
+  width: 92px;
+  margin: 0 25px;
+}
+#mp-dialog3 > div > button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 14px 0 rgba(0, 0, 0, 0.19);
+}
+.mpr-container {
+  height: 42px;
+  display: block;
+  position: relative;
+  padding-left: 45px;
+  padding-right: 15px;
+  margin: 6px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.mpr-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.mpr-container:hover input ~ .mpr-checkmark {
+  background-color: #ccc;
+}
+.mpr-container input:checked ~ .mpr-checkmark {
+  background-color: #2196F3;
+}
+.mpr-container input:checked ~ .mpr-checkmark :after {
+  display: block;
+}
+.mpr-container .mpr-label {
+  font-size: 20px;
+  float: left;
+  font-weight: 400;
+  position: relative;
+  bottom: -7px;
+}
+.mpr-container .mpr-sublabel {
+  display: inline-block;
+  float: right;
+  font-size: 14px;
+  font-weight: 300;
+  color: #888;
+  position: relative;
+  bottom: 4px;
+}
+.mpr-checkmark {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+.mpr-checkmark:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 6.3px;
+  left: 6.4px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: white;
+}
+.mpb-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  margin: 6px 14px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.mpb-container:hover input ~ .mpb-checkmark {
+  background-color: #ccc;
+}
+.mpb-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.mpb-container input:checked ~ .mpb-checkmark {
+  background-color: #2196F3;
+}
+.mpb-container input:checked ~ .mpb-checkmark:after {
+  display: block;
+}
+.mpb-container .mpb-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+.mpb-container .mpb-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 8px;
+  top: 2px;
+  width: 10px;
+  height: 16px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.mpb-container span {
+  position: relative;
+  bottom: 5px;
+}
+.mpx label {
+  display: block;
+  position: relative;
+  margin: 40px auto 20px;
+  width: 91%;
+}
+.mpx input,
+.mpx textarea {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  font-weight: 400;
+}
+.mpx textarea {
+  resize: none;
+  overflow: auto;
+}
+.mpx .mpx-line-box {
+  position: relative;
+  width: 100%;
+  height: 1.6px;
+  background: #666;
+}
+.mpx .mpx-line {
+  position: absolute;
+  width: 0%;
+  height: 1.6px;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #19a7f0;
+  transition: ease .6s;
+}
+.mpx input:focus + .mpx-line-box .mpx-line {
+  width: 100%;
+}
+.mpx textarea:focus + .mpx-line-box .mpx-line {
+  width: 100%;
+}
+.mpx .mpx-label-txt {
+  position: absolute;
+  top: -1.2em;
+  padding: 10px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #444;
+  transition: ease .3s;
+}
+.mpx .mpx-label-active {
+  top: -2.6em;
+}
+#mp2-1-detail4 label,
+#mp2-2-detail4 label {
+  display: block;
+  position: relative;
+  margin: 40px auto 20px;
+  width: 91%;
+}
+#mp2-1-detail4 input,
+#mp2-2-detail4 input,
+#mp2-1-detail4 textarea,
+#mp2-2-detail4 textarea {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  font-weight: 400;
+}
+#mp2-1-detail4 textarea,
+#mp2-2-detail4 textarea {
+  resize: none;
+  overflow: auto;
+}
+#mp2-1-detail4 .mpx-line-box,
+#mp2-2-detail4 .mpx-line-box {
+  position: relative;
+  width: 100%;
+  height: 1.6px;
+  background: #666;
+}
+#mp2-1-detail4 .mpx-line,
+#mp2-2-detail4 .mpx-line {
+  position: absolute;
+  width: 0%;
+  height: 1.6px;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #19a7f0;
+  transition: ease .6s;
+}
+#mp2-1-detail4 input:focus + .mpx-line-box .mpx-line,
+#mp2-2-detail4 input:focus + .mpx-line-box .mpx-line {
+  width: 100%;
+}
+#mp2-1-detail4 textarea:focus + .mpx-line-box .mpx-line,
+#mp2-2-detail4 textarea:focus + .mpx-line-box .mpx-line {
+  width: 100%;
+}
+#mp2-1-detail4 .mpx-label-txt,
+#mp2-2-detail4 .mpx-label-txt {
+  position: absolute;
+  top: -1.2em;
+  padding: 10px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #444;
+  transition: ease .3s;
+}
+#mp2-1-detail4 .mpx-label-active,
+#mp2-2-detail4 .mpx-label-active {
+  top: -2.6em;
+}
+#mp3-form {
+  width: 640px;
+  margin: auto;
+}
+#mp3-form label {
+  display: block;
+  position: relative;
+  margin: 40px auto 20px;
+  width: 91%;
+}
+#mp3-form input,
+#mp3-form textarea {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  font-weight: 400;
+}
+#mp3-form textarea {
+  resize: none;
+  overflow: auto;
+}
+#mp3-form .mpx-line-box {
+  position: relative;
+  width: 100%;
+  height: 1.6px;
+  background: #666;
+}
+#mp3-form .mpx-line {
+  position: absolute;
+  width: 0%;
+  height: 1.6px;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #19a7f0;
+  transition: ease .6s;
+}
+#mp3-form input:focus + .mpx-line-box .mpx-line {
+  width: 100%;
+}
+#mp3-form textarea:focus + .mpx-line-box .mpx-line {
+  width: 100%;
+}
+#mp3-form .mpx-label-txt {
+  position: absolute;
+  top: -1.2em;
+  padding: 10px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #444;
+  transition: ease .3s;
+}
+#mp3-form .mpx-label-active {
+  top: -2.6em;
+}
+#mp3-form .mpx-label-txt {
+  font-size: 20px;
+  font-weight: 400;
+  top: -1em;
+  color: #666;
+}
+#mp3-form .mpx-label-txt span {
+  font-weight: 300;
+  color: #ccc;
+}
+#mp3-form .mpx-label-active {
+  top: -2em;
+}
+#mp3-form label {
+  margin-bottom: 40px;
+}
+#mp3-form input {
+  font-size: 16px;
+  text-align: left;
+}
+#mp3-form textarea {
+  font-size: 16px;
+  text-align: justify;
+}
+#mp3-fileup {
+  width: 568px;
+  margin: auto;
+  margin-bottom: 60px;
+}
+#mp3-fileup .mp-title {
+  text-align: left;
+  color: #666;
+  font-size: 20px;
+}
+#mp3-fileup .mp-tinytitle {
+  text-align: left;
+}
+#mp3-fileup .am-form-file {
+  width: 100%;
+  height: 46px;
+  margin: 15px 0 0 0;
+}
+#mp3-fileup .ambtnisugly {
+  width: 100%;
+  height: 46px;
+  border: 1.6px dashed #666;
+  border-radius: 16px;
+  background-color: white;
+  font-size: 18px;
+}
+#mp3-settime {
+  width: 568px;
+  margin: auto;
+  margin-bottom: 0;
+}
+#mp3-settime .mp-title {
+  text-align: left;
+  color: #666;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+#mp3-settime #mp3-datepicker {
+  cursor: pointer;
+  color: #444;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  width: 160px;
+  height: 37.2px;
+  margin: 0 20px;
+  padding-left: 10px;
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  display: inline-block;
+}
+#mp3-settime #mp3-datepicker:hover {
+  border-color: #c7c7c7;
+}
+#mp3-settime #mp3-datepicker:focus {
+  outline: none;
+  border-color: #c7c7c7;
+}
+#mp3-settime #mp3-timepicker {
+  width: 140px;
+}
+#mp3-settime #mp3-picker {
+  display: none;
+}
+#mp3-settime .mpb-container {
+  margin: 0;
+  bottom: 18px;
+}
+#mp3-settime .mpb-container .mpb-checkmark {
+  width: 22px;
+  height: 22px;
+}
+#mp3-settime .mpb-container .mpb-checkmark:after {
+  left: 7px;
+  top: 0.5px;
+  width: 9px;
+  height: 16px;
+}
+#mp2-3-detail4 label.mpb-container {
+  width: 102px;
+}
+#mp2-1-detail2 label.mpb-container {
+  width: 171px;
+}
+#mp2-1-detail3 label.mpb-container {
+  width: 330px;
+  text-align: left;
+  font-size: 21px;
+}
+#mp2-1-detail2 label.mpb-container {
+  width: 172px;
+  font-size: 21px;
+}

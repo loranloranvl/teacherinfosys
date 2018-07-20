@@ -1,0 +1,34 @@
+.pagi {
+  display: none;
+  margin: 30px 0;
+  text-align: center;
+}
+.pagi div {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  box-shadow: 0.4px 0.8px 3px rgba(0, 0, 4, 0.4);
+  display: inline-block;
+  margin: 0 4px;
+  font-weight: 500;
+  color: #666;
+  vertical-align: top;
+}
+.pagi-first,
+.pagi-prev,
+.pagi-next,
+.pagi-last {
+  font-size: 22px;
+}
+.pagi-first:hover,
+.pagi-prev:hover,
+.pagi-next:hover,
+.pagi-last:hover {
+  box-shadow: 1.2px 1.8px 6px rgba(0, 0, 4, 0.4);
+  cursor: pointer;
+  color: black;
+}
+.pagi-cur {
+  font-size: 20px;
+  cursor: default;
+}

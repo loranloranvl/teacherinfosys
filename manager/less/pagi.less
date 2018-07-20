@@ -1,0 +1,29 @@
+@w: 50px;
+.pagi {
+	display: none;
+	margin: 30px 0;
+	text-align: center;
+	div {
+		width: @w;
+		height: @w;
+		line-height: @w;
+		box-shadow: 0.4px 0.8px 3px rgba(0, 0, 4, 0.4);
+		display: inline-block;
+		margin: 0 4px;
+		font-weight: 500;
+		color: #666;
+		vertical-align: top;
+	}
+	&-first, &-prev, &-next, &-last {
+		font-size: 22px;
+		&:hover {
+			box-shadow: 1.2px 1.8px 6px rgba(0, 0, 4, 0.4);
+			cursor: pointer;
+			color: black;
+		}
+	}
+	&-cur {
+		font-size: 20px;
+		cursor: default;
+	}
+}

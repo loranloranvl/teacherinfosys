@@ -5,6 +5,8 @@
 		"title": "通知"
 	})
 	<link rel="stylesheet" href="./css/tongzhi.css">
+	<link rel="stylesheet" href="./css/pagi.css">
+	<link rel="stylesheet" href="./css/createmsg.css">
 </head>
 <body>
 @@include('./partials/nav.html')
@@ -12,6 +14,10 @@
 	<div class="am-avg-sm-1" id="tongzhis">
 		<!-- ajax here -->
 	</div>
+	@@include('./partials/pagi.html', {
+		"id": "pagi"
+	})
+	@@include('./partials/createmsg.html')
 </div>
 <script type="text/x-handlebars-template" id="ht-tongzhis">
 	<div class="am-u-lg-4 am-show-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
@@ -98,6 +104,7 @@
 	{{/if}}
 {{/each}}
 </script>
-</body>
 <script src="./js/tongzhi.js"></script>
+<script src="./js/createmsg.js"></script>
+</body>
 </html>

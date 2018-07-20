@@ -2,6 +2,8 @@ var log = console.log;
 var __SPINNER__ = '<i class="am-icon-spinner \
 	am-icon-spin"></i>';
 var  __URL__ = 'https://tis.cloudshm.com/api/v1.0/';
+var info = JSON.parse(localStorage.info);
+var info_level = info.info_level;
 
 // btn.onclick: disable it and send ajax request
 function disableBtn(id) {
@@ -76,3 +78,29 @@ $(document).ready(function() {
 		return JSON.stringify(typeIndex);
 	});
 });
+
+var dialog = {
+    error: function(message) {
+        layer.open({
+            content:message,
+            icon:2,
+            title : '错误',
+        });
+    },
+
+	notice: function(message) {
+        layer.open({
+            content: message,
+            icon:3,
+            title : '提示',
+        });
+    },
+
+    success : function(message) {
+        layer.open({
+            content : message,
+            icon : 1,
+            title: '成功'
+        });
+    }
+};

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     Handlebars.registerPartial('tongzhi', 
         $('#ht-tongzhi-partial').html());
-    ajaxGetTongzhi(11);
+    ajaxGetTongzhi(1);
 
 });
 
@@ -13,11 +13,23 @@ function ajaxGetTongzhi(page) {
             page: page
         },
         success: function (data) {
-            if(data.status == 200){
+            if (data.status == 200){
                 deployTongzhi(data.data);
+                deployPagi(data.data, 'pagi');
             }
         }
     })
+}
+
+function ajaxGetNameList() {
+    $.ajax({
+        url: 'receivers/2',
+        succeess: function(data) {
+            if (data.status == 200) {
+                // blabla
+            }
+        }
+    });
 }
 
 /* -------------- deployers -----------------*/
@@ -33,16 +45,39 @@ function deployTongzhi(data) {
         else
             return 0;
     }
+
     if (window.innerWidth > 1025) {
         data.sort(function(a, b) {
+            // sort reversely
             return eh(b) - eh(a);
         });
+
+        // empty tongzhi object used for layout
         var empty = {
             index0: false,
             index1: false,
             index2: false,
             title: false
         }
+
+        /*
+            for large screens
+            we have three columns and five messages
+            we put the longest message on column2
+            the second longest one on column1
+            the third longest one on column0
+            the fourth longest one on column0
+
+            if the estimated height of column0 is greater than column1
+            then we put the shortest one on column1
+            else we put the shortest one on column0
+
+            we use modular arithmatic, i.e. % operator
+            to render layout of diffent columns, see the map function below
+
+            for small and middle screens
+            we only render a vertically linear layout
+        */
         if (eh(data[2]) + eh(data[3]) < eh(data[1])) {
             data = [data[2], data[1], data[0], 
                 data[3], empty, empty, data[4]];
@@ -51,16 +86,38 @@ function deployTongzhi(data) {
         }
         data.map(function(element, index) {
             if (element) {
+                // evaluating element.title is to ignore empty tongzhi object
                 element.index0 = element.title && index % 3 == 0;
                 element.index1 = element.title && index % 3 == 1;
                 element.index2 = element.title && index % 3 == 2;
             }
         })
     }
+
+    // deploy the main part with Handlebars 
+    // this function is defined in shared/common.js
     HDeploy('tongzhis', data);
-    $('.tongzhi .sendee').each(function() {
-        // blabla
-    })
+
+    /*
+        rendering files
+        for every microsoft word document
+        the server will provide a pair of msword and pdf
+        and the pdf is directly preceded by its msword counterpart
+
+        here we map through _urls
+        for every msword, we push an object with these keys:
+            dual: indicates it is a pair of msword and pdf
+            data:
+                isdoc: indicates its extension is .doc instread of .docx
+                name: file name without extension
+                mswordurl and pdfurl: just corresponding urls
+        for every pdf that is not preceded by a msword counterpart
+        we know it is uploaded in pdf rather then converted from a msword
+            dual: always false
+            data:
+                name: file name with extension
+                url: url
+    */
     $('.tongzhi .files').each(function() {
         var urls = $(this).attr('data-urls');
         if (urls) {
@@ -95,6 +152,8 @@ function deployTongzhi(data) {
             $(this).html(template(files));
         }
     })
+
+    // translate dataType into human-readable labels
     $('.tongzhi .sendee').each(function() {
         var type = parseInt($(this).attr('data-type'));
         var text = '';
@@ -112,4 +171,47 @@ function deployTongzhi(data) {
         }
         $(this).text(text);
     })
+}
+
+function deployPagi(data, id) {
+    var pagi = $('#' + id)
+    pagi.find('.pagi-cur').text(data.current_page);
+
+    // only show when data is correctly received
+    // and there is more than 1 page
+    if(data.data && data.last_page != 1) {
+        pagi.show();
+    } else {
+        pagi.hide();
+    }
+
+    if (data.current_page == 1) {
+        pagi.find('.pagi-first, .pagi-prev').hide();
+    } else {
+        pagi.find('.pagi-first, .pagi-prev').show();
+    }
+
+    if (data.current_page == data.last_page) {
+        pagi.find('.pagi-next, .pagi-last').hide();
+    } else {
+        pagi.find('.pagi-next, .pagi-last').show();
+    }
+
+    // remove all click event listeners bound by 
+    // previous deployers then add our listeners
+    pagi.find('div').off('click').on('click', function() {
+        pagi.find('.pagi-cur').html(__SPINNER__);
+    })
+    pagi.find('.pagi-first').on('click', function() {
+        ajaxGetTongzhi(1);
+    });
+    pagi.find('.pagi-prev').on('click', function() {
+        ajaxGetTongzhi(data.current_page - 1);
+    });
+    pagi.find('.pagi-next').on('click', function() {
+        ajaxGetTongzhi(data.current_page + 1);
+    });
+    pagi.find('.pagi-last').on('click', function() {
+        ajaxGetTongzhi(data.last_page);
+    });
 }
