@@ -1,24 +1,3 @@
-.outline {
-	outline: 0.8px solid rgba(230, 0, 0, 0.6);
-}
-
-.none {
-	text-align: center;
-	font-size: 28px;
-	margin: 40px;
-	color: #999;
-}
-
-#main {
-	padding: 75px 20px;
-	@media screen and (min-width: 641px) {
-		padding: 80px 30px;
-	}
-	@media screen and (min-width: 1025px) {
-		padding: 80px 40px;
-	}
-}
-
 .tongzhi {
 	vertical-align: bottom;
 	display: inline-block;
@@ -32,6 +11,22 @@
 	background-color: white;
 	margin: 5px;
 	padding: 15px 10px;
+	position: relative;
+	@preH: 35px;
+	.pre {
+		position: absolute;
+		top: -6px;
+		right: -6px;
+		border-radius: 50%;
+		border: 1.8px dashed #d7342e;
+		width: @preH;
+		height: @preH;
+		line-height: @preH - 5;
+		text-align: center;
+		color: #d7342e;
+		font-size: 18px;
+		font-weight: 500;
+	}
 	p {
 		margin: 10px;
 	}
@@ -59,7 +54,7 @@
 	}
 	.date {
 		text-align: right;
-		font-size: 18px;
+		font-size: 16px;
 		color: #999;
 	}
 	.files {
@@ -68,3 +63,4 @@
 		}
 	}
 }
+

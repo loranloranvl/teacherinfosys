@@ -34,6 +34,8 @@ function getParam(url) {
 	var search = (typeof url !== 'undefined') 
 		? url.slice(url.indexOf('?') + 1)
 		: location.search.substring(1);
+	if (!search) 
+		return false;
 	return JSON.parse('{"' + decodeURI(search)
 		.replace(/"/g, '\\"')
 		.replace(/&/g, '","')
@@ -41,12 +43,19 @@ function getParam(url) {
 }
 
 // general ajax settings
+var loader;
 $.ajaxSetup({
 	timeout: 10 * 60 * 1000,
 	dataType: 'json',
 	crossDomain: true,
 	xhrFields: {
 		withCredentials: true
+	},
+	beforeSend: function() {
+		loader = layer.load();
+	},
+	complete: function() {
+		layer.close(loader);
 	}
 });
 
@@ -99,8 +108,7 @@ var dialog = {
     success : function(message) {
         layer.open({
             content : message,
-            icon : 1,
-            title: '成功'
+            icon : 1
         });
     }
 };

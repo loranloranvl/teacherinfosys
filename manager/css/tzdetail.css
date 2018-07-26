@@ -1,0 +1,35 @@
+.panel {
+  background-color: white;
+  box-shadow: 0.6px 0.8px 4px rgba(4, 0, 0, 0.4);
+  padding: 15px;
+}
+#title {
+  text-align: left;
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 5px;
+}
+#subtitle {
+  margin-top: 0;
+  color: #666;
+  display: none;
+}
+.black {
+  color: black;
+}
+.red {
+  color: #d7342e;
+}
+.green {
+  color: #5eb95e;
+}
+.target {
+  display: inline-block;
+  padding: 0 0 0 8px;
+  margin: 10px 5px;
+  border-left: 2px solid #ddd;
+  width: 150px;
+}
+.status {
+  font-size: 18px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	@@include('./partials/head.html', {
+		"title": "通知详情"
+	})
+	<link rel="stylesheet" href="css/tzdetail.css">
+</head>
+<body>
+@@include('./partials/nav.html')
+<div id="main">
+
+</div>
+<script type="text/x-handlebars-template" id="ht-main">
+	<div class="panel" style="margin: 0 1.5rem 1.5rem 1.5rem">
+		<p id="title"></p>
+		<div id="subtitle">
+			发送对象共 <span class="black">2333</span> 名 &nbsp;&nbsp;&nbsp;其中 <span class="green">233</span> 名已阅读 &nbsp;&nbsp;&nbsp;<span class="red">213</span> 名未阅读 &nbsp;&nbsp;&nbsp;阅读比率 <span class="black">13.3%</span>
+		</div>
+	</div>
+	<div id="content">
+		<div class="am-u-sm-6">
+			<div class="panel">
+				<div class="status"><span class="green">已阅读</span></div>
+				<hr>
+				{{#each this}}
+					{{#if status}}
+						<div class="target">
+							<span style="color: #333">{{name}}</span>
+							<span style="color: #666">{{userid}}</span>
+						</div>
+					{{/if}}
+				{{/each}}
+			</div>
+		</div>
+		<div class="am-u-sm-6">
+			<div class="panel">
+				<div class="status"><span class="red">未阅读</span></div>
+				<hr>
+				{{#each this}}
+					{{#unless status}}
+						<div class="target">
+							<span style="color: #333">{{name}}</span>
+							<span style="color: #666">{{userid}}</span>
+						</div>
+					{{/unless}}
+				{{/each}}
+			</div>
+		</div>
+	</div>
+</script>
+<script src="js/tzdetail.js"></script>
+</body>
+</html>

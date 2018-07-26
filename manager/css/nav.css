@@ -46,6 +46,7 @@ nav #nav-corner #nav-logout span {
   cursor: pointer;
 }
 nav #nav-bars {
+  cursor: pointer;
   color: white;
   font-size: 30px;
   text-align: center;
@@ -62,7 +63,7 @@ nav .bars-active {
   box-shadow: 0 0.8px 3px rgba(0, 0, 0, 0.4);
   position: fixed;
   z-index: 1;
-  top: 50px;
+  top: 54.5px;
   right: 0;
   background-color: white;
 }
@@ -124,4 +125,26 @@ nav .bars-active {
 #btn-content:hover + div {
   border-color: transparent;
   background-color: transparent;
+}
+.none {
+  text-align: center;
+  font-size: 28px;
+  margin: 40px;
+  color: #999;
+}
+#main {
+  padding: 75px 20px;
+}
+@media screen and (min-width: 641px) {
+  #main {
+    padding: 80px 30px;
+  }
+}
+@media screen and (min-width: 1025px) {
+  #main {
+    padding: 80px 40px;
+  }
+}
+body {
+  background-color: #fcfcff;
 }

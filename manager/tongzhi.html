@@ -15,6 +15,8 @@
 <!-- Set render engine for 360 browser -->
 <meta name="renderer" content="webkit">
 
+<link rel="icon" type="image/png" href="../favicon.ico">
+
 <!-- No Baidu Siteapp-->
 <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
@@ -50,7 +52,7 @@
             <li class="am-u-lg-2" id="btn">
                 <div id="btn-cover1">a</div>
                 <div id="btn-cover2">a</div>
-                <div id="btn-content">创建通知</div>
+                <div id="btn-content"></div>
                 <div id="btn-cover3">a</div>
             </li>
         </ul>
@@ -358,7 +360,7 @@
 </div>
 
 <!--handlebars模板 | 发送给本科生-按年级-->
-<script type="text/x-handlebars-template" id="handlebars-template-mp2-1-detail1">
+<script type="text/x-handlebars-template" id="ht-mp2-1-detail1">
     <div class="am-panel-bd">
         <!-- modal-process-checkbox -->
         {{#each grade}}
@@ -374,7 +376,7 @@
 </script>
 
 <!--handlebars模板 | 发送给本科生-按班级-->
-<script type="text/x-handlebars-template" id="handlebars-template-mp2-1-detail2">
+<script type="text/x-handlebars-template" id="ht-mp2-1-detail2">
     <div class="am-panel-bd">
         <!-- modal-process-checkbox -->
         {{#each class}}
@@ -390,7 +392,7 @@
 </script>
 
 <!--handlebars模板 | 发送给本科生-按专业-->
-<script type="text/x-handlebars-template" id="handlebars-template-mp2-1-detail3">
+<script type="text/x-handlebars-template" id="ht-mp2-1-detail3">
     <div class="am-panel-bd">
         <!-- modal-process-checkbox -->
         {{#each major}}
@@ -406,7 +408,7 @@
 </script>
 
 <!--handlebars模板 | 发送给研究生-按年级-->
-<script type="text/x-handlebars-template" id="handlebars-template-mp2-2-detail1">
+<script type="text/x-handlebars-template" id="ht-mp2-2-detail1">
     <div class="am-panel-bd">
         <!-- modal-process-checkbox -->
         {{#each graduate_grade}}
@@ -422,7 +424,7 @@
 </script>
 
 <!--handlebars模板 | 发送给教师-指定-->
-<script type="text/x-handlebars-template" id="handlebars-template-mp2-3-detail4">
+<script type="text/x-handlebars-template" id="ht-mp2-3-detail4">
     <div class="am-panel-bd">
         <!-- modal-process-checkbox -->
         {{#each teacher}}
@@ -473,16 +475,27 @@
 </script>
 
 <script type="text/x-handlebars-template" id="ht-tongzhi-partial">
-	<li class="tongzhi">
+	<li class="tongzhi" data-time="{{time}}">
 		<div class="container">
+			{{#if time}}
+				<div class="pre">预</div>
+			{{/if}}
 			<p class="title">{{title}}</p>
 			<p class="channel">
 				<span class="sender">{{name}}</span> 
 				<i class="am-icon-angle-double-right"></i> 
-				<span class="sendee" data-type="{{type}}"></span>
+				<span class="sendee" data-send-to="{{send_to}}" data-type="{{type}}" data-id="{{id}}" data-title={{title}}></span>
 			</p>
 			<p class="content">{{content}}</p>
-			<p class="date">{{updated_at}}</p>
+			{{#if time}}
+				
+				<p class="date"><i class="am-icon-hand-pointer-o"></i> {{created_at}}</p>
+
+				<p class="date"><i class="am-icon-calendar-minus-o"></i> {{time}}:00</p>
+			{{else}}
+				<p class="date">{{created_at}}</p>
+			{{/if}}
+				
 			<div class="files" data-urls="{{attach_url}}">
 				
 			</div>
@@ -522,7 +535,7 @@
 	{{/if}}
 {{/each}}
 </script>
-<script src="./js/tongzhi.js"></script>
 <script src="./js/createmsg.js"></script>
+<script src="./js/tongzhi.js"></script>
 </body>
 </html>

@@ -55,16 +55,27 @@
 </script>
 
 <script type="text/x-handlebars-template" id="ht-tongzhi-partial">
-	<li class="tongzhi">
+	<li class="tongzhi" data-time="{{time}}">
 		<div class="container">
+			{{#if time}}
+				<div class="pre">预</div>
+			{{/if}}
 			<p class="title">{{title}}</p>
 			<p class="channel">
 				<span class="sender">{{name}}</span> 
 				<i class="am-icon-angle-double-right"></i> 
-				<span class="sendee" data-type="{{type}}"></span>
+				<span class="sendee" data-send-to="{{send_to}}" data-type="{{type}}" data-id="{{id}}" data-title={{title}}></span>
 			</p>
 			<p class="content">{{content}}</p>
-			<p class="date">{{updated_at}}</p>
+			{{#if time}}
+				
+				<p class="date"><i class="am-icon-hand-pointer-o"></i> {{created_at}}</p>
+
+				<p class="date"><i class="am-icon-calendar-minus-o"></i> {{time}}:00</p>
+			{{else}}
+				<p class="date">{{created_at}}</p>
+			{{/if}}
+				
 			<div class="files" data-urls="{{attach_url}}">
 				
 			</div>
@@ -104,7 +115,7 @@
 	{{/if}}
 {{/each}}
 </script>
-<script src="./js/tongzhi.js"></script>
 <script src="./js/createmsg.js"></script>
+<script src="./js/tongzhi.js"></script>
 </body>
 </html>

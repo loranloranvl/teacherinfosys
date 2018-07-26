@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+<title>网安信息平台 | 通知详情</title>
+
+<!-- Set render engine for 360 browser -->
+<meta name="renderer" content="webkit">
+
+<link rel="icon" type="image/png" href="../favicon.ico">
+
+<!-- No Baidu Siteapp-->
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<link rel="stylesheet" href="../shared/amazeui.min.css">
+<link rel="stylesheet" href="./css/nav.css">
+<script src="../shared/jquery.min.js"></script>
+<script src="../shared/amazeui.min.js"></script>
+<script src="../shared/handlebars.min.js"></script>
+<script src="../shared/layer/layer.js"></script>
+<script src="../shared/common.js"></script>
+<script src="./js/nav.js"></script>
+	<link rel="stylesheet" href="css/tzdetail.css">
+</head>
+<body>
+<nav class="am-g">
+    <div class="am-u-lg-3 am-u-md-4 am-u-sm-10" id="nav-slogan">
+        网安信息平台
+    </div>
+    <div class="am-u-md-8 am-show-md">
+        <ul class="am-avg-sm-6">
+            <li><a href="teaching.html?dontdeletethis">教学</a></li>
+            <li><a href="filesharing.html?dontdeletethis">文件</a></li>
+            <li><a href="tongzhi.html?dontdeletethis">通知</a></li>
+        </ul>
+    </div>
+    <div class="am-u-lg-7 am-show-lg">
+        <ul class="am-g">
+            <li class="am-u-lg-2"><a href="teaching.html?dontdeletethis">教学页面</a></li>
+            <li class="am-u-lg-2"><a href="filesharing.html?dontdeletethis">文件系统</a></li>
+            <li class="am-u-lg-2"><a href="tongzhi.html?dontdeletethis">通知系统</a></li>
+            <li class="am-u-lg-2" id="btn">
+                <div id="btn-cover1">a</div>
+                <div id="btn-cover2">a</div>
+                <div id="btn-content"></div>
+                <div id="btn-cover3">a</div>
+            </li>
+        </ul>
+    </div>
+    <div class="am-u-sm-2 am-show-sm" id="nav-bars">
+        <i class="am-icon-bars"></i>
+    </div>
+    <div class="am-u-lg-2 am-show-lg" id="nav-corner">
+        <p>欢迎您 王小明</p>
+        <p id="nav-logout">
+            <span>
+                <i class="am-icon-sign-out"> 退出系统</i>
+            </span>
+        </p>
+    </div>
+</nav>
+<div id="nav-dropdown">
+    <div><a href="teaching.html?dontdeletethis">教学页面</a></div><hr>
+    <div><a href="filesharing.html?dontdeletethis">文件系统</a></div><hr>
+    <div><a href="tongzhi.html?dontdeletethis">通知系统</a></div>
+</div>
+
+<div id="main">
+
+</div>
+<script type="text/x-handlebars-template" id="ht-main">
+	<div class="panel" style="margin: 0 1.5rem 1.5rem 1.5rem">
+		<p id="title"></p>
+		<div id="subtitle">
+			发送对象共 <span class="black">2333</span> 名 &nbsp;&nbsp;&nbsp;其中 <span class="green">233</span> 名已阅读 &nbsp;&nbsp;&nbsp;<span class="red">213</span> 名未阅读 &nbsp;&nbsp;&nbsp;阅读比率 <span class="black">13.3%</span>
+		</div>
+	</div>
+	<div id="content">
+		<div class="am-u-sm-6">
+			<div class="panel">
+				<div class="status"><span class="green">已阅读</span></div>
+				<hr>
+				{{#each this}}
+					{{#if status}}
+						<div class="target">
+							<span style="color: #333">{{name}}</span>
+							<span style="color: #666">{{userid}}</span>
+						</div>
+					{{/if}}
+				{{/each}}
+			</div>
+		</div>
+		<div class="am-u-sm-6">
+			<div class="panel">
+				<div class="status"><span class="red">未阅读</span></div>
+				<hr>
+				{{#each this}}
+					{{#unless status}}
+						<div class="target">
+							<span style="color: #333">{{name}}</span>
+							<span style="color: #666">{{userid}}</span>
+						</div>
+					{{/unless}}
+				{{/each}}
+			</div>
+		</div>
+	</div>
+</script>
+<script src="js/tzdetail.js"></script>
+</body>
+</html>

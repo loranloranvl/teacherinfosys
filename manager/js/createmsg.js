@@ -25,7 +25,7 @@ var am_modal_options = { // amaze ui 模态窗选项
                         relatedTarget: this, 
                         closeViaDimmer: false
                         }
-var sendData; // Data from ajax (grade class teacher etc.)
+var sendData = localStorage.sendData; // Data from ajax (grade class teacher etc.)
 
 /*
     type对照表：
@@ -42,33 +42,20 @@ var sendData; // Data from ajax (grade class teacher etc.)
  */
 
 // handlebars: 动态生成发送对象checkboxes
-function deploySendToHTML(data, type) {
-    if (type == 1) {
-        var source = $('#handlebars-template-mp2-1-detail1').html();
-        var template = Handlebars.compile(source);
-        $('#mp2-1-detail1').html(template(data));
-    } else if (type == 2) {
-        var source = $('#handlebars-template-mp2-1-detail2').html();
-        var template = Handlebars.compile(source);
-        $('#mp2-1-detail2').html(template(data));
-    } else if (type == 3) {
-        var source = $('#handlebars-template-mp2-1-detail3').html();
-        var template = Handlebars.compile(source);
-        $('#mp2-1-detail3').html(template(data));
-    } else if (type == 6) {
-        var source = $('#handlebars-template-mp2-2-detail1').html();
-        var template = Handlebars.compile(source);
-        $('#mp2-2-detail1').html(template(data));
-    } else if (type == 9 && info_level >= 2) {
-        var source = $('#handlebars-template-mp2-3-detail4').html();
-        var template = Handlebars.compile(source);
-        // 搜狗不支持中文排序
-        if (!(/metasr/i.test(window.navigator.userAgent))) {
-            data.teacher.sort(function(a, b) {
-                return a.name.localeCompare(b.name, 'zh');
-            });
-        }
-        $('#mp2-3-detail4').html(template(data));
+function deploySendToHTML(data) {
+    data.teacher.sort(function(a, b) {
+        var _qiujian = '求建';
+        if (a.name == '仇建')
+            return _qiujian.localeCompare(b.name, 'zh');
+        if (b.name == '仇建')
+            return a.name.localeCompare(_qiujian, 'zh');
+        return a.name.localeCompare(b.name, 'zh');
+    });
+    var sources = [[1, 1], [1, 2], [1, 3], [2, 1], [3, 4]];
+    for (var i = 0; i < sources.length; ++i) {
+        var source = sources[i];
+        var target = 'mp2-' + source[0] + '-detail' + source[1];
+        HDeploy(target, data);
     }
 }
 
@@ -236,48 +223,6 @@ function storeSendTarget() {
 
 // handlebars：自定义helper
 $(document).ready(function() {
-    // convert typeIndex to specific string
-    Handlebars.registerHelper("datatypeSwitch", function(typeIndex, options) {
-        switch (typeIndex){
-            case 1: return '给年级';
-            case 2: return '给班级';
-            case 3: return '给专业';
-            case 4: return '给特定学生';
-            case 5: return '给全体本科生';
-            case 6: return '给研究生班级';
-            case 7: return '给特定研究生';
-            case 8: return '给全体研究生';
-            case 9: return '给特定教师';
-            case 10: return '给全体教师';
-            default: return '';
-        };
-    });
-
-    // convert rawURLString"url1, url2, url3" into download btns
-    Handlebars.registerHelper("dnldBtnGen", function(rawURLString, options) {
-        var URLarray = rawURLString.split(',');
-        var resultHTML = '';
-        URLarray.every(function(item, index) {
-            if (item == '')
-                return false;
-            var fileName = item.split('/').pop();
-            var atitle = fileName;
-            var splittedFileName = fileName.split('.');
-            var maxL = 9;
-            if (splittedFileName[0].length > maxL) {
-                splittedFileName[0] = splittedFileName[0].slice(0, maxL - 1) + '..';
-                fileName = splittedFileName.join('.');
-            }
-            resultHTML += '<a style="margin: 3px 5px;" title="' + atitle + '" class="am-badge am-badge-secondary am-radius am-text-md" download href="'
-                       + item + '">'+ fileName + '</a>';
-            return true;
-        });
-        if (resultHTML == '')
-            return '无附件';
-        else
-            return new Handlebars.SafeString(resultHTML);
-    });
-
     // 班级号->班级名称
     Handlebars.registerHelper("cnvClsIDToName", function(idnum, options) {
         var result = idnum.slice(0, 2) + '级';
@@ -512,9 +457,8 @@ function ajaxGetSendToByInfoLevel() {
             if (data.status == 200){
                 $('#btn-content').html('创建通知');
                 sendData = data.data;
-                for (var i = 1; i <= 10; ++i) {
-                    deploySendToHTML(data.data, i);
-                }
+                localStorage.sendData = sendData;
+                deploySendToHTML(data.data);
             }
         }
     });
