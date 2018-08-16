@@ -31,47 +31,53 @@
 	<link rel="stylesheet" href="css/tzdetail.css">
 </head>
 <body>
-<nav class="am-g">
-    <div class="am-u-lg-3 am-u-md-4 am-u-sm-10" id="nav-slogan">
-        网安信息平台
-    </div>
-    <div class="am-u-md-8 am-show-md">
-        <ul class="am-avg-sm-6">
-            <li><a href="teaching.html?dontdeletethis">教学</a></li>
-            <li><a href="filesharing.html?dontdeletethis">文件</a></li>
-            <li><a href="tongzhi.html?dontdeletethis">通知</a></li>
-        </ul>
-    </div>
-    <div class="am-u-lg-7 am-show-lg">
-        <ul class="am-g">
-            <li class="am-u-lg-2"><a href="teaching.html?dontdeletethis">教学页面</a></li>
-            <li class="am-u-lg-2"><a href="filesharing.html?dontdeletethis">文件系统</a></li>
-            <li class="am-u-lg-2"><a href="tongzhi.html?dontdeletethis">通知系统</a></li>
-            <li class="am-u-lg-2" id="btn">
-                <div id="btn-cover1">a</div>
-                <div id="btn-cover2">a</div>
-                <div id="btn-content"></div>
-                <div id="btn-cover3">a</div>
-            </li>
-        </ul>
-    </div>
-    <div class="am-u-sm-2 am-show-sm" id="nav-bars">
-        <i class="am-icon-bars"></i>
-    </div>
-    <div class="am-u-lg-2 am-show-lg" id="nav-corner">
-        <p>欢迎您 王小明</p>
-        <p id="nav-logout">
-            <span>
-                <i class="am-icon-sign-out"> 退出系统</i>
-            </span>
-        </p>
-    </div>
-</nav>
-<div id="nav-dropdown">
-    <div><a href="teaching.html?dontdeletethis">教学页面</a></div><hr>
-    <div><a href="filesharing.html?dontdeletethis">文件系统</a></div><hr>
-    <div><a href="tongzhi.html?dontdeletethis">通知系统</a></div>
+<div id="navc">
+
 </div>
+
+<script type="text/x-handlebars-template" id="ht-navc">
+    <nav class="am-g">
+        <div class="am-u-lg-3 am-u-md-4 am-u-sm-10" id="nav-slogan">
+            网安信息平台
+        </div>
+        <div class="am-u-md-8 am-show-md">
+            <ul class="am-avg-sm-6">
+                {{#each this}}
+                <li><a href="{{ref}}.html?dontdeletethis">{{short}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="am-u-lg-7 am-show-lg">
+            <ul class="am-g">
+                {{#each this}}
+                <li class="am-u-lg-2"><a href="{{ref}}.html">{{name}}</a></li>
+                {{/each}}
+                <li class="am-u-lg-2" id="btn">
+                    <div id="btn-cover1">^</div>
+                    <div id="btn-cover2">^</div>
+                    <div id="btn-content"></div>
+                    <div id="btn-cover3">^</div>
+                </li>
+            </ul>
+        </div>
+        <div class="am-u-sm-2 am-show-sm" id="nav-bars">
+            <i class="am-icon-bars"></i>
+        </div>
+        <div class="am-u-lg-2 am-show-lg" id="nav-corner">
+            <p>欢迎您 王小明</p>
+            <p id="nav-logout">
+                <span>
+                    <i class="am-icon-sign-out"> 退出系统</i>
+                </span>
+            </p>
+        </div>
+    </nav>
+    <div id="nav-dropdown">
+        {{#each this}}
+        <div><a href="{{ref}}.html?dontdeletethis">{{name}}</a></div><hr>
+        {{/each}}
+    </div>
+</script>
 
 <div id="main">
 

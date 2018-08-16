@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通知系统</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!--暂时不使用缓存-->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+
+    <!-- public css -->
+    <link rel="stylesheet" href="../dist/css/amazeui.min.css?t=1530439131962">
+    <link rel="stylesheet" href="../dist/css/common.min.css?t=1530439131962">
+    <!-- /public css -->
+	<style>
+		.name-container{
+			display: inline-block;
+			width:100px;
+			text-align: left;
+		}
+		.class-container{
+			display: inline-block;
+			margin: auto 8px;
+			text-align: left;
+		}
+		p{
+			font-weight: 600;
+
+		}
+		p:before{
+			content: ' ';
+			display: inline-block;
+			width: 30%;
+			border-bottom:1px solid #000;
+			vertical-align: middle;
+		}
+		p:after{
+			content: ' ';
+			display: inline-block;
+			width: 30%;
+			border-bottom:1px solid #000;
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+        <div class="am-modal-hd">添加通知信息</div>
+        <div class="am-modal-bd">
+            提示：
+            <form class="am-form" enctype="multipart/form-data">
+                <div class="am-form-group">
+                    <label for="title">标题：</label>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div class="am-form-group">
+                    <label for="content">内容：</label>
+                    <input type="text" name="content" id="content">
+                </div>
+                <div class="send-to">
+                    <!--<div class="am-form-group">-->
+                    <!--<label >按年级：</label>-->
+                    <!--<input type="checkbox" value="11"> 1518411-->
+                    <!--<input type="checkbox" value="112"> 1518411-->
+                    <!--<input type="checkbox" value="1213"> 1518411-->
+                    <!--<input type="hidden" value="1">-->
+                    <!--</div>-->
+                    <!--<div class="am-form-group">-->
+                    <!--<label >按班级：</label>-->
+                    <!--<input type="checkbox" name="grade"  value="1518411"> 1518411-->
+                    <!--<input type="checkbox" name="grade"  value="1518411"> 1518411-->
+                    <!--<input type="checkbox" name="grade"  value="1518411"> 1518411-->
+                    <!--<input type="hidden"   name="type" value="2">-->
+                    <!--</div>-->
+                    <!--<div class="am-form-group">-->
+                    <!--<label >按专业：</label>-->
+                    <!--<input type="checkbox" name="grade"  value="1518411"> 1518411-->
+                    <!--<input type="checkbox" name="grade"  value="1518411"> 1518411-->
+                    <!--<input type="checkbox" name="grade"  value="1518411"> 1518411-->
+                    <!--<input type="hidden"   name="type" value="3">-->
+                    <!--</div>-->
+                    <!--<div class="am-form-group">-->
+                    <!--<label >按学号：可输入多个学号，学号间请用空格分隔</label>-->
+                    <!--<input type="text">-->
+                    <!--<input type="hidden"   name="type" value="4">-->
+                    <!--</div>-->
+                </div>
+
+                <div class="am-modal-content">
+
+                </div>
+            </form>
+        </div>
+
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" id="confirm">提交</span>
+        </div>
+
+</body>
+
+<!-- public js -->
+<script src="../dist/js/jquery.min.js?t=1530439131962"></script>
+<!-- amaze ui -->
+<script src="../dist/js/amazeui.min.js?t=1530439131962"></script>
+<!-- layer弹出层 -->
+<script src="../dist/js/layer/layer.js?t=1530439131962"></script>
+<!-- 弹出层封装 -->
+<script src="../dist/js/dialog.min.js?t=1530439131962"></script>
+<!-- 一些公共方法 -->
+<script src="../dist/js/common.min.js?t=1530439131962"></script>
+<!-- / public js -->
+
+
+<script>
+    /*
+    功能：返回表单中教师所拥有班级，年级，专业信息
+    参数：data数组
+ */
+    function getSendToHTML(data){
+        var str = '';
+
+        for(var i in data){
+            if(i=='teacher' || i=='graduate_grade'){
+                continue;
+            }
+            str += '<div class="am-form-group">' ;
+            if(i == 'grade'){
+                str += '<p>以下是本科生</p>' ;
+            }
+            switch (i){
+                case 'grade':str += '<label>按年级：</label><input type="hidden" value="1"> <br>';break;
+                case 'class':str += '<label>按班级：</label><input type="hidden" value="2"> <br>';break;
+                case 'major':str += '<label>按专业：</label><input type="hidden" value="3"> <br>';break;
+                default:break;
+            }
+
+            for(var j in data[i]){
+                str += '<div class="class-container"><input type="checkbox" value="'+ j +'"> ' + j +'</div>';
+            }
+            str += '</div>';
+        }
+        str += '<div class="am-form-group">';
+        str += '<label >按学号：可输入多个学号，学号间请用空格分隔</label>';
+        str += '<div class="class-container"><input type="text" name="send_to"></div>';
+        str += '<input type="hidden"   name="type" value="4">';
+        str += '</div>';
+
+        str += '<div class="am-form-group">';
+        str += '<label >发送给全体本科生： </label>';
+        str += '<div class="class-container"><input type="checkbox" value="全体本科生"> 全体本科生</div>';
+        str += '<input type="hidden"  name="type" value="5">';
+        str += '</div>';
+
+
+
+        str += '<div class="am-form-group">' ;
+        str += '<p>以下是研究生</p>' ;
+        str += '<label>按年级：</label><input type="hidden" value="6"> <br>';
+        for(var j in data['graduate_grade']){
+            str += '<div class="class-container"><input type="checkbox" value="'+ j +'"> ' + j +'</div>';
+        }
+        str += '</div>';
+
+        str += '<div class="am-form-group">';
+        str += '<label >按学号：可输入多个学号，学号间请用空格分隔</label>';
+        str += '<div class="class-container"><input type="text" name="send_to"></div>';
+        str += '<input type="hidden"   name="type" value="7">';
+        str += '</div>';
+
+        str += '<div class="am-form-group">';
+        str += '<label >发送给全体研究生： </label>';
+        str += '<div class="class-container"><input type="checkbox" value="全体研究生"> 全体研究生</div>';
+        str += '<input type="hidden"  name="type" value="8">';
+        str += '</div>';
+
+        if(localStorage.type == 2){
+
+            str += '<div class="am-form-group">';
+            str += '<p>以下是教师</p>' ;
+            str += '<label >按教师：</label>';
+            str += '<br>';
+            for(var k in data.teacher){
+                str += '<div class="name-container"><input type="checkbox" value="'+ data.teacher[k].userid +'"> ' + data.teacher[k].name +'</div>';
+            }
+            str += '<input type="hidden"   name="type" value="9">';
+            str += '</div>';
+
+            str += '<div class="am-form-group">';
+            str += '<label>发送给全体教师：</label>';
+            str += '<div class="name-container"><input type="checkbox" value="全体教师">全体教师</div>';
+            str += '<input type="hidden"   name="type" value="10">';
+            str += '</div>';
+        }
+        return str;
+    }
+    var index; //记录选中的type
+    $.ajax({
+        type: 'GET',
+        url: __URL__ + '/wechatreceivers/'+localStorage.type,
+        crossDomain: true,
+        dataType: 'json',
+        xhrFields: {
+            withCredentials: true
+        },
+        async:true,
+        success: function (data) {
+            if(data.status==200){
+                $('form .send-to').html(getSendToHTML(data.data));
+                // checkbox 的切换，只能选择一种type
+                $(' .send-to .am-form-group input').click(function(){
+                    $(this).parent('div').parent('.am-form-group').siblings().children('div').children('input').prop("checked", false);
+                    $(this).parent('div').parent('.am-form-group').siblings().children('div').children('input[type="text"]').val('');
+                    index = $(this).parents('.am-form-group').index();
+                    console.log(index);
+                });
+                return ;
+            }
+            else if(data.status==400){
+                alert('请完善您的信息');
+                return ;
+            }
+            else if(data.status == 402){
+                alert('操作失败，请重试');
+                return ;
+            }
+            else if(data.status == 404){
+                alert('操作失败，出现内部错误');
+                return ;
+            }
+            else if(data.status == 401){
+                dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                return ;
+            }
+            else{
+                alert('操作失败，出现未知错误');
+                return ;
+            }
+
+        },
+        error: function () {
+            alert('操作失败，可能是网络问题，请联系管理员')
+            return ;
+        }
+    })
+    $('#confirm').click(function(){
+        if($('input[name="title"]').val() == '' || $('input[name="content"]').val() == '' || index == null ){
+            alert('请完善您的信息')
+            return false;
+        }
+
+        var formData = new FormData();
+        formData.append("title", $('input[name="title"]').val());
+        formData.append("content", $('input[name="content"]').val());
+        var obj = $('.send-to .am-form-group:eq('+index+') input[type="checkbox"]');
+        var send_to = '';
+        var type = $('.send-to .am-form-group:eq('+index+') input[type="hidden"]').val();
+        console.log(type,typeof type);
+        if(type != '4' && type != '7'){
+            for(var i = 0;i<obj.length;i++){
+                if(obj[i].checked){
+                    send_to += obj[i].value + ' ';
+                }
+            }
+        }
+        if(type == '4'){
+            send_to = $('input[name="send_to"]:eq(0)').val();
+            console.log($('input[name="send_to"]:eq(0)').val());
+        }
+        if(type == '7'){
+            send_to = $('input[name="send_to"]:eq(1)').val();
+            console.log($('input[name="send_to"]:eq(1)').val());
+        }
+
+        formData.append("send_to", send_to);
+        formData.append("type", type);
+        $.ajax({
+            type: 'POST',
+            url: __URL__ + '/wechatsend',
+            timeout: 10 * 60 * 1000,//十分钟
+            data:formData,
+            crossDomain: true,
+            dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
+            processData:false,
+            contentType:false,
+            xhr: function(){
+                myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){
+                    $('#progress').modal();
+                    myXhr.upload.addEventListener('progress',function(e) {
+                        if (e.lengthComputable) {
+                            var percent = Math.floor(e.loaded/e.total*100);
+                            $("#progress .am-progress-bar").css('width', percent+'%');
+                        }
+                    }, false);
+                }
+                return myXhr;
+            },
+            success: function (data) {
+                $('#progress').modal('close');
+                $("#progress .am-progress-bar").css('width', 0);
+                if(data.status==200){
+                    alert('创建成功',document.URL);
+                    return ;
+                }
+                else if(data.status==400){
+                    alert('请完善您的信息');
+                    return ;
+                }
+                else if(data.status == 402){
+                    alert('操作失败，请重试');
+                    return ;
+                }
+                else if(data.status == 404){
+                    alert('操作失败，出现内部错误');
+                    return ;
+                }
+                else if(data.status == 401){
+                    dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                    return ;
+                }
+                else{
+                    alert('操作失败，出现未知错误');
+                    return ;
+                }
+
+            },
+            error: function () {
+                $('#progress').modal('close');
+                $("#progress .am-progress-bar").css('width', 0);
+                $('#progress').modal('close');
+                alert('操作失败，可能是网络问题，请联系管理员')
+                return ;
+            }
+        })
+    })
+
+
+</script>
+</html>

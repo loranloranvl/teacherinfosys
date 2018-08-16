@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>日常请假</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!--暂时不使用缓存-->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+
+    <!-- public css -->
+    <link rel="stylesheet" href="../dist/css/amazeui.min.css?t=1530439132007">
+    <link rel="stylesheet" href="../dist/css/common.min.css?t=1530439132007">
+    <!-- /public css -->
+    <link rel="stylesheet" href="./css/qingjia_richang.css?t=1530439132007">
+</head>
+<body>
+<form class="am-form" >
+    <fieldset>
+        <h1>日常请假</h1>
+        <hr>
+
+        <div class="am-form-group line" >
+            <label for="begin_time">开始日期</label>
+            <input type="text" class="width form-datepicker" id="begin_time" readonly name="begin_time" placeholder="选择日期">
+        </div>
+        <div class="am-form-group line fright">
+            <label for="begin_course">从第___节课开始</label>
+            <input type="number" class="width form-coursestamp" id="begin_course"  name="begin_course" placeholder="1到12的整数">
+        </div>
+        <div class="am-form-group line">
+            <label for="end_time">结束日期</label>
+            <input type="text" class="width form-datepicker" id="end_time" readonly name="end_time" placeholder="选择日期">
+        </div>
+        <div class="am-form-group line fright">
+            <label for="end_course">到第___节课结束</label>
+            <input type="number" class="width form-coursestamp" id="end_course"  name="end_course" placeholder="1到12的整数">
+        </div>
+        <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
+            <p>开始日期应小于结束日期！</p>
+        </div>
+
+        <div class="am-form-group">
+            <label for="leave_reason">请假事由</label>
+            <textarea class="" rows="6" id="leave_reason" name="leave_reason" placeholder="说明原因"></textarea>
+        </div>
+
+        <div class="am-checkbox">
+            <label>
+                <input type="checkbox" name="is_leave" value="1"> 是否离杭
+            </label>
+        </div>
+
+        <div class="am-form-group" style="display: none">
+            <label for="where">去往何处</label>
+            <input type="text" class="" id="where"   name="where" disabled="disabled" placeholder="离杭的同学回校记得销假">
+        </div>
+        <hr>
+        <h1>请假期间涉及课程</h1>
+        <p class="subtitle">以下为选填部分</p>
+
+
+        <div class="am-form-group">
+            <label for="teacher_course">课程名称</label>
+            <input type="text" class="width" id="teacher_course"  name="teacher_course" value="" placeholder="多项以空格分隔">
+        </div>
+
+        <div class="am-form-group">
+            <label for="teacher_name">教师姓名</label>
+            <input type="text" class="width" id="teacher_name"  name="teacher_name" value="" placeholder="保持顺序对应">
+        </div>
+
+        <div class="am-form-group">
+            <label for="teacher_phone">教师手机号</label>
+            <input type="text" class="width" id="teacher_phone"  name="teacher_phone" value="" placeholder="我们将给他们发送短信">
+        </div>
+
+
+        <p id="btncontainer"><button class="am-btn am-btn-secondary " id="submit">提交</button></p>
+    </fieldset>
+</form>
+</body>
+
+<!-- public js -->
+<script src="../dist/js/jquery.min.js?t=1530439132007"></script>
+<!-- amaze ui -->
+<script src="../dist/js/amazeui.min.js?t=1530439132007"></script>
+<!-- layer弹出层 -->
+<script src="../dist/js/layer/layer.js?t=1530439132007"></script>
+<!-- 弹出层封装 -->
+<script src="../dist/js/dialog.min.js?t=1530439132007"></script>
+<!-- 一些公共方法 -->
+<script src="../dist/js/common.min.js?t=1530439132007"></script>
+<!--微信JSSDK-->
+<script src="../dist/js/jweixin-1.2.0.min.js?t=1530439132007"></script>
+<!-- / public js -->
+<script src="./js/qingjia_richang.js?t=1530439132007"></script>
+
+<script>
+
+
+    $(function(){
+        var isIll = false;
+        $('#leave_reason').on('input', function() {
+            var patn = /(伤|崴|肿|晕|疼|痛|病|医|摔|吐|咳|发烧|骨折|发炎|点滴|盐水|输液|打针|过敏|感冒|难受|恶心|乏力|不适|急性|着凉|看牙|腹泻|拉肚|落枕|拔牙|溃疡|韧带|扭伤)/;
+            if (patn.test($(this).val())) {
+                isIll = true;
+            } else {
+                isIll = false;
+            }
+            console.log(isIll);
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: __URL__ + '/jssdk',
+            crossDomain: true,
+            dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (data) {
+                if(data.status==200){
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: data.data.appId, // 必填，公众号的唯一标识
+                        timestamp: data.data.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: data.data.nonceStr, // 必填，生成签名的随机串
+                        signature: data.data.signature,// 必填，签名，见附录1
+                        jsApiList: ['getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    });
+                }
+                else if(data.status == 402){
+                    dialog.error('操作失败，请重试');
+                    return ;
+                }
+                else if(data.status == 404){
+                    dialog.error('操作失败，出现内部错误');
+                    return ;
+                }
+                else if(data.status == 401){
+                    dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                    return ;
+                }
+                else{
+                    dialog.error('操作失败，出现未知错误');
+                    return ;
+                }
+
+            },
+            error: function () {
+                alert('操作失败，可能是网络问题，请联系管理员');
+                return ;
+            }
+        })
+
+
+        // 结束日期应大于开始日期
+        var $alert = $('#my-alert');
+        $('#end_time').datepicker().
+        on('changeDate.datepicker.amui', function(event) {
+            if (event.date.valueOf() < new Date($('input[name="begin_time"]').val().replace(/-/g, '/')).getTime()) {
+                $alert.find('p').css('text-align', 'center').text('结束日期应大于开始日期！').end().show();
+                $('button').html('<i class="am-icon-spinner am-icon-spin"></i>');
+                $('form button').attr('disabled','disabled');
+            } else {
+                $alert.hide();
+                endDate = new Date(event.date);
+                $('#end_time').text($('#end_time').data('date'));
+                $('button').html('提交');
+                $('form button').removeAttr('disabled');
+            }
+            $(this).datepicker('close');
+        });
+
+        // “去往何处”的显示
+        $('input[name="is_leave"]').on('click',function(){
+            if($(this).is(':checked')){
+                $('#where').parent('div').show();
+                $('#where').removeAttr('disabled');
+            }
+            else{
+                $('#where').parent('div').hide();
+                $('#where').attr('disabled','disabled');
+            }
+        })
+
+        // 提交表单
+        $('form button').click(function(e){
+
+            e.preventDefault();
+            $('button').html('<i class="am-icon-spinner am-icon-spin"></i>');
+            $('button').attr('disabled','disabled');
+
+            var arr = $('form').serializeArray();
+            var teacher_phone = $('input[name="teacher_phone"]').val();
+            var teacher_name = $('input[name="teacher_name"]').val();
+            var teacher_course = $('input[name="teacher_course"]').val();
+            if(teacher_phone){
+                var phone_arr = teacher_phone.split(' ');
+                for(var j in phone_arr){
+                    if(!(/^1[34578]\d{9}$/.test(phone_arr[j]))){
+                        alert("手机号码格式有误，请重填");
+                        $('button').html('提交');
+                        $('button').removeAttr('disabled');
+                        return false ;
+                    }
+                }
+            }
+
+            for(var i in arr){
+                if(arr[i].name=='teacher_phone' || arr[i].name=='teacher_name' || arr[i].name=='teacher_course'){
+                    continue;
+                }
+                else if(arr[i].value == ''){
+                    alert('请完善您的信息！');
+                    $('button').html('提交');
+                    $('button').removeAttr('disabled');
+                    return false ;
+                }
+            }
+
+            if(teacher_phone=='' && teacher_name=='' && teacher_course==''){
+
+            }
+            else{
+                if(teacher_phone=='' || teacher_name=='' || teacher_course==''){ //部分是空，部分已填
+                    alert("“名称”“姓名”“手机号”数量不对应");
+                    $('button').html('提交');
+                    $('button').removeAttr('disabled');
+                    return false;
+                }
+                else if(teacher_phone.split(' ').length != teacher_course.split(' ').length || teacher_phone.split(' ').length != teacher_name.split(' ').length || teacher_course.split(' ').length != teacher_name.split(' ').length){ //全填但数量不一致
+                    alert("“名称”“姓名”“手机号”数量不对应");
+                    $('button').html('提交');
+                    $('button').removeAttr('disabled');
+                    return false;
+                }
+            }
+
+            wx.getLocation({
+                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    arr.push({name:'begin_location',value:res.latitude+','+res.longitude});
+//                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+//                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+//                    var speed = res.speed; // 速度，以米/每秒计
+//                    var accuracy = res.accuracy; // 位置精度
+                    var formData = new FormData();
+                    arr.map(function(item) {
+                        formData.append(item.name, item.value);
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        url: __URL__ + '/createdailyleave',
+                        data: formData,
+                        processData: false,
+                        beforeSend:function(){
+                        },
+                        success: function (data) {
+                            $('button').html('提交');
+                            $('button').removeAttr('disabled');
+                            if(data.status==200){
+                                var sucString = '提交成功，请等待审核';
+                                if (isIll) {
+                                    sucString += '，祝早日康复';
+                                }
+                                dialog.success(sucString, location.href, 1500);
+                                return ;
+                            }
+                            else if(data.status==400){
+                                dialog.error('请完善您的信息');
+                                return ;
+                            }
+                            else if(data.status == 402){
+                                dialog.error('操作失败，请重试');
+                                return ;
+                            }
+                            else if(data.status == 404){
+                                dialog.error('操作失败，出现内部错误');
+                                return ;
+                            }
+                            else if(data.status == 401){
+                                dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                                return ;
+                            }
+                            else{
+                                dialog.error('操作失败，出现未知错误');
+                                return ;
+                            }
+
+                        },
+                        error: function () {
+                            $('button').html('提交');
+                            $('button').removeAttr('disabled');
+                            alert('操作失败，可能是网络问题，请联系管理员');
+                            return ;
+                        }
+                    })
+                },
+                cancel:function(){
+                    alert('请同意授权！');
+                    $('button').html('提交');
+                    $('button').removeAttr('disabled');
+                },
+                fail:function(res){
+                    alert('请打开手机定位服务！');
+                    $('button').html('提交');
+                    $('button').removeAttr('disabled')
+                }
+            });
+
+        })
+    })
+
+
+
+</script>
+</html>

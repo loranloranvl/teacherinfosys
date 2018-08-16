@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+<title>节假日请假</title>
+
+<!-- Set render engine for 360 browser -->
+<meta name="renderer" content="webkit">
+
+<link rel="icon" type="image/png" href="../favicon.ico">
+
+<!-- No Baidu Siteapp-->
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<link rel="stylesheet" href="../shared/amazeui.min.css">
+<link rel="stylesheet" href="css/common.css">
+<script src="../shared/jquery.min.js"></script>
+<script src="../shared/amazeui.min.js"></script>
+<script src="../shared/handlebars.min.js"></script>
+<script src="../shared/layer/layer.js"></script>
+<script src="../shared/common.js"></script>
+<script src="../shared/jweixin-1.2.0.min.js"></script>
+    <link rel="stylesheet" href="css/qingjia_jiejiari.css">
+    <style>
+        #everything {
+            padding: 20px;
+        }
+        #literatureicon {
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<br>
+<div id="everything">
+    <img src="../shared/img/literature.png" alt="literature" id="literatureicon">
+    <h1 class="sometitle">节假日销假</h1>
+    <hr>
+    <table class="am-table am-table-bordered am-table-centered">
+        <thead>
+        <tr>
+            <th>时间</th>
+            <th>标题</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+</body>
+
+<script>
+    function xiaojia(id){
+        if(confirm('确认销假？')){
+            $.ajax({
+                url: '/deleteholidayleave/'+id,
+                success: function (data) {
+                    console.log(data);
+                    if(data.status==200){
+                        dialog.success('销假成功',location.href)
+                    }
+                }
+            })
+        }
+    }
+
+
+    $.ajax({
+        url: '/getholidayleave',
+        success: function (data) {
+            console.log(data);
+            if(data.status==200){
+                var str = '';
+
+                if (data.data.length > 0) {
+                    for(var i in data.data){
+                        str += '<tr>';
+                        str +='<td>'+  data.data[i].begin_time + ' ~ '+ data.data[i].end_time+'</td>';
+                        str +='<td>'+ data.data[i].title +'</td>';
+                        str += '<td><a class="am-badge am-badge-success am-radius am-text-md am-text-middle" href="javascript:void(0)" onclick="xiaojia('+data.data[i].id+')">销假</a></td>'
+                        str += '</tr>';
+                    }
+                } else {
+                    str = '<tr><td colspan="3" style="font-size:16px; font-weight:400;" class="am-text-middle am-text-center">只有离杭同学需要销假</td></tr>';
+                }
+                $('tbody').html(str);
+            }
+        }
+    })
+
+</script>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通知系统</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!--暂时不使用缓存-->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+
+    <!-- public css -->
+    <link rel="stylesheet" href="../dist/css/amazeui.min.css?t=1530439131975">
+    <link rel="stylesheet" href="../dist/css/common.min.css?t=1530439131975">
+    <link rel="stylesheet" href="../dist/css/tablecommon.css?t=1530439131975">
+    <!-- /public css -->
+    <style>
+        #mailicon {
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<div id="everything">
+<img src="../dist/img/mail.png" alt="mail icon" id="mailicon">
+<h1 class="sometitle">您收到了这些通知</h1>
+<p class="subtitle">仅显示一个月以内的</p>
+<table class="am-table am-table-bordered am-table-centered">
+    <thead>
+    <tr>
+        <th>通知标题</th>
+        <th>发送者</th>
+        <th>发送时间</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+</div>
+</body>
+
+<!-- public js -->
+<script src="../dist/js/jquery.min.js?t=1530439131975"></script>
+<!-- amaze ui -->
+<script src="../dist/js/amazeui.min.js?t=1530439131975"></script>
+<!-- layer弹出层 -->
+<script src="../dist/js/layer/layer.js?t=1530439131975"></script>
+<!-- 弹出层封装 -->
+<script src="../dist/js/dialog.min.js?t=1530439131975"></script>
+<!-- 一些公共方法 -->
+<script src="../dist/js/common.min.js?t=1530439131975"></script>
+<!-- / public js -->
+
+
+<script>
+    function preventLongText(str, maxLength) {
+        if (str.length <= maxLength) {
+            return str;
+        } else {
+            return str.substr(0, maxLength - 1) + '...';
+        }
+    }
+
+    $.ajax({
+        type: 'GET',
+        url: __URL__ + '/studentindex',
+        crossDomain: true,
+        dataType: 'json',
+        xhrFields: {
+            withCredentials: true
+        },
+        async:true,
+        success: function (data) {
+            console.log(data.data);
+            if(data.status==200){
+                var str = '';
+
+                if(data.data.length > 0) {
+                    for(var i in data.data){
+                        str += '<tr onclick="location.href=\'detail.html?id='+data.data[i].id+'\'">';
+                        str +='<td>'+  preventLongText(data.data[i].title, 8)+'</td>';
+                        str +='<td>'+  data.data[i].name+'</td>';
+                        str +='<td>'+ data.data[i].created_at.split(' ')[0] +'</td>';
+                        str += '</tr>';
+                    }
+                } else {
+                    str = '<tr><td colspan="3" style="font-size:16px; font-weight:400;" class="am-text-middle am-text-center">暂时还没有通知</td></tr>'; 
+                }
+                $('tbody').html(str);
+                return ;
+            }
+            else if(data.status==400){
+                dialog.error('请完善您的信息');
+                return ;
+            }
+            else if(data.status == 402){
+                dialog.error('操作失败，请重试');
+                return ;
+            }
+            else if(data.status == 404){
+                dialog.error('操作失败，出现内部错误');
+                return ;
+            }
+            else if(data.status == 401){
+                dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                return ;
+            }
+            else{
+                dialog.error('操作失败，出现未知错误');
+                return ;
+            }
+
+        },
+        error: function () {
+            alert('操作失败，可能是网络问题，请联系管理员')
+            return ;
+        }
+    })
+
+
+</script>
+</html>

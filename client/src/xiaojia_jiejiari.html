@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    @@include('./partials/head.html', {
+        "title": "节假日请假"
+    })
+    <link rel="stylesheet" href="css/qingjia_jiejiari.css">
+    <style>
+        #everything {
+            padding: 20px;
+        }
+        #literatureicon {
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<br>
+<div id="everything">
+    <img src="../shared/img/literature.png" alt="literature" id="literatureicon">
+    <h1 class="sometitle">节假日销假</h1>
+    <hr>
+    <table class="am-table am-table-bordered am-table-centered">
+        <thead>
+        <tr>
+            <th>时间</th>
+            <th>标题</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+</body>
+
+<script>
+    function xiaojia(id){
+        if(confirm('确认销假？')){
+            $.ajax({
+                url: '/deleteholidayleave/'+id,
+                success: function (data) {
+                    console.log(data);
+                    if(data.status==200){
+                        dialog.success('销假成功',location.href)
+                    }
+                }
+            })
+        }
+    }
+
+
+    $.ajax({
+        url: '/getholidayleave',
+        success: function (data) {
+            console.log(data);
+            if(data.status==200){
+                var str = '';
+
+                if (data.data.length > 0) {
+                    for(var i in data.data){
+                        str += '<tr>';
+                        str +='<td>'+  data.data[i].begin_time + ' ~ '+ data.data[i].end_time+'</td>';
+                        str +='<td>'+ data.data[i].title +'</td>';
+                        str += '<td><a class="am-badge am-badge-success am-radius am-text-md am-text-middle" href="javascript:void(0)" onclick="xiaojia('+data.data[i].id+')">销假</a></td>'
+                        str += '</tr>';
+                    }
+                } else {
+                    str = '<tr><td colspan="3" style="font-size:16px; font-weight:400;" class="am-text-middle am-text-center">只有离杭同学需要销假</td></tr>';
+                }
+                $('tbody').html(str);
+            }
+        }
+    })
+
+</script>
+</html>

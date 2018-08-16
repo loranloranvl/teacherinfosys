@@ -2,8 +2,12 @@ var log = console.log;
 var __SPINNER__ = '<i class="am-icon-spinner \
 	am-icon-spin"></i>';
 var  __URL__ = 'https://tis.cloudshm.com/api/v1.0/';
-var info = JSON.parse(localStorage.info);
-var info_level = info.info_level;
+var  __DURL__ = 'https://tis.cloudshm.com/';
+var info, info_level;
+if (!isWeixinBrowser()) {
+	info = JSON.parse(localStorage.info);
+	info_level = info.info_level;
+}
 
 // btn.onclick: disable it and send ajax request
 function disableBtn(id) {
@@ -42,6 +46,15 @@ function getParam(url) {
 		.replace(/=/g,'":"') + '"}');
 }
 
+function isWeixinBrowser() {
+    var agent = navigator.userAgent.toLowerCase();
+    if (agent.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // general ajax settings
 var loader;
 $.ajaxSetup({
@@ -63,9 +76,10 @@ $.ajaxSetup({
 $(document).ajaxSuccess(function(event, xhr, settings) {
 	var rjson = xhr.responseJSON;
 	log(settings.url, rjson);
-	if (rjson.status == 401) {
-		// token not exists
-		// pass
+	if (rjson.status == 401 && !isWeixinBrowser()) {
+		location.href = __URL__ + 'teachercas'
+	} else if (rjson.status == 401 && isWeixinBrowser()) {
+		location.href = __DURL__+'bind'
 	} else if (rjson.status != 200) {
 
 	}

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节假日销假</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!--暂时不使用缓存-->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- public css -->
+    <link rel="stylesheet" href="../dist/css/amazeui.min.css?t=1530439132035">
+    <link rel="stylesheet" href="../dist/css/common.min.css?t=1530439132035">
+    <link rel="stylesheet" href="../dist/css/tablecommon.css?t=1530439132035">
+    <link rel="stylesheet" href="./css/qingjia_jiejiari.css?t=1530439132035">
+    <style>
+        #everything {
+            padding: 20px;
+        }
+        #literatureicon {
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<br>
+<div id="everything">
+    <img src="../dist/img/literature.png" alt="literature" id="literatureicon">
+    <h1 class="sometitle">节假日销假</h1>
+    <hr>
+    <table class="am-table am-table-bordered am-table-centered">
+        <thead>
+        <tr>
+            <th>时间</th>
+            <th>标题</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+</body>
+
+<!-- public js -->
+<script src="../dist/js/jquery.min.js?t=1530439132035"></script>
+<!-- amaze ui -->
+<script src="../dist/js/amazeui.min.js?t=1530439132035"></script>
+<!-- layer弹出层 -->
+<script src="../dist/js/layer/layer.js?t=1530439132035"></script>
+<!-- 弹出层封装 -->
+<script src="../dist/js/dialog.min.js?t=1530439132035"></script>
+<!-- 一些公共方法 -->
+<script src="../dist/js/common.min.js?t=1530439132035"></script>
+<!-- / public js -->
+
+
+<script>
+    function xiaojia(id){
+        if(confirm('确认销假？')){
+            $.ajax({
+                type: 'GET',
+                url: __URL__ + '/deleteholidayleave/'+id,
+                crossDomain: true,
+                dataType: 'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                async:true,
+                success: function (data) {
+                    console.log(data);
+                    if(data.status==200){
+                        dialog.success('销假成功',location.href)
+                        return ;
+                    }
+                    else if(data.status == 402){
+                        dialog.error('操作失败，请重试');
+                        return ;
+                    }
+                    else if(data.status == 404){
+                        dialog.error('操作失败，出现内部错误');
+                        return ;
+                    }
+                    else if(data.status == 401){
+                        dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                        return ;
+                    }
+                    else{
+                        dialog.error('操作失败，出现未知错误');
+                        return ;
+                    }
+
+                },
+                error: function () {
+                    alert('获取信息失败，可能是网络问题，请联系管理员')
+                    return ;
+                }
+            })
+        }
+    }
+
+
+    $.ajax({
+        type: 'GET',
+        url: __URL__ + '/getholidayleave',
+        crossDomain: true,
+        dataType: 'json',
+        xhrFields: {
+            withCredentials: true
+        },
+        async:true,
+        success: function (data) {
+            console.log(data);
+            if(data.status==200){
+                var str = '';
+
+                if (data.data.length > 0) {
+                    for(var i in data.data){
+                        str += '<tr>';
+                        str +='<td>'+  data.data[i].begin_time + ' ~ '+ data.data[i].end_time+'</td>';
+                        str +='<td>'+ data.data[i].title +'</td>';
+                        str += '<td><a class="am-badge am-badge-success am-radius am-text-md am-text-middle" href="javascript:void(0)" onclick="xiaojia('+data.data[i].id+')">销假</a></td>'
+                        str += '</tr>';
+                    }
+                } else {
+                    str = '<tr><td colspan="3" style="font-size:16px; font-weight:400;" class="am-text-middle am-text-center">只有离杭同学需要销假</td></tr>';
+                }
+                $('tbody').html(str);
+                return ;
+            }
+            else if(data.status == 402){
+                dialog.error('操作失败，请重试');
+                return ;
+            }
+            else if(data.status == 404){
+                dialog.error('操作失败，出现内部错误');
+                return ;
+            }
+            else if(data.status == 401){
+                dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                return ;
+            }
+            else{
+                dialog.error('操作失败，出现未知错误');
+                return ;
+            }
+
+        },
+        error: function () {
+            alert('获取信息失败，可能是网络问题，请联系管理员')
+            return ;
+        }
+    })
+
+</script>
+</html>

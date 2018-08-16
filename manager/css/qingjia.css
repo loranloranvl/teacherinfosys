@@ -1,0 +1,25 @@
+#my-prompt h1.title {
+  color: #333;
+  font-weight: 400;
+  margin: 20px 0 0 0;
+}
+#my-prompt p.subtitle {
+  color: #888;
+  font-size: 16px;
+  margin: 3px 0;
+}
+#my-prompt hr {
+  margin-bottom: 0;
+}
+#my-prompt .am-modal-dialog {
+  background-color: white;
+}
+#my-prompt .am-modal-bd {
+  width: 85%;
+  margin: 0 auto;
+}
+#my-prompt label {
+  font-weight: 400;
+  color: #444;
+  font-size: 20px;
+}

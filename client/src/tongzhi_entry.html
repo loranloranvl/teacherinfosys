@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    @@include('./partials/head.html', {
+        "title": "通知"
+    })
+    <link rel="stylesheet" href="css/tongzhi_entry.css">
+</head>
+<body>
+<div id="main">
+<img src="../shared/img/mail.png" alt="mail icon" id="mailicon">
+<h1 class="sometitle">您收到了这些通知</h1>
+<p class="subtitle" id="spinorclick"></p>
+<div id="tongzhitable">
+    <!-- ajax here -->
+</div>
+</div>
+
+<script type="text/x-handlebars-template" id="handlebars-template-tongzhitable">
+    <table class="am-table am-table-bordered am-table-centered">
+        <thead>
+        <tr>
+            <th>通知标题</th>
+            <th>发送者</th>
+            <th>发送时间</th>
+        </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+                <tr data-tongzhiid="{{id}}" class="clickme">
+                    <td class="sliceme">{{title}}</td>
+                    <td>{{name}}</td>
+                    <td class="splitme">{{created_at}}</td>
+                </tr>
+            {{else}}
+                <tr><td colspan="3" style="font-size:16px; font-weight:400;" class="am-text-middle am-text-center">暂时还没有通知</td></tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if data}}
+        <div class="pagi-btngroup" id="btngroup1">
+             <button class="pagibtn" id="pagi-first" data-targetpage="{{first_page_url}}">&lt;&lt;</button>
+             <button class="pagibtn" id="pagi-prev" data-targetpage="{{prev_page_url}}">&lt;</button>
+             <button id="pagi-cur"><span>{{current_page}}</span></button>
+             <button class="pagibtn" id="pagi-next" data-targetpage="{{next_page_url}}">&gt;</button>
+             <button class="pagibtn" id="pagi-last" data-targetpage="{{last_page_url}}">&gt;&gt;</button>
+         </div>
+    {{/if}}
+</script>
+
+</body>
+
+<script src="js/tongzhi_entry.js"></script>
+</html>

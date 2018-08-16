@@ -1,0 +1,36 @@
+#mailicon {
+  width: 100px;
+  height: 100px;
+  margin: -25px auto 0;
+  display: block;
+}
+.pagi-btngroup {
+  margin: 30px 0;
+  text-align: center;
+}
+.pagi-btngroup button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  outline: none;
+  background-color: white;
+  box-shadow: 0.4px 0.8px 3px rgba(0, 0, 4, 0.4);
+  display: inline-block;
+  margin: 0 4px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #666;
+  line-height: 42px;
+  position: relative;
+}
+.pagi-btngroup .pagibtn {
+  cursor: pointer;
+}
+#tongzhitable th {
+  font-weight: 500;
+  font-size: 19px;
+  color: #333;
+}
+#tongzhitable td {
+  color: #333;
+}

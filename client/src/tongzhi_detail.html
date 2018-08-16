@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    @@include('./partials/head.html', {
+        "title": "通知"
+    })
+    <link rel="stylesheet" href="./css/tongzhi_detail.css">
+</head>
+<body>
+<div id="main">
+    <div class="am-avg-sm-1" id="tongzhis">
+        <!-- ajax here -->
+    </div>
+    <br>
+</div>
+<script type="text/x-handlebars-template" id="ht-tongzhis">
+    <div class="am-u-sm-12 am-hide-lg" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+            {{> tongzhi}}
+    </div>
+    
+    {{#unless this}}
+    <p class="none">
+        没有找到目标通知
+    </p>
+    {{/unless}}
+</script>
+
+<script type="text/x-handlebars-template" id="ht-tongzhi-partial">
+    <li class="tongzhi" data-time="{{time}}">
+        <div class="container">
+            {{#if time}}
+                <div class="pre">预</div>
+            {{/if}}
+            <p class="title">{{title}}</p>
+            <p class="channel">
+                <span class="sender">{{name}}</span> 
+            </p>
+            <p class="content">{{content}}</p>
+            {{#if time}}
+                
+                <p class="date"><i class="am-icon-hand-pointer-o"></i> {{created_at}}</p>
+
+                <p class="date"><i class="am-icon-calendar-minus-o"></i> {{time}}:00</p>
+            {{else}}
+                <p class="date">{{created_at}}</p>
+            {{/if}}
+                
+            <div class="files" data-urls="{{attach_url}}">
+                
+            </div>
+        </div>
+    </li>
+</script>
+
+<script type="text/x-handlebars-template" id="ht-files">
+{{#each this}}
+    <hr>
+    {{#if dual}}
+        {{#with data}}
+        <div class="dual">
+            <p class="name">{{name}}</p>
+            <ul class="am-avg-sm-2">
+                {{#if isdoc}}
+                <li><a href="{{mswordurl}}">
+                    <i class="am-icon-file-word-o"> doc</i>
+                </a></li>
+                {{else}}
+                <li><a href="{{mswordurl}}">
+                    <i class="am-icon-file-word-o"> docx</i>
+                </a></li>
+                {{/if}}
+                <li style="border-left: 1.4px solid #eee;"><a href="{{pdfurl}}">
+                    <i class="am-icon-file-pdf-o"> pdf</i>
+                </a></li>
+            </ul>
+        </div>
+        {{/with}}
+    {{else}}
+        {{#with data}}
+        <p class="singular">
+            <a href="{{url}}" data-name="{{name}}">{{name}}</a>
+        </p>
+        {{/with}}
+    {{/if}}
+{{/each}}
+</script>
+<script src="./js/tongzhi_detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	@@include('./partials/head.html', {
+		"title": "文件"
+	})
+	<link rel="stylesheet" href="./css/filesharing.css">
+</head>
+<body>
+@@include('./partials/nav.html')
+<div id="main">
+	<div class="am-u-lg-3 am-show-lg" id="leftcontainer">
+		<div class="card" id="infobox">
+			<div id="nofilechosen">
+				当前没有选择文件
+			</div>
+			<div id="filelist"></div>
+		</div>
+		<button class="am-btn am-btn-default uploadbtn" id="pickfiles">选择文件</button>
+		<button class="am-btn am-btn-default uploadbtn" id="startup">开始上传</button>
+		<p style="text-align: center; color: #666; font-size: 15px; font-weight: 500">全部上传成功后刷新即可<br><br></p>
+	</div>
+	<div id="rightcontainer" class="am-u-sm-12 am-u-lg-9">
+		<div class="card" id="files">
+			<!-- ajax here -->
+		</div>
+
+		<div class="card" id="teachersandfiles">
+			<!-- ajax here -->
+		</div>
+		<div class="bottombtns" id="return"><span>返回</span></div>
+		<div class="bottombtns" id="edit"><span>管理</span></div>
+		<div class="bottombtns" id="return2"><span>返回</span></div>
+	</div>
+</div>
+
+<script type="text/x-handlebars-template" id="handlebars-template-files">
+	<!-- 正常的 -->
+	{{#each this}}
+		<a href="{{url}}">
+			<div class="fileicon-container" data-url="{{url}}" data-id="{{id}}" title="{{name}}">
+				<img src="" alt="fileicon">
+				<p class="sb">{{name}}</p>
+				<p class="updatedat" data-time="{{updated_at}}"></p>
+			</div>
+		</a>
+	{{else}}
+		<p class="nofile">
+			没有找到已上传的文件
+		</p>
+	{{/each}}
+	
+	<!-- 管理模式 -->
+	{{#each this}}
+		<div class="fileicon-container fileicon-container-delete" data-url="{{url}}" data-id="{{id}}" title="{{name}}">
+			<img src="" alt="fileicon">
+			<p class="sb">{{name}}</p>
+			<p class="updatedat" data-time="{{updated_at}}"></p>
+			<div class="fileicon-delete am-btn am-btn-danger">
+				<i class="am-icon-trash"></i>
+			</div>
+		</div>
+	{{/each}}
+</script>
+
+<div class="am-modal am-modal-confirm" tabindex="-1" id="delete-confirm">
+	<div class="am-modal-dialog">
+		<div class="am-modal-hd" id="dc-title"></div>
+		<div class="am-modal-bd" id="dc-body">
+			你确定要删除这个文件吗？
+		</div>
+		<div class="am-modal-footer">
+			<span class="am-modal-btn" data-am-modal-confirm>确定</span>
+			<span class="am-modal-btn" data-am-modal-cancel>取消</span>
+		</div>
+	</div>
+</div>
+
+<script type="text/x-handlebars-template" id="handlebars-template-teachersandfiles">
+	{{#each this}}
+		<div class="teacher-container" data-id="{{id}}">
+			<span>{{name}}</span>
+		</div>
+	{{else}}
+		<p class="nofile">
+			获取教师列表失败
+		</p>
+	{{/each}}
+</script>
+
+<script type="text/x-handlebars-template" id="handlebars-template-floattitle">
+	<div class="floattitle-container" class="am-hide-sm">
+		<span>{{text}}</span>
+	</div>
+</script>
+
+
+<script src="../shared/plupload.full.min.js"></script>
+<script type="text/javascript" src="../shared/crypto-js/crypto-js.js"></script>
+<script src="./js/filesharing.js"></script>
+</body>
+</html>

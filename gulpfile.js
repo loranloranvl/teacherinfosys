@@ -83,7 +83,9 @@ gulp.task('watch', inits, function() {
 		server: {
 			baseDir: './'
 		},
-		port: 3000
+		port: 3000,
+		browser: "chrome",
+		cors: true
 	});
 	gulp.watch(['client/src/*.html', 'client/src/partials/*.html'],
 		['include-client-watch']);

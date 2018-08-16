@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通知系统</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!--暂时不使用缓存-->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+
+    <!-- public css -->
+    <link rel="stylesheet" href="../dist/css/amazeui.min.css?t=1530439131973">
+    <link rel="stylesheet" href="../dist/css/common.min.css?t=1530439131973">
+    <link rel="stylesheet" href="../dist/css/tablecommon.css?t=1530439131973">
+    
+    <link rel="stylesheet" href="./css/tongzhiindex.css?t=1530439131973">
+</head>
+<body>
+<div>
+<img src="../dist/img/mail.png" alt="mail icon" id="mailicon">
+<h1 class="sometitle">您收到了这些通知</h1>
+<p class="subtitle" id="spinorclick"></p>
+<div id="tongzhitable">
+    <!-- ajax here -->
+</div>
+</div>
+
+<script type="text/x-handlebars-template" id="handlebars-template-tongzhitable">
+    <table class="am-table am-table-bordered am-table-centered">
+        <thead>
+        <tr>
+            <th>通知标题</th>
+            <th>发送者</th>
+            <th>发送时间</th>
+        </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+                <tr data-tongzhiid="{{id}}" class="clickme">
+                    <td class="sliceme">{{title}}</td>
+                    <td>{{name}}</td>
+                    <td class="splitme">{{created_at}}</td>
+                </tr>
+            {{else}}
+                <tr><td colspan="3" style="font-size:16px; font-weight:400;" class="am-text-middle am-text-center">暂时还没有通知</td></tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if data}}
+        <div class="pagi-btngroup" id="btngroup1">
+             <button id="pagi-first" data-targetpage="{{first_page_url}}">&lt;&lt;</button>
+             <button id="pagi-prev" data-targetpage="{{prev_page_url}}">&lt;</button>
+             <div id="pagi-cur"><span>{{current_page}}</span></div>
+             <button id="pagi-next" data-targetpage="{{next_page_url}}">&gt;</button>
+             <button id="pagi-last" data-targetpage="{{last_page_url}}">&gt;&gt;</button>
+         </div>
+    {{/if}}
+</script>
+
+</body>
+
+<!-- public js -->
+<script src="../dist/js/jquery.min.js?t=1530439131973"></script>
+<!-- amaze ui -->
+<script src="../dist/js/amazeui.min.js?t=1530439131973"></script>
+<!-- layer弹出层 -->
+<script src="../dist/js/layer/layer.js?t=1530439131973"></script>
+<!-- 弹出层封装 -->
+<script src="../dist/js/dialog.min.js?t=1530439131973"></script>
+<!-- 一些公共方法 -->
+<script src="../dist/js/common.min.js?t=1530439131973"></script>
+<!-- handlebars -->
+<script src="../dist/js/handlebars-v4.0.11.js?t=1530439131973"></script>
+
+
+<script src="./js/tongzhiindex.js?t=1530439131973"></script>
+</html>

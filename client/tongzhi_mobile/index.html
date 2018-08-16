@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通知系统</title>
+</head>
+<body>
+
+
+<!-- public js -->
+<script src="../dist/js/jquery.min.js?t=1530439131921"></script>
+<!-- amaze ui -->
+<!--<script src="../dist/js/amazeui.min.js"></script>-->
+<!-- layer弹出层 -->
+<script src="../dist/js/layer/layer.js?t=1530439131921"></script>
+<!-- 弹出层封装 -->
+<script src="../dist/js/dialog.min.js?t=1530439131921"></script>
+<!-- 一些公共方法 -->
+<script src="../dist/js/common.min.js?t=1530439131921"></script>
+<!-- / public js -->
+<script>
+    $.ajax({
+        type: 'GET',
+        url: __URL__ + '/type',
+        crossDomain: true,
+        dataType: 'json',
+        xhrFields: {
+            withCredentials: true
+        },
+        async:true,
+        success: function (data) {
+            if(data.status==200){
+                localStorage.type = data.data.type;
+                switch (data.data.type){
+                    case 0: //普通教师
+                        location.href = 'tongzhi-index.html';
+                        break;
+                    case 1: //辅导员
+                        location.href = 'teacher-index.html';
+                        break;
+                    case 2: //教务处老师
+                        location.href = 'teacher-index.html';
+                        break;
+                    case 3: //学生
+                        location.href = 'tongzhi-index.html';
+                        break;
+                    default:
+                        break;
+                }
+                return ;
+            }
+            else if(data.status==400){
+                dialog.error('请完善您的信息');
+                return ;
+            }
+            else if(data.status == 402){
+                dialog.error('操作失败，请重试');
+                return ;
+            }
+            else if(data.status == 404){
+                dialog.error('操作失败，出现内部错误');
+                return ;
+            }
+            else if(data.status == 401){
+                dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                return ;
+            }
+            else{
+                dialog.error('操作失败，出现未知错误');
+                return ;
+            }
+
+        },
+        error: function () {
+            alert('操作失败，可能是网络问题，请联系管理员')
+            return ;
+        }
+    })
+</script>
+</body>
+</html>

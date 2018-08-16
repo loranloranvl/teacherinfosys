@@ -1,4 +1,18 @@
 $(document).ready(function() {
+	// 重复的html用脚本生成
+	var data = [
+	    {name: '教学页面', ref: 'teaching'},
+	    {name: '文件系统', ref: 'filesharing'},
+	    {name: '通知系统', ref: 'tongzhi'},
+	    {name: '请假页面', ref: 'qingjia'}
+	];
+	data.forEach(function(el) {
+	    el.short = el.name.slice(0, 2)
+	});
+	HDeploy('navc', data);
+	var hrs = $('#nav-dropdown hr');
+	hrs.eq(hrs.length - 1).hide();
+
 	// 点击条形图案，弹出小屏幕导航栏
 	$('#nav-bars').on('click', function() {
 		$(this).toggleClass('bars-active');

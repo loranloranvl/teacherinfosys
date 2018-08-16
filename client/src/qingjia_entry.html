@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    @@include('./partials/head.html', {
+        "title": "请假"
+    })
+    <style>
+        #formicon {
+            width: 100px;
+            height: 121px;
+            display: block;
+            margin: 35px auto 15px;
+        }
+        #btns {
+            list-style-type: none;
+            text-align: center;
+        }
+        #btns a {
+            display: block;
+            width: 170px;
+            margin: 16px auto;
+            font-size: 20px;
+            background-color: white;
+            border: 2px solid #99c2ff;
+            border-radius: 5px;
+            color: #001433;
+            box-shadow: 0.5px 1.5px 4px 0 rgba(0, 0, 0, 0.2)
+        }
+        hr {
+            width: 90%;
+            max-width: 300px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="everything">
+    <img src="../shared/img/form-icon.png" alt="formicon" id="formicon">
+    <h1 class="sometitle">请假和销假都在这里</h1>
+    <hr>
+    <div id="btns">
+        <a class="am-btn am-btn-primary" href="qingjia_richang.html">日常请假</a>
+        <a class="am-btn am-btn-primary" href="xiaojia_richang.html">日常销假</a>
+        <a class="am-btn am-btn-primary" href="qingjia_jiejiari.html">节假日请假</a>
+        <a class="am-btn am-btn-primary" href="xiaojia_jiejiari.html">节假日销假</a>
+        <a class="am-btn am-btn-primary" href="qingjia_his.html">历史记录</a>
+    </div>
+</div>
+
+</body>
+</html>

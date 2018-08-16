@@ -1,0 +1,19 @@
+#main {
+  width: 99%;
+  max-width: 500px;
+  margin: auto;
+  padding: 15px;
+}
+.sometitle {
+  text-align: center;
+  font-weight: 400;
+  font-size: 26px;
+  margin: 0;
+}
+.subtitle {
+  text-align: center;
+  font-weight: 300;
+  font-size: 16px;
+  color: #999;
+  margin-top: 0;
+}

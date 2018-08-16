@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通知系统</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!--暂时不使用缓存-->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+
+    <!-- public css -->
+    <link rel="stylesheet" href="../dist/css/amazeui.min.css?t=1530439131911">
+    <link rel="stylesheet" href="../dist/css/common.min.css?t=1530439131911">
+    <!-- /public css -->
+    <style>
+        body{
+            padding: 0 28px;
+            background-color: white;
+        }
+        h1 {
+            font-weight: 400;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 3px;
+        }
+        p {
+            text-align: justify;
+        }
+        p.subtitle {
+            font-size: 16px;
+            color: #888;
+            text-align: center;
+            margin: 0;
+        }
+        hr {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+
+
+</body>
+
+<!-- public js -->
+<script src="../dist/js/jquery.min.js?t=1530439131911"></script>
+<!-- amaze ui -->
+<script src="../dist/js/amazeui.min.js?t=1530439131911"></script>
+<!-- layer弹出层 -->
+<script src="../dist/js/layer/layer.js?t=1530439131911"></script>
+<!-- 弹出层封装 -->
+<script src="../dist/js/dialog.min.js?t=1530439131911"></script>
+<!-- 一些公共方法 -->
+<script src="../dist/js/common.min.js?t=1530439131911"></script>
+<!-- / public js -->
+
+
+<script>
+	function getContent(data){  //正则匹配url，加入超链接
+        var reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+        data = data.replace(reg, "<a href='$1$2'>$1$2</a>");
+        return data;
+	}
+
+    function splitFileName(path) {
+        var wholeName = path.split('/').pop();
+        var fileName = wholeName.split('.')[0];
+        var suffix = wholeName.split('.')[1];
+        var maxL = 16;
+        if (fileName.length > maxL) {
+            fileName = fileName.slice(0, maxL - 1) + '..';
+        }
+        return fileName + '.' + suffix;
+    }
+
+    var id = getQueryString('id');
+
+    $.ajax({
+        type: 'GET',
+        url: __URL__ + '/studentdetail/'+id,
+        crossDomain: true,
+        dataType: 'json',
+        xhrFields: {
+            withCredentials: true
+        },
+        async:true,
+        success: function (data) {
+            console.log(data);
+            if(data.status==200){
+                $('body').append('<h1>'+ data.data.title +'</h1>');
+                $('body').append('<p class="subtitle">' + data.data.name + '</p>');
+                $('body').append('<hr>');
+                $('body').append('<p>'+ getContent(data.data.content) +'</p>');
+                $('body').append('<p style="float:right;font-size:14px;color:#666">发送时间：'+ data.data.created_at +'</p>');
+                if(data.data.attach_url){
+                    $('body').append('<br><br>')
+                    var arr = data.data.attach_url.split(',');
+                    for(var i in arr){
+                        $('body').append('<a style="font-size: 15px" class="am-badge am-badge-secondary am-round am-margin-bottom-xs" href="'+ arr[i] +'">'+ splitFileName(arr[i]) +'</a><br>');
+                    }
+                    $('body').append('<button style="margin-top: 10px" class="am-btn am-btn-primary"> 发送附件至邮箱 </button><br><br><br>');
+                    $('button').click(function(){
+                        $.ajax({
+                            type: 'GET',
+                            url: __URL__ + '/sendemail/'+id,
+                            crossDomain: true,
+                            dataType: 'json',
+                            xhrFields: {
+                                withCredentials: true
+                            },
+                            async:true,
+                            success: function (data) {
+                                if(data.status==200){
+                                   alert('发送成功，如果没收到请翻一下垃圾箱');
+                                    return ;
+                                }
+                                else if(data.status==400){
+                                    dialog.error('请完善您的信息');
+                                    return ;
+                                }
+                                else if(data.status == 402){
+                                    dialog.error('操作失败，请重试');
+                                    return ;
+                                }
+                                else if(data.status == 404){
+                                    dialog.error('操作失败，出现内部错误');
+                                    return ;
+                                }
+                                else if(data.status == 401){
+                                    dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                                    return ;
+                                }
+                                else{
+                                    dialog.error(data.msg);
+                                    return ;
+                                }
+
+                            },
+                            error: function () {
+                                alert('操作失败，可能是网络问题，请联系管理员')
+                                return ;
+                            }
+                        })
+                    })
+                }
+
+                return ;
+            }
+            else if(data.status==400){
+                dialog.error('请完善您的信息');
+                return ;
+            }
+            else if(data.status == 402){
+                dialog.error('操作失败，请重试');
+                return ;
+            }
+            else if(data.status == 404){
+                dialog.error('操作失败，出现内部错误');
+                return ;
+            }
+            else if(data.status == 401){
+                dialog.errorto('请先绑定信息',__DURL__+'bind',1500);
+                return ;
+            }
+            else{
+                dialog.error('操作失败，出现未知错误');
+                return ;
+            }
+
+        },
+        error: function () {
+            alert('操作失败，可能是网络问题，请联系管理员')
+            return ;
+        }
+    })
+
+
+</script>
+</html>
