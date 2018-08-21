@@ -1,27 +1,87 @@
-#my-prompt {
-	h1.title {
-		color: #333;
-		font-weight: 400;
-		margin: 20px 0 0 0;
+
+#top {
+	box-shadow: 0.6px 0.8px 10px rgba(4, 0, 0, 0.2);
+	background-color: white;
+	li {
+		line-height: 80px;
+		font-size: 21px;
+		text-align: center;
+		color: #999;
+		font-weight: 500;
+		letter-spacing: 1.5px;
+		cursor: pointer;
+		&:hover{
+			color: #333;
+		}
 	}
-	p.subtitle {
-		color: #888;
-		font-size: 16px;
-		margin: 3px 0;
+}
+
+table {
+	@bradius: 0.8em;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	border-radius: @bradius;
+	box-shadow: 0.6px 0.8px 10px rgba(4, 0, 0, 0.2);
+	th, td {
+		text-align: center;
+		padding: 10px 4px;
+		letter-spacing: 1px;
 	}
-	hr {
-		margin-bottom: 0;
+	th {
+		color: #4272d2;
+		font-size: 17px;
+		font-weight: 500;
 	}
-	.am-modal-dialog {
+	td {
+		color: #666;
+	}
+	tr:nth-child(odd) {
 		background-color: white;
 	}
-	.am-modal-bd {
-		width: 85%;
-		margin: 0 auto;
+	&.lg tr:hover {
+		background-color: #eee;
+		cursor: pointer;
+	}
+	tr:first-child:hover {
+		background-color: white;
+		cursor: default;
+	}
+	th:first-child, tr:first-child td:first-child {
+		border-top-left-radius: @bradius;
+	}
+	th:last-child, tr:first-child td:last-child {
+		border-top-right-radius: @bradius;
+	}
+	tr:last-child td:first-child {
+	    border-bottom-left-radius: @bradius;
+	}
+	tr:last-child td:last-child {
+	    border-bottom-right-radius: @bradius;
+	}
+}
+
+#agree-alert, #add-alert .am-modal-dialog{
+	background-color: white;
+	color: #333;
+	letter-spacing: 1px;
+	.name {
+		text-align: right;
+		padding-right: 20px;
 	}
 	label {
+		width: 120px;
+		color: #333;
 		font-weight: 400;
-		color: #444;
-		font-size: 20px;
+		font-size: 18px;
+		position: relative;
+		top: 2px;
+	}
+	input {
+		width: 200px;
+		height: 37.2px;
+		border: none;
+		outline: 1px solid #e6e6e6;
+		padding: 10px;
 	}
 }

@@ -1,25 +1,90 @@
-#my-prompt h1.title {
-  color: #333;
-  font-weight: 400;
-  margin: 20px 0 0 0;
-}
-#my-prompt p.subtitle {
-  color: #888;
-  font-size: 16px;
-  margin: 3px 0;
-}
-#my-prompt hr {
-  margin-bottom: 0;
-}
-#my-prompt .am-modal-dialog {
+#top {
+  box-shadow: 0.6px 0.8px 10px rgba(4, 0, 0, 0.2);
   background-color: white;
 }
-#my-prompt .am-modal-bd {
-  width: 85%;
-  margin: 0 auto;
+#top li {
+  line-height: 80px;
+  font-size: 21px;
+  text-align: center;
+  color: #999;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  cursor: pointer;
 }
-#my-prompt label {
+#top li:hover {
+  color: #333;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border-radius: 0.8em;
+  box-shadow: 0.6px 0.8px 10px rgba(4, 0, 0, 0.2);
+}
+table th,
+table td {
+  text-align: center;
+  padding: 10px 4px;
+  letter-spacing: 1px;
+}
+table th {
+  color: #4272d2;
+  font-size: 17px;
+  font-weight: 500;
+}
+table td {
+  color: #666;
+}
+table tr:nth-child(odd) {
+  background-color: white;
+}
+table.lg tr:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+table tr:first-child:hover {
+  background-color: white;
+  cursor: default;
+}
+table th:first-child,
+table tr:first-child td:first-child {
+  border-top-left-radius: 0.8em;
+}
+table th:last-child,
+table tr:first-child td:last-child {
+  border-top-right-radius: 0.8em;
+}
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 0.8em;
+}
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 0.8em;
+}
+#agree-alert,
+#add-alert .am-modal-dialog {
+  background-color: white;
+  color: #333;
+  letter-spacing: 1px;
+}
+#agree-alert .name,
+#add-alert .am-modal-dialog .name {
+  text-align: right;
+  padding-right: 20px;
+}
+#agree-alert label,
+#add-alert .am-modal-dialog label {
+  width: 120px;
+  color: #333;
   font-weight: 400;
-  color: #444;
-  font-size: 20px;
+  font-size: 18px;
+  position: relative;
+  top: 2px;
+}
+#agree-alert input,
+#add-alert .am-modal-dialog input {
+  width: 200px;
+  height: 37.2px;
+  border: none;
+  outline: 1px solid #e6e6e6;
+  padding: 10px;
 }

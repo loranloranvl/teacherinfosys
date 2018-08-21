@@ -5,176 +5,129 @@
         "title": "请假"
     })
     <link rel="stylesheet" href="css/qingjia.css">
-    <style>
-        .content-container{
-            padding:15px;
-        }
-        .optionmenu li span{
-            cursor: pointer;
-            position: relative;
-            right: 20px;
-        }
-    </style>
 </head>
 <body>
 @@include('./partials/nav.html')
 <div id="main">
-    <div class="am-g info-container border-bt-l">
-        <div class="am-u-sm-3 am-text-center" >
-            <img  class="headimg" alt="" style="opacity:0">
-            <form class="am-form-group am-form-file" id = "headFile">
-              <i class="am-icon-cloud-upload"></i> 点击上传头像
-              <input type="file" name="head" accept="image/jpeg,imgage/jpg,image/png" id="headimg">
-              <input type="hidden" name="user" >
-              <input type="hidden" name="token" >
-              <input type="hidden" name="id" >
-          </form>
-        </div>
-        <div class="am-u-sm-5" style="height:120px" >
-            <p class="info"></p>
-            <p class="info"></p>
-            <p class="info"></p>
-            <p class="info"></p>
-        </div>
-        <div class="am-u-sm-3">
-            <div class="button am-vertical-align" style="height:60px;font-size:20px;margin-top:30px">
-
-            </div>
-        </div>
-        <div class="am-u-sm-1"></div>
-
+    <ul id="top" class="am-avg-md-3 am-avg-sm-1">
+        <li>待审批请假</li>
+        <li>日常统计</li>
+        <li>节假日统计</li>
+    </ul><br>
+    <div class="am-show-lg">
+        <table class="lg">
+          <tr>
+            <th>申请人</th>
+            <th>开始 #第_节课</th>
+            <th>结束 #第_节课</th>
+            <!-- <th>申请理由</th> -->
+            <th>离杭情况</th>
+            <th>申请时间</th>
+            <!-- <th>操作</th> -->
+          </tr>
+          <tr>
+            <td><span>陈中渊 16271110</td>
+            <td>2018-6-16 #1</td>
+            <td>2018-6-17 #2</td>
+            <!-- <td>头疼去医院</td> -->
+            <td>否</td>
+            <td>2018-6-15 21:30</td>
+            <!-- <td>同意</td> -->
+          </tr>
+          <tr>
+            <td>陈中渊 16271110</td>
+            <td>2018-6-16 #1</td>
+            <td>2018-6-17 #2</td>
+            <!-- <td>头疼去医院</td> -->
+            <td>否</td>
+            <td>2018-6-15 21:30</td>
+            <!-- <td>同意</td> -->
+          </tr>
+          <tr>
+            <td>陈中渊 16271110</td>
+            <td>2018-6-16 #1</td>
+            <td>2018-6-17 #2</td>
+            <!-- <td>头疼去医院</td> -->
+            <td>否</td>
+            <td>2018-6-15 21:30</td>
+            <!-- <td>同意</td> -->
+          </tr>
+        </table><br>
     </div>
-
-    <div class="alert-container"></div>
-    <div class="am-g option-container border-bt-l">
-        <ul class="am-avg-sm-3 menu optionmenu">
-            <li><span>待审核</span><em></em></li>
-            <li><span>日常情况</span><em></em></li>
-            <li><span>节假日情况</span><em></em></li>
-        </ul>
-    </div>
-
-    <!--待审核页面-->
-    <div class="am-g content-container" id="unverify" style="display:none">
-        <p>提示：仅展示最近一周信息</p>
-        <button type="button" class="am-btn am-btn-success am-btn-sm" onclick="agreeAll()" style="float:right;display:none;" id="agreeAll">批量同意</button>
-        <br><br>
-        <table class="am-table am-table-bordered am-table-hover am-table-centered" style="background-color: white;">
-            <thead>
+    <div class="am-hide-lg">
+        <table class="md">
             <tr>
-                <th class="am-text-middle" style="width: 6%">学号</th>
-                <th class="am-text-middle" style="width: 6%">姓名</th>
-                <th class="am-text-middle" style="width: 8%">联系电话</th>
-                <th class="am-text-middle" style="width: 8%">班级</th>
-                <th class="am-text-middle" style="width: 10%">请假起讫日期</th>
-                <th class="am-text-middle" style="width: 15%">请假事由</th>
-                <th class="am-text-middle" style="width: 8%">涉及课程</th>
-                <th class="am-text-middle" style="width: 8%">教师姓名</th>
-                <th class="am-text-middle" style="width: 8%">教师手机号</th>
-                <th class="am-text-middle" style="width: 6%">是否离杭</th>
-                <th class="am-text-middle" style="width: 6%">去往何处</th>
-                <th class="am-text-middle" style="width: 11%">操作</th>
+                <td style="color: #4272d2">申请人</td>
+                <td>陈中渊 16271110</td>
             </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
+            <tr>
+                <td style="color: #4272d2">开始</td>
+                <td>2018-6-16 #1</td>
+            </tr>
+            <tr>
+                <td style="color: #4272d2">结束</td>
+                <td>2018-6-16 #1</td>
+            </tr>
+            <tr>
+                <td style="color: #4272d2">离杭情况</td>
+                <td>台州</td>
+            </tr>
+            <tr>
+                <td style="color: #4272d2">申请时间</td>
+                <td>2018-6-15 21:30</td>
+            </tr>
         </table>
-
-
-    </div>
-    <!--日常情况页面-->
-    <div class="am-g content-container" id="richang" style="display:none">
-        <p>提示：仅显示最近一个月信息  ， <span style="color: #dd514c; background-color: rgba(221,81,76,.115);">红色</span>表示未销假，若查看所有信息，请导出表格查看</p>
-        <div class="am-tabs " data-am-tabs>
-            <ul class="am-tabs-nav am-nav am-nav-tabs">
-                <!--<li class="am-active"><a href="#tab-4-1">2015级信息安全1班</a></li>-->
-                <!--<li><a href="#tab-4-2">2015级信息安全2班</a></li>-->
-                <!--<li><a href="#tab-4-3">2015级信息安全3班</a></li>-->
-                <!--<li><a href="#tab-4-4">2015级信息安全4班</a></li>-->
-                <!--<li><a href="" class="download-excel">导出日常请假表格</a></li>-->
-            </ul>
-
-            <div class="am-tabs-bd am-tabs-bd-ofv">
-                <!--<div class="am-tab-panel am-active" id="tab-4-1">-->
-                    <!--<table class="am-table am-table-bordered ">-->
-                        <!--<thead>-->
-                        <!--<tr>-->
-                            <!--<th>学号</th>-->
-                            <!--<th>姓名</th>-->
-                            <!--<th>联系电话</th>-->
-                            <!--<th>班级</th>-->
-                            <!--<th>请假时间</th>-->
-                            <!--<th>是否离杭</th>-->
-                            <!--<th>去往何处</th>-->
-                            <!--<th>销假日期</th>-->
-                        <!--</tr>-->
-                        <!--</thead>-->
-                        <!--<tbody>-->
-
-                        <!--</tbody>-->
-                    <!--</table>-->
-                <!--</div>-->
-                <!--<div class="am-tab-panel" id="tab-4-2">-->
-
-                <!--</div>-->
-                <!--<div class="am-tab-panel" id="tab-4-3">-->
-
-                <!--</div>-->
-                <!--<div class="am-tab-panel" id="tab-4-4">-->
-
-                <!--</div>-->
-            </div>
-        </div>
-
-    </div>
-    <!--节假日情况页面-->
-    <div class="am-g content-container" id="jiejiari" style="display:none">
-        <p>提示：仅展示最近节假日内信息 ， <span style="color: #dd514c; background-color: rgba(221,81,76,.115);">红色</span>表示未销假，若查看所有信息，请导出表格查看</p>
-        <p></p>
-
-        <div class="am-tabs " data-am-tabs>
-            <ul class="am-tabs-nav am-nav am-nav-tabs">
-            </ul>
-
-            <div class="am-tabs-bd am-tabs-bd-ofv">
-
-            </div>
-        </div>
-
     </div>
 
-    <!--添加节假日请假弹出层-->
-    <div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
-        <div class="am-modal-dialog">
-            <h1 class="title">添加节假日请假</h1>
-            <p class="subtitle">学生需在下面设置的时间段内进行“请假”与“销假”操作</p>
+</div>
+<div class="am-modal am-modal-alert" tabindex="-1" id="agree-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd"></div>
+        <div class="am-modal-bd">
+            <p style="letter-spacing: 1px; font-size: 16px; color: #333; padding: 10px 15px; text-align: justify;">头疼想去医院头疼想去医院头疼想去医院头疼想去医院
+            头疼想去医院头疼想去医院头疼想去医院头疼想去医院
+            头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院</p>
             <hr>
-            <div class="am-modal-bd">
-                <form class="am-form">
-                    <div class="am-form-group">
-                        <label for="title">标题</label>
-                        <input type="text" class="" id="title"  name="title">
-                    </div>
-                    <div class="am-form-group">
-                        <label for="from">有效开始时间</label>
-                        <input type="text" class="" id="from" data-am-datepicker  name="from">
-                    </div>
-
-                    <div class="am-form-group">
-                        <label for="to">有效结束时间</label>
-                        <input type="text" class="" id="to" data-am-datepicker  name="to">
-                    </div>
-
-                    <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
-                        <p>开始日期应小于结束日期！</p>
-                    </div>
-                </form>
+            <div style="margin-bottom: 20px">
+                <label for="agree">同意与否</label>
+                <select data-am-selected="{btnWidth: '200px'}"  id="agree">
+                    <option value="1" selected>同意</option>
+                    <option value="0" >拒绝</option>
+                </select>
             </div>
-            <div class="am-modal-footer">
-                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-                <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+            <div>
+                <label for="reason">填写理由</label>
+                <input type="text" id="reason" value="同意">
             </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+            <span class="am-modal-btn">取消</span>
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="add-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <div>
+                <label for="title">选择节假日</label>
+                <select data-am-selected="{btnWidth: '200px'}"  id="title">
+                    <option value="duanwu">端午节</option>
+                    <option value="guoqing">国庆节</option>
+                    <option value="laodong">劳动节</option>
+                    <option value="qingming">清明节</option>
+                    <option value="zhongqiu">中秋节</option>
+                    <option value="yuandan">元旦</option>
+                </select>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+            <span class="am-modal-btn">取消</span>
         </div>
     </div>
 </div>

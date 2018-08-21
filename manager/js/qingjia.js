@@ -65,6 +65,16 @@ function ajaxGetHolidayLeave() {
     })
 }
 
+$(document).ready(function() {
+    $("tr").on('click', function() {
+        $('#agree-alert').modal();
+    });
+    $('#btn-content').text('新节假日');
+    $('#btn').on('click', function() {
+        $('#add-alert').modal();
+    })
+})
+
 
 
 /*
@@ -223,7 +233,6 @@ function getQingjiaDivHtml(data,type){
 }
 
 $(function(){
-    $('#btn').hide()
 
     //从localStorge中获取之前页面的个人信息
     var info = JSON.parse(localStorage.info);

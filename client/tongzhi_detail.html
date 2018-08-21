@@ -84,15 +84,13 @@
         <div class="dual">
             <p class="name">{{name}}</p>
             <ul class="am-avg-sm-2">
-                {{#if isdoc}}
                 <li><a href="{{mswordurl}}">
+                    {{#if isdoc}}
                     <i class="am-icon-file-word-o"> doc</i>
-                </a></li>
-                {{else}}
-                <li><a href="{{mswordurl}}">
+                    {{else}}
                     <i class="am-icon-file-word-o"> docx</i>
+                    {{/if}}
                 </a></li>
-                {{/if}}
                 <li style="border-left: 1.4px solid #eee;"><a href="{{pdfurl}}">
                     <i class="am-icon-file-pdf-o"> pdf</i>
                 </a></li>
