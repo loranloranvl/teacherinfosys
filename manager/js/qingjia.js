@@ -66,13 +66,31 @@ function ajaxGetHolidayLeave() {
 }
 
 $(document).ready(function() {
-    $("tr").on('click', function() {
+    HDeploy('awaiting', {})
+    HDeploy('daily', {})
+    $("#awaiting button").on('click', function() {
         $('#agree-alert').modal();
     });
     $('#btn-content').text('新节假日');
     $('#btn').on('click', function() {
         $('#add-alert').modal();
     })
+
+    $('#top li').on('click', function() {
+        var target = $(this).attr('data-target');
+        HDeploy('awaiting', {})
+        $('#main > div').hide();
+        $('#' + target).show();
+        $('#top li').css({
+            color: '#999',
+            textDecoration: 'none'
+        });
+        $(this).css({
+            color: 'black',
+            textDecoration: 'underline'
+        })
+    })
+    $('#top li').eq(0).click();
 })
 
 

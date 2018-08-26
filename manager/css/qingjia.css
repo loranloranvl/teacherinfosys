@@ -14,6 +14,9 @@
 #top li:hover {
   color: #333;
 }
+#main > div {
+  display: none;
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -38,10 +41,6 @@ table td {
 table tr:nth-child(odd) {
   background-color: white;
 }
-table.lg tr:hover {
-  background-color: #eee;
-  cursor: pointer;
-}
 table tr:first-child:hover {
   background-color: white;
   cursor: default;
@@ -60,19 +59,33 @@ table tr:last-child td:first-child {
 table tr:last-child td:last-child {
   border-bottom-right-radius: 0.8em;
 }
-#agree-alert,
-#add-alert .am-modal-dialog {
+table.lg tr:hover {
+  background-color: #eee;
+}
+table.md tr td:first-child {
+  color: #4272d2;
+}
+table tr.dialog td {
+  color: #666 !important;
+  padding: 10px 0 20px;
+}
+table tr.dialog td p {
+  text-align: justify;
+  padding: 5px 30px;
+}
+table tr.dialog button {
+  margin: 5px 20px;
+}
+.am-modal-dialog {
   background-color: white;
   color: #333;
   letter-spacing: 1px;
 }
-#agree-alert .name,
-#add-alert .am-modal-dialog .name {
+.am-modal-dialog .name {
   text-align: right;
   padding-right: 20px;
 }
-#agree-alert label,
-#add-alert .am-modal-dialog label {
+.am-modal-dialog label {
   width: 120px;
   color: #333;
   font-weight: 400;
@@ -80,11 +93,14 @@ table tr:last-child td:last-child {
   position: relative;
   top: 2px;
 }
-#agree-alert input,
-#add-alert .am-modal-dialog input {
+.am-modal-dialog input {
   width: 200px;
   height: 37.2px;
   border: none;
   outline: 1px solid #e6e6e6;
   padding: 10px;
+  color: #666;
+}
+.am-modal-dialog #reason {
+  width: 300px;
 }

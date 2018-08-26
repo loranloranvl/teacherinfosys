@@ -10,91 +10,31 @@
 @@include('./partials/nav.html')
 <div id="main">
     <ul id="top" class="am-avg-md-3 am-avg-sm-1">
-        <li>待审批请假</li>
-        <li>日常统计</li>
-        <li>节假日统计</li>
+        <li data-target="awaiting">待审批请假</li>
+        <li data-target="daily">日常统计</li>
+        <li data-target="jiejiari">节假日统计</li>
     </ul><br>
-    <div class="am-show-lg">
-        <table class="lg">
-          <tr>
-            <th>申请人</th>
-            <th>开始 #第_节课</th>
-            <th>结束 #第_节课</th>
-            <!-- <th>申请理由</th> -->
-            <th>离杭情况</th>
-            <th>申请时间</th>
-            <!-- <th>操作</th> -->
-          </tr>
-          <tr>
-            <td><span>陈中渊 16271110</td>
-            <td>2018-6-16 #1</td>
-            <td>2018-6-17 #2</td>
-            <!-- <td>头疼去医院</td> -->
-            <td>否</td>
-            <td>2018-6-15 21:30</td>
-            <!-- <td>同意</td> -->
-          </tr>
-          <tr>
-            <td>陈中渊 16271110</td>
-            <td>2018-6-16 #1</td>
-            <td>2018-6-17 #2</td>
-            <!-- <td>头疼去医院</td> -->
-            <td>否</td>
-            <td>2018-6-15 21:30</td>
-            <!-- <td>同意</td> -->
-          </tr>
-          <tr>
-            <td>陈中渊 16271110</td>
-            <td>2018-6-16 #1</td>
-            <td>2018-6-17 #2</td>
-            <!-- <td>头疼去医院</td> -->
-            <td>否</td>
-            <td>2018-6-15 21:30</td>
-            <!-- <td>同意</td> -->
-          </tr>
-        </table><br>
+
+    <div id="awaiting">
+        <!-- ajax here -->
     </div>
-    <div class="am-hide-lg">
-        <table class="md">
-            <tr>
-                <td style="color: #4272d2">申请人</td>
-                <td>陈中渊 16271110</td>
-            </tr>
-            <tr>
-                <td style="color: #4272d2">开始</td>
-                <td>2018-6-16 #1</td>
-            </tr>
-            <tr>
-                <td style="color: #4272d2">结束</td>
-                <td>2018-6-16 #1</td>
-            </tr>
-            <tr>
-                <td style="color: #4272d2">离杭情况</td>
-                <td>台州</td>
-            </tr>
-            <tr>
-                <td style="color: #4272d2">申请时间</td>
-                <td>2018-6-15 21:30</td>
-            </tr>
-        </table>
+
+    <div id="daily">
+        <!-- ajax here -->
     </div>
+
+    <div id="jiejiari">
+        <!-- ajax here -->
+    </div>
+
+
+
 
 </div>
 <div class="am-modal am-modal-alert" tabindex="-1" id="agree-alert">
     <div class="am-modal-dialog">
         <div class="am-modal-hd"></div>
         <div class="am-modal-bd">
-            <p style="letter-spacing: 1px; font-size: 16px; color: #333; padding: 10px 15px; text-align: justify;">头疼想去医院头疼想去医院头疼想去医院头疼想去医院
-            头疼想去医院头疼想去医院头疼想去医院头疼想去医院
-            头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院头疼想去医院</p>
-            <hr>
-            <div style="margin-bottom: 20px">
-                <label for="agree">同意与否</label>
-                <select data-am-selected="{btnWidth: '200px'}"  id="agree">
-                    <option value="1" selected>同意</option>
-                    <option value="0" >拒绝</option>
-                </select>
-            </div>
             <div>
                 <label for="reason">填写理由</label>
                 <input type="text" id="reason" value="同意">
@@ -123,6 +63,14 @@
                     <option value="zhongqiu">中秋节</option>
                     <option value="yuandan">元旦</option>
                 </select>
+            </div><br>
+            <div>
+                <label for="jiejiari-begin">开始时间</label>
+                <input type="text" id="mp3-datepicker" placeholder="日期" readonly>
+            </div><br>
+            <div>
+                <label for="jiejiari-begin">结束时间</label>
+                <input type="text" id="mp3-datepicker" placeholder="日期" readonly>
             </div>
         </div>
         <div class="am-modal-footer">
@@ -131,6 +79,163 @@
         </div>
     </div>
 </div>
+
+<script type="text/x-handlebars-template" id="ht-awaiting">
+    <div class="am-show-lg">
+        <table class="lg">
+          <tr>
+            <th>申请人</th>
+            <th>开始 #第_节课</th>
+            <th>结束 #第_节课</th>
+            <th>离杭情况</th>
+            <th>申请时间</th>
+          </tr>
+          <tr>
+            <td><span>陈中渊 16271110</td>
+            <td>2018-6-16 #1</td>
+            <td>2018-6-17 #2</td>
+            <td>否</td>
+            <td>2018-6-15 21:30</td>
+          </tr>
+          <tr class="dialog">
+              <td colspan="5" style="padding: 10px 0 20px"><p style="text-align: justify; padding: 5px 30px;">
+              <i class="am-icon-quote-left"></i>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <i class="am-icon-quote-right"></i></p>
+                <hr>
+                <button class="am-btn am-btn-secondary">同意</button>
+                <button class="am-btn am-btn-danger">拒绝</button>
+              </td>
+          </tr>
+        </table>
+    </div>
+    <div class="am-hide-lg">
+        <table class="md">
+            <tr>
+                <td>申请人</td>
+                <td>陈中渊 16271110</td>
+            </tr>
+            <tr>
+                <td>开始</td>
+                <td>2018-6-16 #1</td>
+            </tr>
+            <tr>
+                <td>结束</td>
+                <td>2018-6-16 #1</td>
+            </tr>
+            <tr>
+                <td>离杭情况</td>
+                <td>台州</td>
+            </tr>
+            <tr>
+                <td>申请时间</td>
+                <td>2018-6-15 21:30</td>
+            </tr>
+            <tr class="dialog">
+                <td colspan="5" style="padding: 10px 0 20px"><p style="text-align: justify; padding: 5px 30px;">
+                <i class="am-icon-quote-left"></i>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <i class="am-icon-quote-right"></i></p>
+                  <hr>
+                  <button class="am-btn am-btn-secondary">同意</button>
+                  <button class="am-btn am-btn-danger">拒绝</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script type="text/x-handlebars-template" id="ht-daily">
+    <div class="am-show-lg">
+        <table class="lg">
+          <tr>
+            <th style="width: 130px">申请人</th>
+            <th style="width: 170px">起止时间</th>
+            <th style="width: 120px">离杭情况</th>
+            <th style="width: 200px">申请时间/审核时间</th>
+            <th style="width: 100px">状态</th>
+          </tr>
+          <tr>
+            <td>陈中渊<br>16271110</td>
+            <td>2018-6-16 #1<br>2018-6-17 #2</td>
+
+            <td>否</td>
+            <td>2018-6-15 21:30<br>2018-6-15 21:40</td>
+            <td>已同意</td>
+          </tr>
+          <tr class="dialog">
+              <td colspan="5" style="padding: 10px 0 20px"><p style="text-align: justify; padding: 5px 30px;">
+              <i class="am-icon-quote-left"></i>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <i class="am-icon-quote-right"></i></p>
+                <hr>辅导员意见：
+                同意
+              </td>
+          </tr>
+        </table>
+    </div>
+    <div class="am-hide-lg">
+        <table class="md">
+            <tr>
+                <td>申请人</td>
+                <td>陈中渊 16271110</td>
+            </tr>
+            <tr>
+                <td>开始</td>
+                <td>2018-6-16 #1</td>
+            </tr>
+            <tr>
+                <td>结束</td>
+                <td>2018-6-16 #1</td>
+            </tr>
+            <tr>
+                <td>离杭情况</td>
+                <td>台州</td>
+            </tr>
+            <tr>
+                <td>申请时间</td>
+                <td>2018-6-15 21:30</td>
+            </tr>
+            <tr>
+                <td>审核时间</td>
+                <td>2018-6-15 21:30</td>
+            </tr>
+            <tr>
+                <td>状态</td>
+                <td>已同意</td>
+            </tr>
+            <tr class="dialog">
+                <td colspan="5"><p>
+                <i class="am-icon-quote-left"></i>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <i class="am-icon-quote-right"></i></p>
+                  <hr>辅导员意见：
+                  同意
+                </td>
+            </tr>
+        </table>
+    </div>
+</script>
 
 <script src="js/qingjia.js?t=1530439132093"></script>
 

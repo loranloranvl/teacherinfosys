@@ -16,6 +16,10 @@
 	}
 }
 
+#main > div {
+	display: none;
+}
+
 table {
 	@bradius: 0.8em;
 	border-collapse: collapse;
@@ -39,10 +43,6 @@ table {
 	tr:nth-child(odd) {
 		background-color: white;
 	}
-	&.lg tr:hover {
-		background-color: #eee;
-		cursor: pointer;
-	}
 	tr:first-child:hover {
 		background-color: white;
 		cursor: default;
@@ -59,9 +59,29 @@ table {
 	tr:last-child td:last-child {
 	    border-bottom-right-radius: @bradius;
 	}
+	&.lg tr:hover {
+		background-color: #eee;
+	}
+	&.md {
+		tr td:first-child {
+			color: #4272d2;
+		}
+	}
+	tr.dialog td {
+		color: #666 !important;
+		padding: 10px 0 20px;
+		p {
+			text-align: justify; 
+			padding: 5px 30px;
+		}
+	}
+
+	tr.dialog button {
+		margin: 5px 20px;
+	}
 }
 
-#agree-alert, #add-alert .am-modal-dialog{
+.am-modal-dialog{
 	background-color: white;
 	color: #333;
 	letter-spacing: 1px;
@@ -83,5 +103,9 @@ table {
 		border: none;
 		outline: 1px solid #e6e6e6;
 		padding: 10px;
+		color: #666;
+	}
+	#reason {
+		width: 300px;
 	}
 }

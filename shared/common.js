@@ -3,6 +3,7 @@ var __SPINNER__ = '<i class="am-icon-spinner \
 	am-icon-spin"></i>';
 var  __URL__ = 'https://tis.cloudshm.com/api/v1.0/';
 var  __DURL__ = 'https://tis.cloudshm.com/';
+var __TOKEN__ = localStorage['token'];
 var info, info_level;
 if (!isWeixinBrowser()) {
 	info = JSON.parse(localStorage.info);
@@ -64,6 +65,9 @@ $.ajaxSetup({
 	xhrFields: {
 		withCredentials: true
 	},
+	headers: {
+		Authorization: __TOKEN__
+	},
 	beforeSend: function() {
 		loader = layer.load();
 	},
@@ -77,9 +81,9 @@ $(document).ajaxSuccess(function(event, xhr, settings) {
 	var rjson = xhr.responseJSON;
 	log(settings.url, rjson);
 	if (rjson.status == 401 && !isWeixinBrowser()) {
-		location.href = __URL__ + 'teachercas'
+		location.href = __URL__ + 'login/bind'
 	} else if (rjson.status == 401 && isWeixinBrowser()) {
-		location.href = __DURL__+'bind'
+		location.href = __DURL__+'login/bind'
 	} else if (rjson.status != 200) {
 
 	}
