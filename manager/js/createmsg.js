@@ -452,7 +452,7 @@ $(document).ready(function() {
 function ajaxGetSendToByInfoLevel() {
     $('#btn-content').html(__SPINNER__);
     $.ajax({
-        url: 'receivers/' + 2,
+        url: 'info/pc/getInfoTargets',
         success: function (data) {
             if (data.status == 200){
                 $('#btn-content').html('创建通知');

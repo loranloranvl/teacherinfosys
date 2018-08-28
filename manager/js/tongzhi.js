@@ -7,7 +7,7 @@ $(document).ready(function() {
 /* -------------- ajax fetchers -------------*/
 function ajaxGetTongzhi(page) {
     $.ajax({
-        url: 'infocontent/2',
+        url: 'info/pc/getInfoList',
         data: {
             page: page
         },
