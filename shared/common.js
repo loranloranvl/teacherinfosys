@@ -5,10 +5,12 @@ var  __URL__ = 'https://tis.hzcloudservice.com/api/v1/';
 var  __DURL__ = 'https://tis.hzcloudservice.com/';
 var __TOKEN__ = localStorage['token'];
 var info, info_level;
+/*
 if (!isWeixinBrowser()) {
 	info = JSON.parse(localStorage.info);
 	info_level = info.info_level;
 }
+*/
 
 // btn.onclick: disable it and send ajax request
 function disableBtn(id) {
