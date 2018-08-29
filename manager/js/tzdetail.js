@@ -13,7 +13,10 @@ $(document).ready(function() {
 
 function ajaxGetFeedback(id) {
 	$.ajax({
-		url: 'infofeedback/' + id,
+		url: 'info/pc/getInfoFeedbackStatus',
+		data: {
+			batch_id: id
+		},
 		success: function(data) {
 			if (data.status == 200) {
 				deployFeedback(data.data);

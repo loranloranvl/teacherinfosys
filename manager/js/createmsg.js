@@ -59,12 +59,12 @@ function deploySendToHTML(data) {
     }
 }
 
-function mapUserid(value) {
+function mapuid(value) {
     var result;
     if (value.length == 8)
         $.each(sendData.grade, function(key1, value1) {
             $.each(value1, function(key2, value2) {
-                if (value2.userid == value) {
+                if (value2.uid == value) {
                     result = value2.name;
                 }
             });
@@ -72,14 +72,14 @@ function mapUserid(value) {
     else if (value.length == 9)
         $.each(sendData.graduate_grade, function(key1, value1) {
             $.each(value1, function(key2, value2) {
-                if (value2.userid == value) {
+                if (value2.uid == value) {
                     result = value2.name;
                 }
             });
         });
     else
         $.each(sendData.teacher, function(key1, value1) {
-            if (value1.userid == value) {
+            if (value1.uid == value) {
                 result = value1.name;
             }
         });
@@ -111,7 +111,7 @@ function deployConfirm() {
         sendArrayForHumansToRead = sendArray;
         unit = '个专业';
     } else if (sendType == '4') {
-        sendArrayForHumansToRead = $.map(sendArray, mapUserid);
+        sendArrayForHumansToRead = $.map(sendArray, mapuid);
         unit = '位同学';
     } else if (sendType == '5') {
         sendArrayForHumansToRead = null;
@@ -120,13 +120,13 @@ function deployConfirm() {
         sendArrayForHumansToRead = sendArray;
         unit = '个年级'
     } else if (sendType == '7') {
-        sendArrayForHumansToRead = $.map(sendArray, mapUserid);
+        sendArrayForHumansToRead = $.map(sendArray, mapuid);
         unit = '位同学';
     } else if (sendType == '8') {
         sendArrayForHumansToRead = null;
         unit = '研究生';
     } else if (sendType == '9') {
-        sendArrayForHumansToRead = $.map(sendArray, mapUserid);
+        sendArrayForHumansToRead = $.map(sendArray, mapuid);
         unit = '位教师';
     } else if (sendType == '10') {
         sendArrayForHumansToRead = null;
@@ -295,18 +295,18 @@ $(document).ready(function() {
             $('.mpx-username1').html('');
         }
         else if (text[text.length - 1] == ' ') {
-            var userids = text.split(' ').clean('');
-            var usernames = userids.map(mapUserid);
+            var uids = text.split(' ').clean('');
+            var usernames = uids.map(mapuid);
             var _usernames = '';
             usernames.map(function(element, index) {
                 if (element) {
                     _usernames += at + element + '&nbsp;&nbsp;';
                 } else {
                     _usernames += '<span style="color: #eb4747">' 
-                        + ques + userids[index] + '</span>' + '&nbsp;&nbsp;';
+                        + ques + uids[index] + '</span>' + '&nbsp;&nbsp;';
                 }
             });
-            if (userids.length <= 4) {
+            if (uids.length <= 4) {
                 $('.mpx-username1').html(_usernames);
                 $('.mpx-username2').html('');
             } else {
@@ -470,7 +470,7 @@ function ajaxPostMsg(formData) {
         .attr('disabled', true);
     $.ajax({
         type: 'POST',
-        url: 'send',
+        url: 'info/pc/sendInfo',
         data: formData,
         processData: false,
         success: function (data) {

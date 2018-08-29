@@ -30,7 +30,7 @@ function deployTongzhi(data) {
         if (x)
             return x.content.length
                 + (x.title.length > 20 ? 2 : 1) * 35
-                + x.attach_url.split(',').length * 45;
+                + x.attachment.split(',').length * 45;
         else
             return 0;
     }

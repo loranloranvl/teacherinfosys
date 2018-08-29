@@ -103,9 +103,9 @@
                 $('body').append('<hr>');
                 $('body').append('<p>'+ getContent(data.data.content) +'</p>');
                 $('body').append('<p style="float:right;font-size:14px;color:#666">发送时间：'+ data.data.created_at +'</p>');
-                if(data.data.attach_url){
+                if(data.data.attachment){
                     $('body').append('<br><br>')
-                    var arr = data.data.attach_url.split(',');
+                    var arr = data.data.attachment.split(',');
                     for(var i in arr){
                         $('body').append('<a style="font-size: 15px" class="am-badge am-badge-secondary am-round am-margin-bottom-xs" href="'+ arr[i] +'">'+ splitFileName(arr[i]) +'</a><br>');
                     }

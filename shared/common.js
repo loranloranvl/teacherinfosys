@@ -1,8 +1,8 @@
 var log = console.log;
 var __SPINNER__ = '<i class="am-icon-spinner \
 	am-icon-spin"></i>';
-var  __URL__ = 'https://tis.cloudshm.com/api/v1/';
-var  __DURL__ = 'https://tis.cloudshm.com/';
+var  __URL__ = 'https://tis.hzcloudservice.com/api/v1/';
+var  __DURL__ = 'https://tis.hzcloudservice.com/';
 var __TOKEN__ = localStorage['token'];
 var info, info_level;
 if (!isWeixinBrowser()) {
@@ -83,7 +83,7 @@ $(document).ajaxSuccess(function(event, xhr, settings) {
 	if (rjson.status == 401 && !isWeixinBrowser()) {
 		location.href = __URL__ + 'login/bind'
 	} else if (rjson.status == 401 && isWeixinBrowser()) {
-		location.href = __DURL__+'login/bind'
+		location.href = __URL__+'login/bind'
 	} else if (rjson.status != 200) {
 
 	}

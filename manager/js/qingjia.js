@@ -131,7 +131,7 @@ function getUnverifyTrHtml(data){
     var str = '';
     for(var i in data){
         str += '<tr>';
-        str += '<td class="am-text-middle">'+data[i].userid+'</td>';
+        str += '<td class="am-text-middle">'+data[i].uid+'</td>';
         str += '<td class="am-text-middle">'+data[i].name+'</td>';
         str += '<td class="am-text-middle">'+data[i].phone+'</td>';
         str += '<td class="am-text-middle">'+data[i].major+data[i].class+'班</td>';
@@ -219,7 +219,7 @@ function getQingjiaDivHtml(data,type){
             else{
                 str += '<tr>';
             }
-            str += '<td>' + data[i][j].userid + '</td>';
+            str += '<td>' + data[i][j].uid + '</td>';
             str += '<td>' + data[i][j].name + '</td>';
             str += '<td>' + data[i][j].phone + '</td>';
             str += '<td>' + data[i][j].major+ data[i][j].class + '班</td>';
