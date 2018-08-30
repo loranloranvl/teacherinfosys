@@ -82,13 +82,13 @@ $.ajaxSetup({
 $(document).ajaxSuccess(function(event, xhr, settings) {
 	var rjson = xhr.responseJSON;
 	log(settings.url, rjson);
-	if (rjson.status == 401 && !isWeixinBrowser()) {
-		location.href = __URL__ + 'login/bind'
-	} else if (rjson.status == 401 && isWeixinBrowser()) {
-		location.href = __URL__+'login/bind'
-	} else if (rjson.status != 200) {
+	// if (rjson.status == 401 && !isWeixinBrowser()) {
+	// 	location.href = __URL__ + 'login/bind'
+	// } else if (rjson.status == 401 && isWeixinBrowser()) {
+	// 	location.href = __URL__+'login/bind'
+	// } else if (rjson.status != 200) {
 
-	}
+	// }
 });
 
 // general ajax error handler

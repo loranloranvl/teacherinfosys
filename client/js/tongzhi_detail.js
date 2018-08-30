@@ -7,7 +7,10 @@ $(document).ready(function() {
 /* -------------- ajax fetchers -------------*/
 function ajaxGetTongzhi(id) {
     $.ajax({
-        url: 'studentdetail/' + id,
+        url: 'info/wx/getInfoDetail',
+        data: {
+            batch_id: id
+        },
         success: function (data) {
             if (data.status == 200){
                 deployTongzhi(data.data);

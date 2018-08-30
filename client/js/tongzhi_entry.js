@@ -13,7 +13,7 @@ function preventLongText(str, maxLength) {
 
 function ajaxGetTongzhiByStudentIndex(page) {
     $.ajax({
-        url: '/studentindex',
+        url: '/info/wx/getReceivedInfoList',
         data: {
             page: page
         },
