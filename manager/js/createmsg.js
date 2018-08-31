@@ -423,14 +423,33 @@ $(document).ready(function() {
         } else if ($('#mp3-form-body').val() == '') {
             dialog.error('请填写正文');
         } else {
-            var formData = new FormData();
-            formData.append("title", $('#mp3-form-title').val());
-            formData.append("content", $('#mp3-form-body').val());
-            formData.append("send_to", sendString);
-            formData.append("type", sendType);
+            // var sData = {};
+            // sData["title"] = $('#mp3-form-title').val();
+            // sData["content"] = $('#mp3-form-body').val();
+            // sData["target"] = sendString;
+            // sData["type"] = sendType;
+            // if (sendFiles) {
+            //     for (i = 0; i < sendFiles.length; ++i) {
+            //         sData["file[" + i + "]"] = sendFiles[i];
+            //     }
+            // }
+            // if (sendLater && $("#mp3-datepicker").val() == '') {
+            //     dialog.error('请填写日期');
+            // } else if (sendLater) {
+            //     var timeString = $("#mp3-datepicker").val() 
+            //                    + ' ' + $("#mp3-timepicker").val();
+            //     sData["time"] = timeString;
+            // }
+            // ajaxPostMsg(sData);
+
+            var formData = new FormData;
+            formData.append('title', $('#mp3-form-title').val());
+            formData.append('content', $('#mp3-form-body').val());
+            formData.append('target', sendString);
+            formData.append('type', sendType);
             if (sendFiles) {
                 for (i = 0; i < sendFiles.length; ++i) {
-                    formData.append("file[" + i + "]", sendFiles[i]);
+                    formData.append('file[' + i + ']', sendFiles[i]);
                 }
             }
             if (sendLater && $("#mp3-datepicker").val() == '') {
@@ -438,7 +457,7 @@ $(document).ready(function() {
             } else if (sendLater) {
                 var timeString = $("#mp3-datepicker").val() 
                                + ' ' + $("#mp3-timepicker").val();
-                formData.append("time", timeString);
+                formData.append('time', timeString);
             }
             ajaxPostMsg(formData);
         }
@@ -465,18 +484,21 @@ function ajaxGetSendToByInfoLevel() {
 }
 
 // ajax发送信息
-function ajaxPostMsg(formData) {
+function ajaxPostMsg(sData) {
     $('#mp3-submit').html('<i class="am-icon-spinner am-icon-spin"></i>')
         .attr('disabled', true);
     $.ajax({
-        type: 'POST',
+        method: 'post',
         url: 'info/pc/sendInfo',
-        data: formData,
+        data: sData,
+        contentType: false,
         processData: false,
         success: function (data) {
-            if(data.status==200){
-                dialog.success('发送成功',document.URL);
-                return ;
+            if(data.status == 200){
+                dialog.success('发送成功');
+                setTimeout(function() {
+                    // location.reload();
+                }, 800);
             }
         },
         complete : function(XMLHttpRequest,status) { //请求完成后最终执行参数

@@ -53,23 +53,12 @@
 <script type="text/x-handlebars-template" id="ht-tongzhi-partial">
     <li class="tongzhi" data-time="{{time}}">
         <div class="container">
-            {{#if time}}
-                <div class="pre">预</div>
-            {{/if}}
             <p class="title">{{title}}</p>
             <p class="channel">
                 <span class="sender">{{name}}</span> 
             </p>
             <p class="content">{{content}}</p>
-            {{#if time}}
-                
-                <p class="date"><i class="am-icon-hand-pointer-o"></i> {{created_at}}</p>
-
-                <p class="date"><i class="am-icon-calendar-minus-o"></i> {{time}}:00</p>
-            {{else}}
-                <p class="date">{{created_at}}</p>
-            {{/if}}
-                
+            <p class="date">{{created_at}}</p>
             <div class="files" data-urls="{{attachment}}">
                 
             </div>

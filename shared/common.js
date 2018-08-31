@@ -7,8 +7,21 @@ var __TOKEN__ = localStorage['token'];
 var __INFO__;
 var info, info_level;
 
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+};
+
+function islocalhost() {
+	if (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+    	return true;
+    else
+    	return false;
+}
+
 if (islocalhost()) {
-	__TOKEN__ = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidWlkIjo0MTgwNCwibmFtZSI6Ilx1ODBlMVx1NGYxZlx1OTAxYSIsIm9wZW5pZCI6IiIsInNleCI6MSwidW5pdCI6Ilx1N2Y1MVx1N2VkY1x1N2E3YVx1OTVmNFx1NWI4OVx1NTE2OFx1NWI2Nlx1OTY2Mlx1MzAwMVx1NmQ1OVx1NmM1Zlx1NGZkZFx1NWJjNlx1NWI2Nlx1OTY2MiIsImVtYWlsIjoiIiwicGhvbmUiOiIiLCJjcmVhdGVkX2F0IjoiMjAxOC0wOC0yOSAxMDoxNDozNSIsInVwZGF0ZWRfYXQiOiIyMDE4LTA4LTI5IDEwOjE0OjM1In0.FwviIkVfqitFnvYkvSzfFjCbDHzrGKy7kh1oo4zFShw'
+	__TOKEN__ = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidWlkIjo0MTgwNCwibmFtZSI6Ilx1ODBlMVx1NGYxZlx1OTAxYSIsIm9wZW5pZCI6Im9Ua3FJMGZLQ0I2Szk3VkVqZi1FOHJOcGtEenciLCJzZXgiOjEsInVuaXQiOiJcdTdmNTFcdTdlZGNcdTdhN2FcdTk1ZjRcdTViODlcdTUxNjhcdTViNjZcdTk2NjJcdTMwMDFcdTZkNTlcdTZjNWZcdTRmZGRcdTViYzZcdTViNjZcdTk2NjIiLCJlbWFpbCI6Imh3dEBoZHUuZWR1LmNuIiwicGhvbmUiOiIxMzUxNjcxOTExOSIsImNyZWF0ZWRfYXQiOiIyMDE4LTA4LTI5IDEwOjE0OjM1IiwidXBkYXRlZF9hdCI6IjIwMTgtMDgtMzAgMjM6MTc6NTMifQ.FsIbe3cKWdxPAoJ1kIVhs3T8GlUlabkCb7MB4Fj6r7c'
 }
 
 if (__TOKEN__) {
@@ -81,9 +94,6 @@ $.ajaxSetup({
 	},
 	beforeSend: function() {
 		loader = layer.load();
-	},
-	complete: function() {
-		layer.close(loader);
 	}
 });
 
@@ -91,19 +101,23 @@ $.ajaxSetup({
 $(document).ajaxSuccess(function(event, xhr, settings) {
 	var rjson = xhr.responseJSON;
 	log(settings.url, rjson);
-	// if (rjson.status == 401 && !isWeixinBrowser()) {
-	// 	location.href = __URL__ + 'login/bind'
-	// } else if (rjson.status == 401 && isWeixinBrowser()) {
-	// 	location.href = __URL__+'login/bind'
-	// } else if (rjson.status != 200) {
-
-	// }
+	if (rjson.status == 401 && !isWeixinBrowser()) {
+		location.href = __URL__ + 'login/bind'
+	} else if (rjson.status == 401 && isWeixinBrowser()) {
+		location.href = __URL__+'login/bind'
+	} else if (rjson.status != 200) {
+		dialog.error(rjson.msg);
+	}
 });
 
 // general ajax error handler
 $(document).ajaxError(function( event, jqxhr, settings, thrownError ) {
 	log(event, jqxhr, settings, thrownError);
 });
+
+$(document).ajaxComplete(function() {
+	layer.close(loader);
+})
 
 // handle redundant '/'
 $.ajaxPrefilter(function( options ) {
@@ -142,16 +156,5 @@ var dialog = {
     }
 };
 
-function parseJwt (token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace('-', '+').replace('_', '/');
-    return JSON.parse(window.atob(base64));
-};
 
-function islocalhost() {
-	if (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-    	return true;
-    else
-    	return false;
-}
 
