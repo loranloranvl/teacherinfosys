@@ -150,9 +150,9 @@ function deployTongzhi(data) {
             //         });
             //     } // end else if
             // });
-            // var template = Handlebars.compile($('#ht-files').html());
             // $(this).html(template(files));
 
+            var template = Handlebars.compile($('#ht-files').html());
             var files2 = [];
             _urls.map(function(element, index) {
                 var type;

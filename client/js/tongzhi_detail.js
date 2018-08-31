@@ -71,6 +71,7 @@ function deployTongzhi(data) {
                     type: type
                 })
             })
+            var template = Handlebars.compile($('#ht-files').html());
             $(this).html(template(files2));
         }
     });
