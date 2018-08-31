@@ -64,7 +64,7 @@
             <i class="am-icon-bars"></i>
         </div>
         <div class="am-u-lg-2 am-show-lg" id="nav-corner">
-            <p>欢迎您 王小明</p>
+            <p>欢迎您 <span id="nav-name">老师</span></p>
             <p id="nav-logout">
                 <span>
                     <i class="am-icon-sign-out"> 退出系统</i>
@@ -83,14 +83,14 @@
 
 </div>
 <script type="text/x-handlebars-template" id="ht-main">
-	<div class="panel" style="margin: 0 1.5rem 1.5rem 1.5rem">
+	<div class="panel" id="top" style="">
 		<p id="title"></p>
 		<div id="subtitle">
 			发送对象共 <span class="black">2333</span> 名 &nbsp;&nbsp;&nbsp;其中 <span class="green">233</span> 名已阅读 &nbsp;&nbsp;&nbsp;<span class="red">213</span> 名未阅读 &nbsp;&nbsp;&nbsp;阅读比率 <span class="black">13.3%</span>
 		</div>
 	</div>
 	<div id="content">
-		<div class="am-u-sm-6">
+		<div class="am-u-md-6">
 			<div class="panel">
 				<div class="status"><span class="green">已阅读</span></div>
 				<hr>
@@ -104,7 +104,7 @@
 				{{/each}}
 			</div>
 		</div>
-		<div class="am-u-sm-6">
+		<div class="am-u-md-6">
 			<div class="panel">
 				<div class="status"><span class="red">未阅读</span></div>
 				<hr>

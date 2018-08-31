@@ -4,7 +4,16 @@ var __SPINNER__ = '<i class="am-icon-spinner \
 var  __URL__ = 'https://tis.hzcloudservice.com/api/v1/';
 var  __DURL__ = 'https://tis.hzcloudservice.com/';
 var __TOKEN__ = localStorage['token'];
+var __INFO__;
 var info, info_level;
+
+if (islocalhost()) {
+	__TOKEN__ = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidWlkIjo0MTgwNCwibmFtZSI6Ilx1ODBlMVx1NGYxZlx1OTAxYSIsIm9wZW5pZCI6IiIsInNleCI6MSwidW5pdCI6Ilx1N2Y1MVx1N2VkY1x1N2E3YVx1OTVmNFx1NWI4OVx1NTE2OFx1NWI2Nlx1OTY2Mlx1MzAwMVx1NmQ1OVx1NmM1Zlx1NGZkZFx1NWJjNlx1NWI2Nlx1OTY2MiIsImVtYWlsIjoiIiwicGhvbmUiOiIiLCJjcmVhdGVkX2F0IjoiMjAxOC0wOC0yOSAxMDoxNDozNSIsInVwZGF0ZWRfYXQiOiIyMDE4LTA4LTI5IDEwOjE0OjM1In0.FwviIkVfqitFnvYkvSzfFjCbDHzrGKy7kh1oo4zFShw'
+}
+
+if (__TOKEN__) {
+	__INFO__ = parseJwt(__TOKEN__)
+}
 /*
 if (!isWeixinBrowser()) {
 	info = JSON.parse(localStorage.info);
@@ -132,3 +141,17 @@ var dialog = {
         });
     }
 };
+
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+};
+
+function islocalhost() {
+	if (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+    	return true;
+    else
+    	return false;
+}
+

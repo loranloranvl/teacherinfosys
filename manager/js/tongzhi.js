@@ -1,7 +1,7 @@
 $(document).ready(function() {
     Handlebars.registerPartial('tongzhi', 
         $('#ht-tongzhi-partial').html());
-    ajaxGetTongzhi(9);
+    ajaxGetTongzhi(1);
 });
 
 /* -------------- ajax fetchers -------------*/

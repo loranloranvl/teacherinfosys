@@ -66,7 +66,7 @@
             <i class="am-icon-bars"></i>
         </div>
         <div class="am-u-lg-2 am-show-lg" id="nav-corner">
-            <p>欢迎您 王小明</p>
+            <p>欢迎您 <span id="nav-name">老师</span></p>
             <p id="nav-logout">
                 <span>
                     <i class="am-icon-sign-out"> 退出系统</i>
@@ -441,6 +441,8 @@
             <span class="mpb-checkmark"></span>
         </label>
         {{/if}}
+        {{else}}
+            <p style="color: #999; font-size: 20px; text-align: center; margin-top: 20px">无可通知教师</p>
         {{/each}}
     </div>
 </script>
@@ -488,7 +490,7 @@
 			{{/if}}
 			<p class="title">{{title}}</p>
 			<p class="channel">
-				<span class="sender">{{name}}</span> 
+				<span class="sender">{{teacher_name}}</span> 
 				<i class="am-icon-angle-double-right"></i> 
 				<span class="sendee" data-send-to="{{send_to}}" data-type="{{type}}" data-id="{{batch_id}}" data-title={{title}}></span>
 			</p>

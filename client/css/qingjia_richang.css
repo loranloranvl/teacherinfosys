@@ -25,6 +25,8 @@ h1 {
 label {
   font-weight: 500;
   font-size: 18px;
+  color: #333;
+  margin-top: 6px;
 }
 .upperinput {
   background-color: white !important;
@@ -50,11 +52,22 @@ label {
   color: #888;
 }
 #btncontainer {
-  width: 100px;
-  margin: 30px auto;
+  text-align: center;
 }
-button {
-  width: 100px;
-  height: 45px;
-  font-size: 20px !important;
+#btncontainer button {
+  margin: 10px 5px;
+  display: inline-block;
+  font-size: 17px;
+}
+#courses label {
+  font-size: 17px;
+  color: #666;
+  margin-top: 1px;
+}
+#courses .course {
+  border-bottom: 1px solid #eee;
+  margin: 15px 0;
+}
+#courses .course:last-child {
+  border-bottom: none;
 }

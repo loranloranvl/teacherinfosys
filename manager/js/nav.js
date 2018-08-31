@@ -29,4 +29,13 @@ $(document).ready(function() {
 	        a.css('color', 'white');
 	    }
 	});
+	if (__INFO__.name) {
+		$("#nav-name").text(__INFO__.name);
+	}
+
+	$('#nav-logout').on('click', function() {
+		localStorage.setItem('token', '');
+		__TOKEN__ = '';
+		location.reload();
+	})
 });

@@ -14,19 +14,19 @@
 
         <div class="am-form-group line" >
             <label for="begin_time">开始日期</label>
-            <input type="text" class="width form-datepicker" id="begin_time" readonly name="begin_time" placeholder="选择日期">
+            <input type="text" class="width form-datepicker" v-model="begin_time" readonly id="begin_time" placeholder="选择日期">
         </div>
         <div class="am-form-group line fright">
             <label for="begin_course">从第__节课开始</label>
-            <input type="number" class="width form-coursestamp" id="begin_course"  name="begin_course" placeholder="1到12的整数">
+            <input type="number" class="width form-coursestamp" v-model="begin_course"  id="begin_course" placeholder="1到12的整数">
         </div>
         <div class="am-form-group line">
             <label for="end_time">结束日期</label>
-            <input type="text" class="width form-datepicker" id="end_time" readonly name="end_time" placeholder="选择日期">
+            <input type="text" class="width form-datepicker" v-model="end_time" readonly id="end_time" placeholder="选择日期">
         </div>
         <div class="am-form-group line fright">
             <label for="end_course">到第__节课结束</label>
-            <input type="number" class="width form-coursestamp" id="end_course"  name="end_course" placeholder="1到12的整数">
+            <input type="number" class="width form-coursestamp" v-model="end_course"  id="end_course" placeholder="1到12的整数">
         </div>
         <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
             <p>开始日期应小于结束日期！</p>
@@ -34,41 +34,42 @@
 
         <div class="am-form-group">
             <label for="leave_reason">请假事由</label>
-            <textarea class="" rows="6" id="leave_reason" name="leave_reason" placeholder="说明原因"></textarea>
+            <textarea class="" rows="6" v-model="leave_reason" id="leave_reason" placeholder="说明原因"></textarea>
         </div>
 
-        <div class="am-checkbox">
-            <label>
-                <input type="checkbox" name="is_leave" value="1"> 是否离杭
-            </label>
-        </div>
-
-        <div class="am-form-group" style="display: none">
+        <div class="am-form-group">
             <label for="where">去往何处</label>
-            <input type="text" class="" id="where"   name="where" disabled="disabled" placeholder="目的地">
+            <input type="text" class="" id="where"   name="where" placeholder="不离杭不用写">
         </div>
         <hr>
         <h1>请假期间涉及课程</h1>
         <p class="subtitle">选填 用于短信通知任课老师</p>
 
+        <div id="courses" v-for="(course, index) in courses">
+            <div class="course">
+                <div class="am-form-group">
+                    <label for="teacher_course">课程 {{index + 1}} - 名称</label>
+                    <input type="text" class="width" id="teacher_course"  v-model="courses.teacher_course" value="" placeholder="">
+                </div>
 
-        <div class="am-form-group">
-            <label for="teacher_course">课程名称</label>
-            <input type="text" class="width" id="teacher_course"  name="teacher_course" value="" placeholder="多项以空格分隔">
+                <div class="am-form-group">
+                    <label for="teacher_name">课程 {{index + 1}} - 教师姓名</label>
+                    <input type="text" class="width" id="teacher_name"  v-model="courses.teacher_name" value="" placeholder="">
+                </div>
+
+                <div class="am-form-group">
+                    <label for="teacher_phone">课程 {{index + 1}} - 教师手机号</label>
+                    <input type="text" class="width" id="teacher_phone"  v-model="courses.teacher_phone" value="" placeholder="">
+                </div>
+            </div>
         </div>
 
-        <div class="am-form-group">
-            <label for="teacher_name">教师姓名</label>
-            <input type="text" class="width" id="teacher_name"  name="teacher_name" value="" placeholder="保持顺序对应">
-        </div>
-
-        <div class="am-form-group">
-            <label for="teacher_phone">教师手机号</label>
-            <input type="text" class="width" id="teacher_phone"  name="teacher_phone" value="" placeholder="我们将给他们发送短信">
-        </div>
 
 
-        <p id="btncontainer"><button class="am-btn am-btn-secondary " id="submit">提交</button></p>
+        <p id="btncontainer">
+            <button class="am-btn am-btn-secondary">添加课程</button>
+            <button class="am-btn am-btn-secondary">提交表单</button>
+        </p>
     </fieldset>
 </form>
 <script src="js/qingjia_richang.js"></script>
