@@ -47,34 +47,31 @@ function deployTongzhi(data) {
         var urls = $(this).attr('data-urls');
         if (urls) {
             var _urls = urls.split(',');
-            var files = [];
+            var files2 = [];
             _urls.map(function(element, index) {
-                if (element.match(/(\.doc|\.docx)$/i)) {
-                    files.push({
-                        dual: true,
-                        data: {
-                            isdoc: element.match(/\.doc$/i),
-                            name: element.match(/[^/]*$/)[0]
-                                .split('.')[0],
-                            mswordurl: element,
-                            pdfurl: _urls[index + 1]
-                        }
-                    });
-                } else if (element.match(/\.pdf$/i)
-                           && index > 0
-                           && !_urls[index - 1].match(/(\.doc|\.docx)$/i)
-                           || !element.match(/\.pdf$/i)) {
-                    files.push({
-                        dual: false,
-                        data: {
-                            name: element.match(/[^/]*$/)[0],
-                            url: element
-                        }
-                    });
-                } // end else if
-            });
-            var template = Handlebars.compile($('#ht-files').html());
-            $(this).html(template(files));
+                var type;
+                switch (element.match(/[^/]*$/)[0].split('.')[1]) {
+                    case 'xls':
+                    case 'xlsx':
+                        type = 'excel'; break;
+                    case 'pdf':
+                        type = 'pdf'; break;
+                    case 'doc':
+                    case 'docx':
+                        type = 'word'; break;
+                    case 'rar':
+                    case 'zip':
+                        type = 'zip'; break;
+                    default:
+                        type = 'file'; break;
+                }
+                files2.push({
+                    name: element.match(/[^/]*$/)[0],
+                    url: 'element',
+                    type: type
+                })
+            })
+            $(this).html(template(files2));
         }
     });
 

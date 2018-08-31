@@ -42,34 +42,13 @@
 </script>
 
 <script type="text/x-handlebars-template" id="ht-files">
-{{#each this}}
     <hr>
-    {{#if dual}}
-        {{#with data}}
-        <div class="dual">
-            <p class="name">{{name}}</p>
-            <ul class="am-avg-sm-2">
-                <li><a href="{{mswordurl}}">
-                    {{#if isdoc}}
-                    <i class="am-icon-file-word-o"> doc</i>
-                    {{else}}
-                    <i class="am-icon-file-word-o"> docx</i>
-                    {{/if}}
-                </a></li>
-                <li style="border-left: 1.4px solid #eee;"><a href="{{pdfurl}}">
-                    <i class="am-icon-file-pdf-o"> pdf</i>
-                </a></li>
-            </ul>
-        </div>
-        {{/with}}
-    {{else}}
-        {{#with data}}
-        <p class="singular">
-            <a href="{{url}}" data-name="{{name}}">{{name}}</a>
-        </p>
-        {{/with}}
-    {{/if}}
-{{/each}}
+    {{#each this}}
+    <p class="singular" style="margin-top: 20px">
+
+        <a href="{{url}}" data-name="{{name}}"><i class="am-icon-file-{{type}}-o"></i> {{name}}</a>
+    </p>
+    {{/each}}
 </script>
 <script src="./js/tongzhi_detail.js"></script>
 </body>

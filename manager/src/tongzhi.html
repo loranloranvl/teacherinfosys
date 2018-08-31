@@ -83,7 +83,7 @@
 	</li>
 </script>
 
-<script type="text/x-handlebars-template" id="ht-files">
+<!-- <script type="text/x-handlebars-template" id="ht-files">
 {{#each this}}
 	<hr>
 	{{#if dual}}
@@ -114,6 +114,15 @@
 		{{/with}}
 	{{/if}}
 {{/each}}
+</script> -->
+<script type="text/x-handlebars-template" id="ht-files">
+	<hr>
+	{{#each this}}
+	<p class="singular" style="margin-top: 20px">
+
+		<a href="{{url}}" data-name="{{name}}"><i class="am-icon-file-{{type}}-o"></i> {{name}}</a>
+	</p>
+	{{/each}}
 </script>
 <script src="./js/createmsg.js"></script>
 <script src="./js/tongzhi.js"></script>
