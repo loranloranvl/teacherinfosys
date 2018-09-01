@@ -2,7 +2,7 @@ $(document).ready(function() {
 	// 重复的html用脚本生成
 	var data = [
 	    {name: '教学页面', ref: 'teaching'},
-	    {name: '文件系统', ref: 'filesharing'},
+	    // {name: '文件系统', ref: 'filesharing'},
 	    {name: '通知系统', ref: 'tongzhi'},
 	    {name: '请假页面', ref: 'qingjia'}
 	];

@@ -30,7 +30,7 @@ function deployTongzhi(data) {
         if (x)
             return x.content.length
                 + (x.title.length > 20 ? 2 : 1) * 35
-                + x.attachment.split(',').length * 45;
+                + x.attachment.split(',').length * 25;
         else
             return 0;
     }
@@ -173,7 +173,7 @@ function deployTongzhi(data) {
                 }
                 files2.push({
                     name: element.match(/[^/]*$/)[0],
-                    url: 'element',
+                    url: element,
                     type: type
                 })
             })
