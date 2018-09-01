@@ -12,9 +12,6 @@
     <h1 class="sometitle">请假历史记录</h1>
     <p class="subtitle" id="plzclick"></p>
     <hr>
-    <div id="loadericon">
-        <i class="am-icon-spinner am-icon-spin" id="loadericon"></i>
-    </div>
     <div id="histable">
         <!-- ajax here -->
     </div>
@@ -26,7 +23,7 @@
 <script type="text/x-handlebars-template" id="handlebars-template-histable">
     {{#each data}}
         <div class="record" data-index="{{@index}}">
-            <div class="record-status" data-status="{{is_pass}}"><span>已通过</span></div>
+            <div class="record-status" data-status="{{status}}"><span>已通过</span></div>
             <div class="record-bar"></div>
             <div class="record-duration">
                 {{begin_time}} ~ {{end_time}}
@@ -54,17 +51,17 @@
     <p class="detail-content" style="text-align: justify;">{{leave_reason}}</p>
     {{#if is_leave}}
         <p class="detail-label">你说要去</p>
-        <p class="detail-content">{{where}}</p>
+        <p class="detail-content">{{destination}}</p>
     {{/if}}
-    <p class="detail-label">辅导员最终</p>
+    <p class="detail-label">辅导员</p>
     <p class="detail-content" id="detail-status"></p>
-    {{#if pass_reason}}
+    {{#if auth_reason}}
         <p class="detail-label">他（她）说</p>
-        <p class="detail-content" style="text-align: justify;">{{pass_reason}}</p>
+        <p class="detail-content" style="text-align: justify;">{{auth_reason}}</p>
     {{/if}}
     <div class="detail-btngroup">
         <button onclick="backToTable()" class="am-btn am-btn-secondary">返回列表</button>
-        <button onclick="ajaxCancelRequest({{id}})" class="am-btn am-btn-default detail-cancel">撤回申请</button>
+        <!-- <button onclick="ajaxCancelRequest({{id}})" class="am-btn am-btn-default detail-cancel">撤回申请</button> -->
     </div>
 </script>
 

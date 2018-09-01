@@ -56,7 +56,7 @@ label {
 
 #btncontainer {
 	text-align: center;
-	button {
+	div {
 		margin: 10px 5px;
 		display: inline-block;
 		font-size: 17px;
@@ -72,8 +72,21 @@ label {
 	.course {
 		border-bottom: 1px solid #eee;
 		margin: 15px 0;
-	}
-	.course:last-child {
-		border-bottom: none;
+		&:last-child {
+			border-bottom: none;
+		}
+		@w: 25px;
+		.delete {
+			display: inline-block;
+			border-radius: 50%;
+			background-color: #ff4444;
+			color: white;
+			height: @w;
+			width: @w;
+			line-height: @w - 2;
+			text-align: center;
+			cursor: pointer;
+			margin-left: 5px;
+		}
 	}
 }

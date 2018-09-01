@@ -1,19 +1,51 @@
+function ajaxAddLeave(detail) {
+    for (var i = 0; i < detail.courses.length; ++i) {
+        delete detail.courses[i].first
+    }
+    $.ajax({
+        url: 'leave/wx/addLeave',
+        method: 'post',
+        data: detail,
+        // data: JSON.stringify(detail),
+        // processData: false,
+        success: function(data) {
+            if (data.status == 200) {
+                dialog.success('已发送申请')
+                localStorage.setItem('qingjiadata', '')
+                setTimeout(function() {
+                    location.reload()
+                }, 600)
+            }
+        }
+    })
+}
+
+var teachers
+(function ajaxGetTeachers() {
+    $.ajax({
+        url: 'leave/wx/getTeacherInfo',
+        success: function(data) {
+            teachers = data.data
+        }
+    })
+})()
+
 $(document).ready(function() {
-	// amazeui datepicker 禁用今天之前的日子
-	var nowTemp = new Date()
-	var nowDay = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0).valueOf()
-	var nowMoth = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), 1, 0, 0, 0, 0).valueOf()
-	var nowYear = new Date(nowTemp.getFullYear(), 0, 1, 0, 0, 0, 0).valueOf()
-	var checkin = $('.form-datepicker').datepicker({
-	    onRender: function(date, viewMode) {
-	        var viewDate = nowDay
-	        switch (viewMode) {
-	            case 1: viewDate = nowMoth; break;
-	            case 2: viewDate = nowYear; break;
-	        }
-	        return date.valueOf() < viewDate ? 'am-disabled' : ''
-	    }
-	})
+    // amazeui datepicker 禁用今天之前的日子
+    var nowTemp = new Date()
+    var nowDay = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0).valueOf()
+    var nowMoth = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), 1, 0, 0, 0, 0).valueOf()
+    var nowYear = new Date(nowTemp.getFullYear(), 0, 1, 0, 0, 0, 0).valueOf()
+    var checkin = $('.form-datepicker').datepicker({
+        onRender: function(date, viewMode) {
+            var viewDate = nowDay
+            switch (viewMode) {
+                case 1: viewDate = nowMoth; break;
+                case 2: viewDate = nowYear; break;
+            }
+            return date.valueOf() < viewDate ? 'am-disabled' : ''
+        }
+    })
 
     // 皮
     var pis = [
@@ -25,22 +57,64 @@ $(document).ready(function() {
     $('#pi').text(random == 0 ? pis[1] : pis[0])
 
     // submit
+    var course_ = {
+        course_name: '',
+        teacher_name: '',
+        teacher_phone: '',
+        first: true
+    }
     var vm = new Vue({
-        el: '#main',
+        el: '#coursesc',
         data: {
-            leave_reason: '',
-            destination: '',
-            begin_time: '',
-            end_time: '',
-            begin_course: '',
-            end_course: '',
-            courses: [
-                {
+            courses: [course_]
+        },
+        created: function() {
+            var sData = localStorage.qingjiadata
+            if (sData) {
+                sData = JSON.parse(sData)
+                for (var key in sData) {
+                    $('#' + key).val(sData[key])
+                }
+                this.courses = sData.courses
+            }
+        },
+        methods: {
+            addCourse: function() {
+                this.courses.push({
                     course_name: '',
                     teacher_name: '',
-                    teacher_phone: ''
+                    teacher_phone: '',
+                    first: false
+                })
+            },
+            removeCourse: function(index) {
+                this.courses.splice(index, 1)
+            },
+            findTeacherPhone: function(index) {
+                var self = this.$data
+                for (var i = 0; i < teachers.length; ++i) {
+                    var target = self.courses[index]
+                    if (teachers[i].name == target.teacher_name && target.teacher_phone == '') {
+                        target.teacher_phone = teachers[i].phone
+                    }
                 }
-            ]
+            },
+            submit: function() {
+                var self = this.$data
+                log(self)
+                var sData = {courses: self.courses}
+                $('#basicc input, #basicc textarea').each(function() {
+                    sData[$(this).attr('id')] = $(this).val()
+                })
+                for (var key in sData) {
+                    if (key != 'destination' && sData[key] == '') {
+                        dialog.error('请完善表单信息')
+                        return
+                    }
+                }
+                localStorage.setItem('qingjiadata', JSON.stringify(sData))
+                ajaxAddLeave(sData)
+            }
         }
     })
 

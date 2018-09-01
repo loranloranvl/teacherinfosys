@@ -11,65 +11,74 @@
     <fieldset>
         <h1 id="pi">日常请假</h1>
         <hr>
+        <div id="basicc">
+            <div class="am-form-group line" >
+                <label for="begin_time">开始日期</label>
+                <input type="text" class="width form-datepicker" v-model="begin_time" readonly id="begin_time" placeholder="选择日期">
+            </div>
+            <div class="am-form-group line fright">
+                <label for="begin_course">从第__节课开始</label>
+                <input type="number" class="width form-coursestamp" v-model="begin_course"  id="begin_course" placeholder="1到12的整数">
+            </div>
+            <div class="am-form-group line">
+                <label for="end_time">结束日期</label>
+                <input type="text" class="width form-datepicker" v-model="end_time" readonly id="end_time" placeholder="选择日期">
+            </div>
+            <div class="am-form-group line fright">
+                <label for="end_course">到第__节课结束</label>
+                <input type="number" class="width form-coursestamp" v-model="end_course"  id="end_course" placeholder="1到12的整数">
+            </div>
+            <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
+                <p>开始日期应小于结束日期！</p>
+            </div>
 
-        <div class="am-form-group line" >
-            <label for="begin_time">开始日期</label>
-            <input type="text" class="width form-datepicker" v-model="begin_time" readonly id="begin_time" placeholder="选择日期">
-        </div>
-        <div class="am-form-group line fright">
-            <label for="begin_course">从第__节课开始</label>
-            <input type="number" class="width form-coursestamp" v-model="begin_course"  id="begin_course" placeholder="1到12的整数">
-        </div>
-        <div class="am-form-group line">
-            <label for="end_time">结束日期</label>
-            <input type="text" class="width form-datepicker" v-model="end_time" readonly id="end_time" placeholder="选择日期">
-        </div>
-        <div class="am-form-group line fright">
-            <label for="end_course">到第__节课结束</label>
-            <input type="number" class="width form-coursestamp" v-model="end_course"  id="end_course" placeholder="1到12的整数">
-        </div>
-        <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
-            <p>开始日期应小于结束日期！</p>
-        </div>
+            <div class="am-form-group">
+                <label for="leave_reason">请假事由</label>
+                <textarea class="" rows="6" v-model="leave_reason" id="leave_reason" placeholder="说明原因"></textarea>
+            </div>
 
-        <div class="am-form-group">
-            <label for="leave_reason">请假事由</label>
-            <textarea class="" rows="6" v-model="leave_reason" id="leave_reason" placeholder="说明原因"></textarea>
-        </div>
-
-        <div class="am-form-group">
-            <label for="where">去往何处</label>
-            <input type="text" class="" id="where"   name="where" placeholder="不离杭不用写">
-        </div>
-        <hr>
-        <h1>请假期间涉及课程</h1>
-        <p class="subtitle">选填 用于短信通知任课老师</p>
-
-        <div id="courses" v-for="(course, index) in courses">
-            <div class="course">
-                <div class="am-form-group">
-                    <label for="teacher_course">课程 {{index + 1}} - 名称</label>
-                    <input type="text" class="width" id="teacher_course"  v-model="courses.teacher_course" value="" placeholder="">
-                </div>
-
-                <div class="am-form-group">
-                    <label for="teacher_name">课程 {{index + 1}} - 教师姓名</label>
-                    <input type="text" class="width" id="teacher_name"  v-model="courses.teacher_name" value="" placeholder="">
-                </div>
-
-                <div class="am-form-group">
-                    <label for="teacher_phone">课程 {{index + 1}} - 教师手机号</label>
-                    <input type="text" class="width" id="teacher_phone"  v-model="courses.teacher_phone" value="" placeholder="">
-                </div>
+            <div class="am-form-group">
+                <label for="destination">去往何处</label>
+                <input type="text" class="" id="destination"   name="destination" placeholder="不离杭不用写">
             </div>
         </div>
 
+        <hr>
+        <h1>请假期间涉及课程</h1>
+        <p class="subtitle">选填 用于短信通知任课老师</p>
+        <div id="coursesc">
+            <div id="courses" v-for="(course, index) in courses">
+                <div class="course">
+                    <div class="am-form-group">
+                        <label for="course_name">
+                            课程 {{index + 1}} - 名称
+                            <div class="delete" v-if="!course.first" v-on:click="removeCourse(index)">
+                                <i class="am-icon-trash"></i>
+                            </div>
+                        </label>
+                        <input type="text" class="width" id="course_name"  v-model="course.course_name">
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="teacher_name">课程 {{index + 1}} - 教师姓名</label>
+                        <input type="text" class="width" id="teacher_name"  v-model="course.teacher_name" v-on:change="findTeacherPhone(index)">
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="teacher_phone">课程 {{index + 1}} - 教师手机号</label>
+                        <input type="text" class="width" id="teacher_phone"  v-model="course.teacher_phone">
+                    </div>
+                </div>
+            </div>
 
 
-        <p id="btncontainer">
-            <button class="am-btn am-btn-secondary">添加课程</button>
-            <button class="am-btn am-btn-secondary">提交表单</button>
-        </p>
+
+            <div id="btncontainer">
+                <div class="am-btn am-btn-secondary" v-on:click="addCourse">添加课程</div>
+                <div class="am-btn am-btn-secondary" v-on:click="submit">提交表单</div>
+            </div>
+        </div>
+
     </fieldset>
 </form>
 <script src="js/qingjia_richang.js"></script>

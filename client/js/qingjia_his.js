@@ -4,15 +4,15 @@ $(document).ready(function() {
 
 function ajaxGetHistory(page) {
 	page = page || '1';
-	$('#loadericon').fadeIn(200);
 	$.ajax({
-	    url: '/history?page=' + page,
+	    url: '/leave/wx/getLeaveHistory',
+	    data: {
+	    	page: page
+	    },
 	    success: function (data) {
-	    	$('#loadericon').hide();
 	        if(data.status == 200){
-	        	console.log(data.data);
 	            deployHisTable(data.data);
-	        } 
+	        }
 	    }
 	});
 }
@@ -41,13 +41,13 @@ function deployHisTable(data) {
 	}
 	$('#histable .record-status').each(function() {
 		switch($(this).attr('data-status')) {
-			case '1':
+			case '2':
 				$(this).find('span').text('已通过').css('color', '#5cb85c');
 				break;
-			case '0':
+			case '1':
 				$(this).find('span').text('待审核').css('color', '#99979c');
 				break;
-			case '-1':
+			case '3':
 				$(this).find('span').text('未通过').css('color', '#d9534f');
 				break;
 		}
@@ -79,16 +79,16 @@ function deployHisDetail(data) {
 	$('#hisdetail').html(template(data));
 	$('#plzclick').text('');
 	$('#histable').hide();
-	switch(data.is_pass) {
+	switch(data.status) {
 		case 1:
 			$('#detail-status').text('同意了').css('color', '#5cb85c');
 			$('.detail-cancel').attr('disabled', true);
 			break;
-		case 0:
+		case 2:
 			$('#detail-status').text('还没做出决定').css('color', '#666666');
 			$('.detail-cancel').attr('disabled', false);
 			break;
-		case -1:
+		case 3:
 			$('#detail-status').text('拒绝了').css('color', '#d9534f');
 			$('.detail-cancel').attr('disabled', true);
 			break;
