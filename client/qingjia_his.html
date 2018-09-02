@@ -40,6 +40,13 @@
     <div id="histable">
         <!-- ajax here -->
     </div>
+    <div class="pagi" id="pagi">
+    <div class="pagi-first"><i class="am-icon-angle-double-left"></i></div>
+    <div class="pagi-prev"><i class="am-icon-angle-left"></i></div>
+    <div class="pagi-cur">1</div>
+    <div class="pagi-next"><i class="am-icon-angle-right"></i></div>
+    <div class="pagi-last"><i class="am-icon-angle-double-right"></i></div>
+</div>
     <div id="hisdetail" class="detail">
         <!-- ajax here -->
     </div>
@@ -57,16 +64,6 @@
     {{else}}
         <p class="record-none">你好像没有请过假</p>
     {{/each}}
-
-    {{#if data}}
-        <div class="record-btngroup" id="btngroup1">
-            <button id="pagi-first" data-targetpage="{{first_page_url}}">&lt;&lt;</button>
-            <button id="pagi-prev" data-targetpage="{{prev_page_url}}">&lt;</button>
-            <div id="pagi-cur"><span>{{current_page}}</span></div>
-            <button id="pagi-next" data-targetpage="{{next_page_url}}">&gt;</button>
-            <button id="pagi-last" data-targetpage="{{last_page_url}}">&gt;&gt;</button>
-        </div>
-    {{/if}}
 </script>
 
 <script type="text/x-handlebars-template" id="handlebars-template-hisdetail">

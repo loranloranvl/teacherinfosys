@@ -15,6 +15,9 @@
     <div id="histable">
         <!-- ajax here -->
     </div>
+    @@include('./partials/pagi.html', {
+        "id": "pagi"
+    })
     <div id="hisdetail" class="detail">
         <!-- ajax here -->
     </div>
@@ -32,16 +35,6 @@
     {{else}}
         <p class="record-none">你好像没有请过假</p>
     {{/each}}
-
-    {{#if data}}
-        <div class="record-btngroup" id="btngroup1">
-            <button id="pagi-first" data-targetpage="{{first_page_url}}">&lt;&lt;</button>
-            <button id="pagi-prev" data-targetpage="{{prev_page_url}}">&lt;</button>
-            <div id="pagi-cur"><span>{{current_page}}</span></div>
-            <button id="pagi-next" data-targetpage="{{next_page_url}}">&gt;</button>
-            <button id="pagi-last" data-targetpage="{{last_page_url}}">&gt;&gt;</button>
-        </div>
-    {{/if}}
 </script>
 
 <script type="text/x-handlebars-template" id="handlebars-template-hisdetail">

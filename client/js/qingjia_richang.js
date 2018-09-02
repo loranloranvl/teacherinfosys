@@ -108,7 +108,7 @@ $(document).ready(function() {
                 })
                 for (var key in sData) {
                     if (key != 'destination' && sData[key] == '') {
-                        dialog.error('请完善表单信息')
+                        dialog.error('请完善信息')
                         return
                     }
                 }
@@ -189,7 +189,7 @@ $(function(){
         }
     })
 
-    // 提交表单
+    // 提交
     $('form button').click(function(e){
     	if (!isWeixinBrowser()) {
     		alert('请在微信中打开本页面');

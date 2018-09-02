@@ -3,7 +3,6 @@ $(document).ready(function() {
 });
 
 function ajaxGetHistory(page) {
-	page = page || '1';
 	$.ajax({
 	    url: '/leave/wx/getLeaveHistory',
 	    data: {
@@ -12,6 +11,7 @@ function ajaxGetHistory(page) {
 	    success: function (data) {
 	        if(data.status == 200){
 	            deployHisTable(data.data);
+	            deployPagi(data.data, ajaxGetHistory);
 	        }
 	    }
 	});
