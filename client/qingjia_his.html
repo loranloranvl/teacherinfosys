@@ -90,27 +90,27 @@
 
 <script src="js/qingjia_his.js"></script>
 <script>
-    (function ajaxGetHistory(page) {
-        $.ajax({
-            url: '/leave/wx/getLeaveHistory',
-            data: {
-                page: page
-            },
-            success: function (data) {
-                if(data.status == 200){
-                    // dialog.error(JSON.stringify(data.data.data[0]))
-                    deployHisTable(data.data);
-                    deployPagi(data.data, ajaxGetHistory);
-                }
-            },
-            error: function() {
-                dialog.error('error')
-            },
-            complete: function(jqxhr, status) {
-                $('h1').text((JSON.stringify(jqxhr)))
-            }
-        });
-    })()
+    // (function ajaxGetHistory(page) {
+    //     $.ajax({
+    //         url: '/leave/wx/getLeaveHistory',
+    //         data: {
+    //             page: page
+    //         },
+    //         success: function (data) {
+    //             if(data.status == 200){
+    //                 // dialog.error(JSON.stringify(data.data.data[0]))
+    //                 deployHisTable(data.data);
+    //                 deployPagi(data.data, ajaxGetHistory);
+    //             }
+    //         },
+    //         error: function() {
+    //             dialog.error('error')
+    //         },
+    //         complete: function(jqxhr, status) {
+    //             $('h1').text((JSON.stringify(jqxhr)))
+    //         }
+    //     });
+    // })()
 </script>
 </body>
 </html>

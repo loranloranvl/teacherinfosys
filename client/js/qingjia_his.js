@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	// ajaxGetHistory('1');
+	ajaxGetHistory('1');
 });
 
 function ajaxGetHistory(page) {
@@ -10,16 +10,9 @@ function ajaxGetHistory(page) {
 	    },
 	    success: function (data) {
 	        if(data.status == 200){
-	        	// dialog.error(JSON.stringify(data.data.data[0]))
 	            deployHisTable(data.data);
 	            deployPagi(data.data, ajaxGetHistory);
 	        }
-	    },
-	    error: function() {
-	    	dialog.error('error')
-	    },
-	    complete: function(jqxhr, status) {
-	    	$('h1').text((JSON.stringify(jqxhr)))
 	    }
 	});
 }
@@ -87,11 +80,11 @@ function deployHisDetail(data) {
 	$('#plzclick').text('');
 	$('#histable').hide();
 	switch(data.status) {
-		case 1:
+		case 2:
 			$('#detail-status').text('同意了').css('color', '#5cb85c');
 			$('.detail-cancel').attr('disabled', true);
 			break;
-		case 2:
+		case 1:
 			$('#detail-status').text('还没做出决定').css('color', '#666666');
 			$('.detail-cancel').attr('disabled', false);
 			break;
