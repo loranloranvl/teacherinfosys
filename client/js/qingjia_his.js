@@ -10,6 +10,7 @@ function ajaxGetHistory(page) {
 	    },
 	    success: function (data) {
 	        if(data.status == 200){
+	        	dialog.error(JSON.stringify(data.data.data[0]))
 	            deployHisTable(data.data);
 	            deployPagi(data.data, ajaxGetHistory);
 	        }
