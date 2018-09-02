@@ -78,8 +78,11 @@ label {
   color: white;
   height: 25px;
   width: 25px;
-  line-height: 23px;
   text-align: center;
   cursor: pointer;
   margin-left: 5px;
+}
+#courses .course .delete i {
+  position: relative;
+  bottom: 2px;
 }
