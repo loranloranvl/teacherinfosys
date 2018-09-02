@@ -1,40 +1,78 @@
-function ajaxAgree(id) {
+function ajaxAgree(params) {
     $.ajax({
         type: 'post',
         url: 'leave/pc/authLeave',
+        data: params,
+        success: function(data) {
+            if (data.status == 200) {
+                dialog.success('审批成功');
+                reload();
+            }
+        }
+    })
+}
+
+function ajaxGetLeaveRequests(page) {
+    $.ajax({
+        url: 'leave/pc/getAuthingLeave',
         data: {
-            id: id,
-            is_pass: 1,
-            pass_reason: ''
+            page: page
         },
         success: function(data) {
             if (data.status == 200) {
-                
+                deployLeaveRequests(data.data);
             }
         }
     })
 }
 
-function ajaxGetLeaveRequests() {
-    $.ajax({
-        url: 'leave/pc/getAuthIngLeave',
-        success: function(data) {
-            if (data.status == 200) {
-                
-            }
-        }
-    })
-}
-
-function ajaxGetDailyLeave() {
+function ajaxGetDailyLeave(page) {
     $.ajax({
         url: 'leave/pc/getLeaveAuthHistory',
+        data: {
+            page: page
+        },
         success: function(data) {
             if (data.status == 200) {
-                
+                deployDaily(data.data)
             }
         }
     })
+}
+
+function deployLeaveRequests(data) {
+    HDeploy('awaiting', data);
+    deployPagi(data, ajaxGetLeaveRequests);
+    $("#awaiting button").on('click', function() {
+        $('#agree-prompt').modal({
+            relatedTarget: this,
+            onConfirm: function() {
+                ajaxAgree({
+                    status: $(this.relatedTarget).attr('data-status'),
+                    id: $(this.relatedTarget).parent().attr('data-id'),
+                    auth_reason: $('#agree-prompt input').val()
+                })
+            }
+        }).find('input').val($(this).text())
+    });
+}
+
+function deployDaily(data) {
+    HDeploy('daily', data);
+    deployPagi(data, ajaxGetDailyLeave);
+    $('td[data-status]').each(function() {
+        switch($(this).attr('data-status')) {
+            case '2':
+                $(this).text('已通过').css('color', '#5cb85c');
+                break;
+            case '1':
+                $(this).text('待审核').css('color', '#99979c');
+                break;
+            case '3':
+                $(this).text('已拒绝').css('color', '#d9534f');
+                break;
+        };
+    });
 }
 
 // function ajaxCreateHolidayLeave() {
@@ -66,20 +104,25 @@ function ajaxGetDailyLeave() {
 // }
 
 $(document).ready(function() {
-    HDeploy('awaiting', {})
-    HDeploy('daily', {})
-    $("#awaiting button").on('click', function() {
-        $('#agree-alert').modal();
-    });
+    Handlebars.registerPartial('where', $('#ht-where').html());
     $('#btn-content').text('新节假日');
+    activateDatepicker('#add-prompt input');
     $('#btn').on('click', function() {
-        $('#add-alert').modal();
+        $('#add-prompt').modal({
+            relatedTarget: this,
+            onConfirm: function() {
+
+            }
+        });
     })
 
     $('#top li').on('click', function() {
         var target = $(this).attr('data-target');
-        HDeploy('awaiting', {})
         $('#main > div').hide();
+        switch (target) {
+            case 'awaiting': ajaxGetLeaveRequests(); break;
+            case 'daily': ajaxGetDailyLeave(); break;
+        }
         $('#' + target).show();
         $('#top li').css({
             color: '#999',
@@ -90,7 +133,15 @@ $(document).ready(function() {
             textDecoration: 'underline'
         })
     })
-    $('#top li').eq(0).click();
+    $('#top li').eq(1).click();
+
+    $('.submit-agree').on('click', function() {
+        ajaxAgree({
+            id: $(this).parent().attr('data-id'),
+            status: 2,
+            auth_reason: ''
+        })
+    })
 })
 
 

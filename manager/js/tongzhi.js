@@ -14,7 +14,7 @@ function ajaxGetTongzhi(page) {
         success: function (data) {
             if (data.status == 200){
                 deployTongzhi(data.data);
-                deployPagi(data.data, 'pagi');
+                deployPagi(data.data, ajaxGetTongzhi);
             }
         }
     })
@@ -226,47 +226,3 @@ function deployTongzhi(data) {
     });
 }
 
-function deployPagi(data, id) {
-    var pagi = $('#' + id)
-    pagi.find('.pagi-cur').text(data.current_page);
-
-    // only show when data is correctly received
-    // and there is more than 1 page
-    if(data.data && data.last_page != 1) {
-        pagi.show();
-    } else {
-        pagi.hide();
-    }
-
-    if (data.current_page == 1) {
-        pagi.find('.pagi-first, .pagi-prev').hide();
-    } else {
-        pagi.find('.pagi-first, .pagi-prev').show();
-    }
-
-    if (data.current_page == data.last_page) {
-        pagi.find('.pagi-next, .pagi-last').hide();
-    } else {
-        pagi.find('.pagi-next, .pagi-last').show();
-    }
-
-    // remove all click event listeners bound by 
-    // previous deployers then add our listeners
-    pagi.find('div').off('click');
-    pagi.find('.pagi-first').on('click', function() {
-        pagi.find('.pagi-cur').html(__SPINNER__);
-        ajaxGetTongzhi(1);
-    });
-    pagi.find('.pagi-prev').on('click', function() {
-        pagi.find('.pagi-cur').html(__SPINNER__);
-        ajaxGetTongzhi(data.current_page - 1);
-    });
-    pagi.find('.pagi-next').on('click', function() {
-        pagi.find('.pagi-cur').html(__SPINNER__);
-        ajaxGetTongzhi(data.current_page + 1);
-    });
-    pagi.find('.pagi-last').on('click', function() {
-        pagi.find('.pagi-cur').html(__SPINNER__);
-        ajaxGetTongzhi(data.last_page);
-    });
-}

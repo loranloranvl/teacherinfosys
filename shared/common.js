@@ -89,6 +89,51 @@ function getParam(url) {
 		.replace(/=/g,'":"') + '"}');
 }
 
+function deployPagi(data, callback) {
+    var pagi = $('#pagi')
+    pagi.find('.pagi-cur').text(data.current_page);
+
+    // only show when data is correctly received
+    // and there is more than 1 page
+    if(data.data && data.last_page != 1) {
+        pagi.show();
+    } else {
+        pagi.hide();
+    }
+
+    if (data.current_page == 1) {
+        pagi.find('.pagi-first, .pagi-prev').hide();
+    } else {
+        pagi.find('.pagi-first, .pagi-prev').show();
+    }
+
+    if (data.current_page == data.last_page) {
+        pagi.find('.pagi-next, .pagi-last').hide();
+    } else {
+        pagi.find('.pagi-next, .pagi-last').show();
+    }
+
+    // remove all click event listeners bound by 
+    // previous deployers then add our listeners
+    pagi.find('div').off('click');
+    pagi.find('.pagi-first').on('click', function() {
+        pagi.find('.pagi-cur').html(__SPINNER__);
+        callback(1);
+    });
+    pagi.find('.pagi-prev').on('click', function() {
+        pagi.find('.pagi-cur').html(__SPINNER__);
+        callback(data.current_page - 1);
+    });
+    pagi.find('.pagi-next').on('click', function() {
+        pagi.find('.pagi-cur').html(__SPINNER__);
+        callback(data.current_page + 1);
+    });
+    pagi.find('.pagi-last').on('click', function() {
+        pagi.find('.pagi-cur').html(__SPINNER__);
+        callback(data.last_page);
+    });
+}
+
 
 // general ajax settings
 var loader;
@@ -166,5 +211,25 @@ var dialog = {
     }
 };
 
+function reload() {
+    setTimeout(function() {
+        location.reload()
+    }, 800)
+}
 
-
+function activateDatepicker(selector) {
+    var nowTemp = new Date()
+    var nowDay = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0).valueOf()
+    var nowMoth = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), 1, 0, 0, 0, 0).valueOf()
+    var nowYear = new Date(nowTemp.getFullYear(), 0, 1, 0, 0, 0, 0).valueOf()
+    return $(selector).datepicker({
+        onRender: function(date, viewMode) {
+            var viewDate = nowDay
+            switch (viewMode) {
+                case 1: viewDate = nowMoth; break;
+                case 2: viewDate = nowYear; break;
+            }
+            return date.valueOf() < viewDate ? 'am-disabled' : ''
+        }
+    })
+}
