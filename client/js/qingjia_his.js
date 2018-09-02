@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	ajaxGetHistory('1');
+	// ajaxGetHistory('1');
 });
 
 function ajaxGetHistory(page) {
