@@ -12,6 +12,7 @@ function ajaxGetHistory(page) {
 	        if(data.status == 200){
 	            deployHisTable(data.data);
 	            deployPagi(data.data, ajaxGetHistory);
+	            layer.close(loader);
 	        }
 	    }
 	});
