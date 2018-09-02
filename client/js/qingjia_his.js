@@ -55,22 +55,8 @@ function deployHisTable(data) {
 	});
 	$('#histable .record').on('click', function() {
 		deployHisDetail(data.data[$(this).attr('data-index')]);
+		$('#pagi').hide();
 	});
-	$('#btngroup1 button').on('click', function() {
-		var pageURL = $(this).attr('data-targetpage');
-		if (pageURL) {
-			$('#histable').hide();
-			var page = pageURL.split('=').pop();
-			ajaxGetHistory(page);
-		}
-	});
-	if (data.last_page <= 1) {
-		$('#btngroup1').remove();
-	} else if (data.current_page == 1) {
-		$('#pagi-first, #pagi-prev').remove();
-	} else if (data.current_page == data.last_page) {
-		$('#pagi-next, #pagi-last').remove();
-	}
 	$('#histable').fadeIn(200);
 }
 
@@ -98,6 +84,7 @@ function deployHisDetail(data) {
 }
 
 function backToTable() {
+	$('#pagi').show();
 	$('#hisdetail').hide();
 	$('#plzclick').text('点击查看详情');
 	$('#histable').fadeIn(200);
