@@ -10,10 +10,16 @@ function ajaxGetHistory(page) {
 	    },
 	    success: function (data) {
 	        if(data.status == 200){
-	        	dialog.error(JSON.stringify(data.data.data[0]))
+	        	// dialog.error(JSON.stringify(data.data.data[0]))
 	            deployHisTable(data.data);
 	            deployPagi(data.data, ajaxGetHistory);
 	        }
+	    },
+	    error: function() {
+	    	dialog.error('error')
+	    },
+	    complete: function(jqxhr, status) {
+	    	dialog.error(JSON.stringify(jqxhr), status)
 	    }
 	});
 }
