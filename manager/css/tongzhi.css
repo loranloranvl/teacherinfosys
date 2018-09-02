@@ -44,6 +44,10 @@
   border-bottom: 1.5px dashed #999;
   cursor: pointer;
 }
+.tongzhi .container .channel .sendee:hover {
+  color: #aaaaff;
+  border-bottom-color: #bbbbff;
+}
 .tongzhi .container .content {
   text-align: justify;
   font-size: 16px;
