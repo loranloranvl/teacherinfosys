@@ -96,63 +96,10 @@ gulp.task('watch', inits, function() {
 	gulp.watch(scripts).on('change', browserSync.reload);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*var gulp = require('gulp');
-var watch = require('gulp-watch');
-var fileinclude = require('gulp-file-include');
-var less = require('gulp-less');
-var browserSync = require('browser-sync').create();
-var cachebust = require('gulp-cache-bust');
-var log = console.log;
-
-var fi = fileinclude({
-		prefix: '@@',
-		basepath: '@file'
-	});
-
-function fileincludeHandler(location) {
-	log('fileinclude');
-	gulp.src('client/src/*.html')
-		.pipe(fi)
-		.pipe(gulp.dest('client'));
-}
-
-gulp.task('cfileinclude', function() {
-	return gulp.src('client/src/*.html')
-		.pipe(fi)
-		.pipe(gulp.dest('client'));
-})
-
-gulp.task('mfileinclude', function() {
-	return gulp.src('manager/src/*.html')
-		.pipe(fi)
-		.pipe(gulp.dest('manager'));
-})
-
-gulp.task('default', function() {
-	watch(['client/src/*.html', 'manager/src/*.html'], function(vinyl) {
-		
-		if (vinyl.contents.length) {
-			var location = vinyl.base.match((/client|manager/));
-			gulp.start(location[0][0] + 'fileinclude');
-		}
-		
-		fileincludeHandler('manager');
-	});
-})
-
-*/
+gulp.task('cachebust', function() {
+    return gulp.src('./**/src/**/*.html')
+        .pipe(cachebust({
+            type: 'timestamp'
+        }))
+        .pipe(gulp.dest('./'));
+});
