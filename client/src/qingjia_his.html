@@ -10,7 +10,7 @@
 <body>
 <div id="everything">
     <img src="../shared/img/history.png" alt="historyicon" id="hisicon">
-    <h1 class="sometitle">请假历史记录</h1>
+    <h1 class="sometitle">请假历史记录2</h1>
     <p class="subtitle" id="plzclick"></p>
     <hr>
     <div id="histable">
@@ -73,6 +73,7 @@
             },
             success: function (data) {
                 if(data.status == 200){
+                    alert('1')
                     deployHisTable(data.data);
                     deployPagi(data.data, ajaxGetHistory);
                     layer.close(loader);
