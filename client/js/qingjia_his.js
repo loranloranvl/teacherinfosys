@@ -19,7 +19,7 @@ function ajaxGetHistory(page) {
 	    	dialog.error('error')
 	    },
 	    complete: function(jqxhr, status) {
-	    	dialog.error(JSON.stringify(jqxhr), status)
+	    	$('h1').text((JSON.stringify(jqxhr)))
 	    }
 	});
 }
