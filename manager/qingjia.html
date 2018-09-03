@@ -20,16 +20,16 @@
 <!-- No Baidu Siteapp-->
 <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
-<link rel="stylesheet" href="../shared/amazeui.min.css?t=1535963446203">
-<link rel="stylesheet" href="./css/nav.css?t=1535963446203">
-<script src="../shared/jquery.min.js?t=1535963446203"></script>
-<script src="../shared/amazeui.min.js?t=1535963446203"></script>
-<script src="../shared/handlebars.min.js?t=1535963446203"></script>
-<script src="../shared/layer/layer.js?t=1535963446203"></script>
-<script src="../shared/common.js?t=1535963446203"></script>
-<script src="./js/nav.js?t=1535963446203"></script>
-    <link rel="stylesheet" href="css/qingjia.css?t=1535963446126">
-    <link rel="stylesheet" href="./css/pagi.css?t=1535963446126">
+<link rel="stylesheet" href="../shared/amazeui.min.css?t=1535968894625">
+<link rel="stylesheet" href="./css/nav.css?t=1535968894625">
+<script src="../shared/jquery.min.js?t=1535968894625"></script>
+<script src="../shared/amazeui.min.js?t=1535968894625"></script>
+<script src="../shared/handlebars.min.js?t=1535968894625"></script>
+<script src="../shared/layer/layer.js?t=1535968894625"></script>
+<script src="../shared/common.js?t=1535968894625"></script>
+<script src="./js/nav.js?t=1535968894625"></script>
+    <link rel="stylesheet" href="css/qingjia.css?t=1535968894564">
+    <link rel="stylesheet" href="./css/pagi.css?t=1535968894564">
 </head>
 <body>
 <div id="navc">
@@ -365,7 +365,7 @@
     {{/each}}
 </div>
 {{else}}
-<p class="none">没有找到过往请假</p>
+<p class="none">没有找到已创建的节假日请假</p>
 {{/if}}
 </script>
 
@@ -378,6 +378,7 @@
                 <th>学号</th>
                 <th>姓名</th>
                 <th>班级</th>
+                <th>目的地</th>
                 <th>登记时间</th>
             </tr>
             {{#each students}}
@@ -385,6 +386,7 @@
                 <td>{{name}}</td>
                 <td>{{uid}}</td>
                 <td>{{class}}</td>
+                <td>{{destination}}</td>
                 <td>{{updated_at}}</td>
             </tr>
             {{/each}}
@@ -406,6 +408,10 @@
                 <td>{{class}}</td>
             </tr>
             <tr>
+                <td>目的地</td>
+                <td>{{destination}}</td>
+            </tr>
+            <tr>
                 <td>登记时间</td>
                 <td>{{updated_at}}</td>
             </tr>
@@ -417,7 +423,7 @@
     {{/if}}
 </script>
 
-<script src="js/qingjia.js?t=1535963446126"></script>
+<script src="js/qingjia.js?t=1535968894564"></script>
 
 </body>
 </html>

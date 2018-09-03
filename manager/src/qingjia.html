@@ -4,8 +4,8 @@
     @@include('./partials/head.html', {
         "title": "请假"
     })
-    <link rel="stylesheet" href="css/qingjia.css?t=1535963446126">
-    <link rel="stylesheet" href="./css/pagi.css?t=1535963446126">
+    <link rel="stylesheet" href="css/qingjia.css?t=1535968894564">
+    <link rel="stylesheet" href="./css/pagi.css?t=1535968894564">
 </head>
 <body>
 @@include('./partials/nav.html')
@@ -290,7 +290,7 @@
     {{/each}}
 </div>
 {{else}}
-<p class="none">没有找到过往请假</p>
+<p class="none">没有找到已创建的节假日请假</p>
 {{/if}}
 </script>
 
@@ -303,6 +303,7 @@
                 <th>学号</th>
                 <th>姓名</th>
                 <th>班级</th>
+                <th>目的地</th>
                 <th>登记时间</th>
             </tr>
             {{#each students}}
@@ -310,6 +311,7 @@
                 <td>{{name}}</td>
                 <td>{{uid}}</td>
                 <td>{{class}}</td>
+                <td>{{destination}}</td>
                 <td>{{updated_at}}</td>
             </tr>
             {{/each}}
@@ -331,6 +333,10 @@
                 <td>{{class}}</td>
             </tr>
             <tr>
+                <td>目的地</td>
+                <td>{{destination}}</td>
+            </tr>
+            <tr>
                 <td>登记时间</td>
                 <td>{{updated_at}}</td>
             </tr>
@@ -342,7 +348,7 @@
     {{/if}}
 </script>
 
-<script src="js/qingjia.js?t=1535963446126"></script>
+<script src="js/qingjia.js?t=1535968894564"></script>
 
 </body>
 </html>
