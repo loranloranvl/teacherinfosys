@@ -19,13 +19,13 @@ function ajaxGetLeaveInfo() {
 		url: 'leave/wx/getHolidayLeaveModel',
 		success: function(data) {
 			if (data.status == 200) {
-				if (!data.data.data.length) {
+				if (!data.data.length) {
 					layer.alert('现在不用请假', {icon: 6});
 					setTimeout(function() {
 						location.href = 'qingjia_entry.html'
 					}, 800)
 				} else {
-					deployLeaveInfo(data.data);
+					deployLeaveInfo(data);
 					$('#main').show();
 				}
 			}
@@ -40,7 +40,6 @@ function deployLeaveInfo(data) {
 	HDeploy('holidays', data);
 	$('#holidays').on('change', function() {
 		var title = $(this).find('option:selected').text();
-		log(title)
 		var curHoliday = '';
 		if (title.match(/端午/)) {	
 			curHoliday = 'duanwu'
@@ -82,7 +81,6 @@ function deployLeaveInfo(data) {
 				extension: 'jpg',
 			}
 		};
-		log(curHoliday)
 		$('#holidayicon').attr('src', '../shared/img/holidays/' 
 			+ curHoliday + '.' + holidays[curHoliday].extension);
 		$('.sometitle').text(holidays[curHoliday].slogan);
