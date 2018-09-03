@@ -74,6 +74,17 @@
 #main table tr.dialog button {
   margin: 5px 20px;
 }
+#jiejiari table.lg tr:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+#jiejiari table.lg tr:first-child {
+  background-color: white;
+  cursor: default;
+}
+#jiejiari table.md td {
+  cursor: pointer;
+}
 .am-modal-dialog {
   background-color: white;
   color: #333;
@@ -101,4 +112,23 @@
 }
 .am-modal-dialog #reason {
   width: 300px;
+}
+#detail-p {
+  text-align: center;
+}
+#detail-title {
+  font-size: 30px;
+  color: #666;
+  font-weight: 500;
+  margin-right: 20px;
+}
+#detail-return {
+  font-size: 22px;
+  color: #666;
+  font-weight: 300;
+}
+#detail-return:hover {
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  color: black;
 }

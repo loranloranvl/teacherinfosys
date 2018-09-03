@@ -9,7 +9,7 @@ $(document).ready(function() {
 	var operator = 'baiyan';
 	var password = CryptoJS.MD5('qlc_2017-#*m').toString();
 	var date = new Date().toGMTString();
-	var method = 'POST';
+	var method = 'post';
 	var uri = '/cbs-service';
 	var options = {
 		'bucket': 'cbs-service',
@@ -47,7 +47,7 @@ $(document).ready(function() {
 		},
 
 		init: {
-			PostInit: function() {
+			postInit: function() {
 				$('#startup').on('click', function() {
 					cusAlert('正在尝试上传文件');
 					uploader.start();
@@ -136,7 +136,7 @@ $(document).ready(function() {
 // 上传文件到又拍云之后，用这个函数上传具体信息到咱的服务器
 function ajaxUploadDetail(formData, curfileid) {
 	$.ajax({
-	    type: 'POST',
+	    method: 'post',
 	    url: '/file',
 	    data: formData,
 	    processData: false,

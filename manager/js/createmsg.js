@@ -440,7 +440,7 @@ $(document).ready(function() {
             //                    + ' ' + $("#mp3-timepicker").val();
             //     sData["time"] = timeString;
             // }
-            // ajaxPostMsg(sData);
+            // ajaxpostMsg(sData);
 
             var formData = new FormData;
             formData.append('title', $('#mp3-form-title').val());
@@ -459,7 +459,7 @@ $(document).ready(function() {
                                + ' ' + $("#mp3-timepicker").val();
                 formData.append('time', timeString);
             }
-            ajaxPostMsg(formData);
+            ajaxpostMsg(formData);
         }
         
     });
@@ -484,7 +484,7 @@ function ajaxGetSendToByInfoLevel() {
 }
 
 // ajax发送信息
-function ajaxPostMsg(sData) {
+function ajaxpostMsg(sData) {
     $('#mp3-submit').html('<i class="am-icon-spinner am-icon-spin"></i>')
         .attr('disabled', true);
     $.ajax({

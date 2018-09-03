@@ -283,7 +283,7 @@
         formData.append("send_to", send_to);
         formData.append("type", type);
         $.ajax({
-            type: 'POST',
+            method: 'post',
             url: __URL__ + '/wechatsend',
             timeout: 10 * 60 * 1000,//十分钟
             data:formData,

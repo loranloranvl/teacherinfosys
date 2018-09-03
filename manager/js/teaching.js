@@ -42,7 +42,7 @@ $('.option-container .menu li').click(function(){
 		$('.info-container .button').html('导出教学大纲');
 
 			// $.ajax({
-			// 	type: 'POST',
+			// 	method: 'post',
 			// 	url: __URL__ + ,
 			// 	dataType: 'json',
 			// 	async:true,
@@ -62,7 +62,7 @@ $('.option-container .menu li').click(function(){
 		case 2:
 			$('.info-container .button').html('导出授课计划');
 			// $.ajax({
-			// 	type: 'POST',
+			// 	method: 'post',
 			// 	url: __URL__ + ,
 			// 	dataType: 'json',
 			// 	async:true,
@@ -82,7 +82,7 @@ $('.option-container .menu li').click(function(){
 		case 3:
 			$('.info-container .button').html('导出上课信息');
 			// $.ajax({
-			// 	type: 'POST',
+			// 	method: 'post',
 			// 	url: __URL__ + ,
 			// 	dataType: 'json',
 			// 	async:true,
@@ -102,7 +102,7 @@ $('.option-container .menu li').click(function(){
 		case 4:
 			$('.info-container .button').html('导出实验报告');
 			// $.ajax({
-			// 	type: 'POST',
+			// 	method: 'post',
 			// 	url: __URL__ + ,
 			// 	dataType: 'json',
 			// 	async:true,
@@ -122,7 +122,7 @@ $('.option-container .menu li').click(function(){
 		case 5:
 			$('.info-container .button').html('导出公告');
 			// $.ajax({
-			// 	type: 'POST',
+			// 	method: 'post',
 			// 	url: __URL__ + ,
 			// 	dataType: 'json',
 			// 	async:true,
@@ -142,7 +142,7 @@ $('.option-container .menu li').click(function(){
 		case 6:
 			$('.info-container .button').html('导出获奖信息');
 			// $.ajax({
-			// 	type: 'POST',
+			// 	method: 'post',
 			// 	url: __URL__ + ,
 			// 	dataType: 'json',
 			// 	async:true,
@@ -162,7 +162,7 @@ $('.option-container .menu li').click(function(){
 		case 7:
 		$('.info-container .button').html('添加新项目');
 			// $.ajax({
-			// 	type: 'POST',
+			// 	method: 'post',
 			// 	url: __URL__ + ,
 			// 	dataType: 'json',
 			// 	async:true,
@@ -182,7 +182,7 @@ $('.option-container .menu li').click(function(){
 		case 8:
 		$('.info-container .button').html('导出考核表');
 			// $.ajax({
-			// 	type: 'POST',
+			// 	method: 'post',
 			// 	url: __URL__ + ,
 			// 	dataType: 'json',
 			// 	async:true,
@@ -213,7 +213,7 @@ $('.info-container .button').click(function(){
                 onConfirm: function() {
                     console.log(123)
                     $.ajax({
-                        type: 'POST',
+                        method: 'post',
                         url: __URL__ + '/calculate',
                         timeout: 10 * 60 * 1000,//十分钟
                         data:new FormData($('.am-form')[0]),

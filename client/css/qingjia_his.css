@@ -34,6 +34,7 @@
   box-shadow: 0.8px 0.6px 3px rgba(0, 0, 4, 0.4);
   border-radius: 5px;
   overflow: hidden;
+  cursor: pointer;
 }
 .record div {
   display: inline-block;

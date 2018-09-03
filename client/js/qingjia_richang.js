@@ -259,7 +259,7 @@ $(function(){
                     formData.append(item.name, item.value);
                 });
                 $.ajax({
-                    type: 'POST',
+                    method: 'post',
                     url: '/createdailyleave',
                     data: formData,
                     processData: false,

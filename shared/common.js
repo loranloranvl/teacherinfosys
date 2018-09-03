@@ -7,7 +7,7 @@ var __TOKEN__ = localStorage['token'];
 var __INFO__;
 var info, info_level;
 
-var czy_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidWlkIjoxNjI3MTExMCwibmFtZSI6Ilx1OTY0OFx1NGUyZFx1NmUwYSIsIm9wZW5pZCI6Im9Ua3FJMFpkZm44b1NKcG5aQ0FzNVJXcjU1YXciLCJzZXgiOjEsInBob25lIjoiMTg3NjcxMjAwMTAiLCJlbWFpbCI6IjExOTQ0NUBxcS5jb20iLCJ1bml0IjoiXHU3ZjUxXHU3ZWRjXHU3YTdhXHU5NWY0XHU1Yjg5XHU1MTY4XHU1YjY2XHU5NjYyXHUzMDAxXHU2ZDU5XHU2YzVmXHU0ZmRkXHU1YmM2XHU1YjY2XHU5NjYyIiwiZ3JhZGUiOjIwMTYsIm1ham9yIjoiXHU0ZmUxXHU2MDZmXHU1Yjg5XHU1MTY4IiwiY2xhc3MiOjE2MjczNjExLCJ0ZWFjaGVyX2lkIjoxLCJjcmVhdGVkX2F0IjoiMjAxOC0wOC0yOSAxMDo0MDoxMSIsInVwZGF0ZWRfYXQiOiIyMDE4LTA4LTMxIDExOjEwOjQxIn0.hDVwaFdSF4E5skNtQnUKx50cO_VbHn0Tt7IEcH7BX3A';
+var czy_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidWlkIjoxNjI3MTExMCwibmFtZSI6Ilx1OTY0OFx1NGUyZFx1NmUwYSIsIm9wZW5pZCI6Im9Ua3FJMFpkZm44b1NKcG5aQ0FzNVJXcjU1YXciLCJzZXgiOjEsInBob25lIjoiMTg3NjcxMjAwMTAiLCJlbWFpbCI6IjExOTQ0NUBxcS5jb20iLCJ1bml0IjoiXHU3ZjUxXHU3ZWRjXHU3YTdhXHU5NWY0XHU1Yjg5XHU1MTY4XHU1YjY2XHU5NjYyXHUzMDAxXHU2ZDU5XHU2YzVmXHU0ZmRkXHU1YmM2XHU1YjY2XHU5NjYyIiwiZ3JhZGUiOjIwMTYsIm1ham9yIjoiXHU0ZmUxXHU2MDZmXHU1Yjg5XHU1MTY4IiwiY2xhc3MiOjE2MjczNjExLCJ0ZWFjaGVyX2lkIjoxLCJjcmVhdGVkX2F0IjoiMjAxOC0wOC0yOSAxMDo0MDoxMSIsInVwZGF0ZWRfYXQiOiIyMDE4LTA5LTAzIDEzOjQyOjQ0In0.lMem_tgSyt7pcA8bKgPcm3uy21t5FlaNsuE3Y8jPr9o';
 var hwt_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidWlkIjo0MTgwNCwibmFtZSI6Ilx1ODBlMVx1NGYxZlx1OTAxYSIsIm9wZW5pZCI6Im9Ua3FJMGZLQ0I2Szk3VkVqZi1FOHJOcGtEenciLCJzZXgiOjEsInVuaXQiOiJcdTdmNTFcdTdlZGNcdTdhN2FcdTk1ZjRcdTViODlcdTUxNjhcdTViNjZcdTk2NjJcdTMwMDFcdTZkNTlcdTZjNWZcdTRmZGRcdTViYzZcdTViNjZcdTk2NjIiLCJlbWFpbCI6Imh3dEBoZHUuZWR1LmNuIiwicGhvbmUiOiIxMzUxNjcxOTExOSIsImNyZWF0ZWRfYXQiOiIyMDE4LTA4LTI5IDEwOjE0OjM1IiwidXBkYXRlZF9hdCI6IjIwMTgtMDgtMzAgMjM6MTc6NTMifQ.FsIbe3cKWdxPAoJ1kIVhs3T8GlUlabkCb7MB4Fj6r7c';
 
 function parseJwt (token) {
@@ -32,12 +32,12 @@ function isWeixinBrowser() {
     }
 }
 
-if (islocalhost() && !isWeixinBrowser()) {
+if (islocalhost() && location.href.split('/')[3] == 'manager') {
 	// huweitong
 	__TOKEN__ = hwt_token;
 }
 
-if (islocalhost() && isWeixinBrowser()) {
+if (islocalhost() && location.href.split('/')[3] == 'client') {
 	// chenzhongyuan
 	__TOKEN__ = czy_token;
 }
@@ -89,7 +89,7 @@ function getParam(url) {
 		.replace(/=/g,'":"') + '"}');
 }
 
-function deployPagi(data, callback) {
+function deployPagi(data, callback, id) {
     var pagi = $('#pagi')
     pagi.find('.pagi-cur').text(data.current_page);
 
@@ -113,24 +113,30 @@ function deployPagi(data, callback) {
         pagi.find('.pagi-next, .pagi-last').show();
     }
 
+    if (data.current_page == 1 && data.last_page == 1) {
+        pagi.find('.pagi-cur').hide();
+    } else {
+        pagi.find('.pagi-cur').show();
+    }
+
     // remove all click event listeners bound by 
     // previous deployers then add our listeners
     pagi.find('div').off('click');
     pagi.find('.pagi-first').on('click', function() {
         pagi.find('.pagi-cur').html(__SPINNER__);
-        callback(1);
+        callback(1, id);
     });
     pagi.find('.pagi-prev').on('click', function() {
         pagi.find('.pagi-cur').html(__SPINNER__);
-        callback(data.current_page - 1);
+        callback(data.current_page - 1, id);
     });
     pagi.find('.pagi-next').on('click', function() {
         pagi.find('.pagi-cur').html(__SPINNER__);
-        callback(data.current_page + 1);
+        callback(data.current_page + 1, id);
     });
     pagi.find('.pagi-last').on('click', function() {
         pagi.find('.pagi-cur').html(__SPINNER__);
-        callback(data.last_page);
+        callback(data.last_page, id);
     });
 }
 
@@ -155,14 +161,16 @@ $.ajaxSetup({
 // general ajax success handler
 $(document).ajaxSuccess(function(event, xhr, settings) {
 	var rjson = xhr.responseJSON;
-	log(settings.url, rjson);
-	if (rjson.status == 401 && !isWeixinBrowser()) {
+	if (rjson.status == 401 && !islocalhost()) {
 		location.href = __URL__ + 'login/bind'
-	} else if (rjson.status == 401 && isWeixinBrowser()) {
-		location.href = __URL__+'login/bind'
-	} else if (rjson.status != 200) {
+	} 
+
+    if (rjson.status == 200) {
+        log(settings.url, rjson.data);
+    } else {
+        log(settings.url, rjson);
 		dialog.error(rjson.msg);
-	}
+    }
 });
 
 // general ajax error handler
@@ -213,9 +221,11 @@ var dialog = {
 };
 
 function reload() {
-    setTimeout(function() {
-        location.reload()
-    }, 800)
+    if (!islocalhost()) {
+        setTimeout(function() {
+            location.reload()
+        }, 800)
+    }
 }
 
 function activateDatepicker(selector) {

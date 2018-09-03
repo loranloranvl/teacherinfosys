@@ -261,7 +261,7 @@
                         formData.append(item.name, item.value);
                     });
                     $.ajax({
-                        type: 'POST',
+                        method: 'post',
                         url: __URL__ + '/createdailyleave',
                         data: formData,
                         processData: false,

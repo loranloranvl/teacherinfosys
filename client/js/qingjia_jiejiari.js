@@ -2,7 +2,7 @@ var sData = {};
 
 function ajaxSendLeaveRequest(where) {
 	$.ajax({
-	    type: 'POST',
+	    method: 'post',
 	    url: '/createholidayleave',
 	    data: {
 	    	is_leave: 1,

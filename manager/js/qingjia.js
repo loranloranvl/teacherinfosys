@@ -1,6 +1,8 @@
+/* ajax data interface */
+
 function ajaxAgree(params) {
     $.ajax({
-        type: 'post',
+        method: 'post',
         url: 'leave/pc/authLeave',
         data: params,
         success: function(data) {
@@ -40,6 +42,51 @@ function ajaxGetDailyLeave(page) {
     })
 }
 
+function ajaxCreateHolidayLeave(params) {
+    $.ajax({
+        method: 'post',
+        url: 'leave/pc/addHolidayLeaveModel',
+        data: params,
+        success: function(data) {
+            if (data.status == 200) {
+                dialog.success('创建成功');
+                reload();
+            }
+        }
+    })
+}
+
+function ajaxGetHolidayList(page) {
+    $.ajax({
+        url: 'leave/pc/getHolidayLeaveModelHistory',
+        data: {
+            page: page
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                deployHolidayList(data.data);
+            }
+        }
+    })
+}
+
+function ajaxGetHolidayDetail(page, id) {
+    $.ajax({
+        url: 'leave/pc/getHolidayLeaveDetail',
+        data: {
+            page: page,
+            id: id
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                deployHolidayDetail(data.data, id);
+            }
+        }
+    })
+}
+
+/* deployers */
+
 function deployLeaveRequests(data) {
     HDeploy('awaiting', data);
     deployPagi(data, ajaxGetLeaveRequests);
@@ -75,22 +122,34 @@ function deployDaily(data) {
     });
 }
 
-// function ajaxCreateHolidayLeave() {
-//     $.ajax({
-//         type: 'post',
-//         url: 'leaveinfo',
-//         data: {
-//             title: '',
-//             from: '',
-//             to: ''
-//         },
-//         success: function(data) {
-//             if (data.status == 200) {
-                
-//             }
-//         }
-//     })
-// }
+var holiday = {
+    title: '',
+    from: '',
+    to: ''
+}
+
+function deployHolidayList(data) {
+    HDeploy('jiejiari', data);
+    deployPagi(data, ajaxGetHolidayList);
+    $('#jiejiari').find('.lg tr, .md').on('click', function() {
+        ajaxGetHolidayDetail(1, $(this).attr('data-id'));
+        for (var key in holiday) {
+            holiday[key] = $(this).attr('data-' + key);
+        }
+    })
+}
+
+function deployHolidayDetail(data, id) {
+    $('#jiejiari').hide();
+    holiday.students = data.data;
+    HDeploy('jiejiari-detail', holiday);
+    $('#jiejiari-detail').show();
+    deployPagi(data, ajaxGetHolidayDetail, id);
+    $('#detail-return').on('click', function() {
+        $('#jiejiari-detail').hide();
+        $('#jiejiari').show();
+    })
+}
 
 // function ajaxGetHolidayLeave() {
 //     $.ajax({
@@ -104,24 +163,43 @@ function deployDaily(data) {
 // }
 
 $(document).ready(function() {
-    Handlebars.registerPartial('where', $('#ht-where').html());
+    $('#jiejiari-end').on('change', function() {
+        var year = $(this).val().split('-')[0];
+        $('#title option').each(function() {
+            var title = year + ' ' + $(this).attr('data-holiday');
+            $(this).text(title).attr('value', title);
+        })
+    })
     $('#btn-content').text('新节假日');
     activateDatepicker('#add-prompt input');
     $('#btn').on('click', function() {
         $('#add-prompt').modal({
             relatedTarget: this,
             onConfirm: function() {
-
+                var title = $('#title').val();
+                var begin = $('#jiejiari-begin').val();
+                var end = $('#jiejiari-end').val();
+                if (!(begin && end)) {
+                    dialog.error('请完善节假日信息');
+                    return;
+                }
+                ajaxCreateHolidayLeave({
+                    title: title,
+                    from: begin,
+                    to: end
+                })
             }
         });
     })
 
+    Handlebars.registerPartial('where', $('#ht-where').html());
     $('#top li').on('click', function() {
         var target = $(this).attr('data-target');
         $('#main > div').hide();
         switch (target) {
             case 'awaiting': ajaxGetLeaveRequests(); break;
             case 'daily': ajaxGetDailyLeave(); break;
+            case 'jiejiari': ajaxGetHolidayList(); break;
         }
         $('#' + target).show();
         $('#top li').css({
@@ -133,7 +211,7 @@ $(document).ready(function() {
             textDecoration: 'underline'
         })
     })
-    $('#top li').eq(0).click();
+    $('#top li').eq(2).click();
 
     $('.submit-agree').on('click', function() {
         ajaxAgree({
@@ -160,7 +238,7 @@ $(document).ready(function() {
 //         formData.append('is_pass', 1);
 //         formData.append('pass_reason', value);
 //         $.ajax({
-//             type: 'POST',
+//             method: 'post',
 //             url: '/dailyleave',
 //             data: formData,
 //             processData: false,
@@ -217,7 +295,7 @@ $(document).ready(function() {
 //             formData.append('pass_reason', value);
 
 //             $.ajax({
-//                 type: 'POST',
+//                 method: 'post',
 //                 url: '/dailyleave',
 //                 data: formData,
 //                 processData: false,
@@ -345,7 +423,7 @@ $(document).ready(function() {
 //                     formData.append(item.name, item.value);
 //                });
 //                 $.ajax({
-//                     type: 'POST',
+//                     method: 'post',
 //                     url: '/leaveinfo',
 //                     data: formData,
 //                     processData: false,

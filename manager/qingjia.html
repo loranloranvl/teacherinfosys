@@ -99,6 +99,10 @@
         <!-- ajax here -->
     </div>
 
+    <div id="jiejiari-detail">
+        <!-- ajax here -->
+    </div>
+
     <div class="pagi" id="pagi">
     <div class="pagi-first"><i class="am-icon-angle-double-left"></i></div>
     <div class="pagi-prev"><i class="am-icon-angle-left"></i></div>
@@ -133,12 +137,12 @@
             <div>
                 <label for="title">选择节假日</label>
                 <select data-am-selected="{btnWidth: '200px'}"  id="title">
-                    <option value="duanwu">端午节</option>
-                    <option value="guoqing">国庆节</option>
-                    <option value="laodong">劳动节</option>
-                    <option value="qingming">清明节</option>
-                    <option value="zhongqiu">中秋节</option>
-                    <option value="yuandan">元旦</option>
+                    <option data-holiday="端午节假期" value="端午节假期">端午节假期</option>
+                    <option data-holiday="国庆节假期" value="国庆节假期">国庆节假期</option>
+                    <option data-holiday="劳动节假期" value="劳动节假期">劳动节假期</option>
+                    <option data-holiday="清明节假期" value="清明节假期">清明节假期</option>
+                    <option data-holiday="中秋节假期" value="中秋节假期">中秋节假期</option>
+                    <option data-holiday="元旦假期" value="元旦假期">元旦假期</option>
                 </select>
             </div><br>
             <div>
@@ -316,6 +320,101 @@
     {{else}}
     <p class="none">没有找到过往请假</p>
     {{/each}}
+</script>
+
+<script type="text/x-handlebars-template" id="ht-jiejiari">
+{{#if data}}
+<div class="am-show-lg">
+    <table class="lg">
+        <tr>
+            <th>标题</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>创建时间</th>
+        </tr>
+        {{#each data}}
+        <tr data-id="{{id}}" data-title="{{title}}" data-from="{{from}}" data-to="{{to}}">
+            <td>{{title}}</td>
+            <td>{{from}}</td>
+            <td>{{to}}</td>
+            <td>{{created_at}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+<div class="am-hide-lg">
+    {{#each data}}
+    <table class="md" data-id="{{id}}" data-title="{{title}}" data-from="{{from}}" data-to="{{to}}">
+        <tr>
+            <td>标题</td>
+            <td>{{title}}</td>
+        </tr>
+        <tr>
+            <td>开始时间</td>
+            <td>{{from}}</td>
+        </tr>
+        <tr>
+            <td>结束时间</td>
+            <td>{{to}}</td>
+        </tr>
+        <tr>
+            <td>创建时间</td>
+            <td>{{created_at}}</td>
+        </tr>
+    </table>
+    {{/each}}
+</div>
+{{else}}
+<p class="none">没有找到过往请假</p>
+{{/if}}
+</script>
+
+<script type="text/x-handlebars-template" id="ht-jiejiari-detail">
+    <p id="detail-p"><span id="detail-title">{{title}}</span> <span id="detail-return">返回</span></p>
+    {{#if students}}
+    <div class="am-show-lg">
+        <table class="lg">
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>班级</th>
+                <th>登记时间</th>
+            </tr>
+            {{#each students}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{uid}}</td>
+                <td>{{class}}</td>
+                <td>{{updated_at}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    <div class="am-hide-lg">
+        {{#each students}}
+        <table class="md">
+            <tr>
+                <td>学号</td>
+                <td>{{uid}}</td>
+            </tr>
+            <tr>
+                <td>姓名</td>
+                <td>{{name}}</td>
+            </tr>
+            <tr>
+                <td>班级</td>
+                <td>{{class}}</td>
+            </tr>
+            <tr>
+                <td>登记时间</td>
+                <td>{{updated_at}}</td>
+            </tr>
+        </table>
+        {{/each}}
+    </div>
+    {{else}}
+    <p class="none">还没有人在这个假期请假</p>
+    {{/if}}
 </script>
 
 <script src="js/qingjia.js?t=1535863373992"></script>
