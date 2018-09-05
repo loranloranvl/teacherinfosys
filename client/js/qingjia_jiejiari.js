@@ -22,7 +22,7 @@ function ajaxGetLeaveInfo() {
 				if (!data.data.length) {
 					layer.alert('现在不用登记', {icon: 6});
 					setTimeout(function() {
-						location.href = 'qingjia_entry.html'
+						location.href = '..'
 					}, 800)
 				} else {
 					deployLeaveInfo(data);
