@@ -494,9 +494,7 @@ function ajaxpostMsg(sData) {
         success: function (data) {
             if(data.status == 200){
                 dialog.success('发送成功');
-                setTimeout(function() {
-                    // location.reload();
-                }, 800);
+                reload();
             }
         },
         complete : function(XMLHttpRequest,status) { //请求完成后最终执行参数
