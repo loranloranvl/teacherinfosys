@@ -8,12 +8,6 @@ $(document).ready(function() {
     $('#btn').on('click', function() {
         $('#modal-process1').modal(am_modal_options);
     });
-
-    if (info_level == 0) {
-        $('#btn').hide();
-    } else if (info_level == 1) {
-        $('#mp1-teacherrow').remove();
-    }
 });
 
 var sendType = '10086'; // 反正不可能是10086
@@ -43,14 +37,18 @@ var sendData = localStorage.sendData; // Data from ajax (grade class teacher etc
 
 // handlebars: 动态生成发送对象checkboxes
 function deploySendToHTML(data) {
-    data.teacher.sort(function(a, b) {
-        var _qiujian = '求建';
-        if (a.name == '仇建')
-            return _qiujian.localeCompare(b.name, 'zh');
-        if (b.name == '仇建')
-            return a.name.localeCompare(_qiujian, 'zh');
-        return a.name.localeCompare(b.name, 'zh');
-    });
+    if (data.teacher) {
+        data.teacher.sort(function(a, b) {
+            var _qiujian = '求建';
+            if (a.name == '仇建')
+                return _qiujian.localeCompare(b.name, 'zh');
+            if (b.name == '仇建')
+                return a.name.localeCompare(_qiujian, 'zh');
+            return a.name.localeCompare(b.name, 'zh');
+        });
+    } else {
+        $('#mp1-teacherrow').remove();
+    }
     var sources = [[1, 1], [1, 2], [1, 3], [2, 1], [3, 4]];
     for (var i = 0; i < sources.length; ++i) {
         var source = sources[i];
@@ -77,7 +75,7 @@ function mapuid(value) {
                 }
             });
         });
-    else
+    else if (sendData.teacher)
         $.each(sendData.teacher, function(key1, value1) {
             if (value1.uid == value) {
                 result = value1.name;
