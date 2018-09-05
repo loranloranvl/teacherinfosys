@@ -20,7 +20,7 @@ function ajaxGetLeaveInfo() {
 		success: function(data) {
 			if (data.status == 200) {
 				if (!data.data.length) {
-					layer.alert('现在不用请假', {icon: 6});
+					layer.alert('现在不用登记', {icon: 6});
 					setTimeout(function() {
 						location.href = 'qingjia_entry.html'
 					}, 800)
