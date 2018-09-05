@@ -5,10 +5,11 @@ $(document).ready(function() {
 	var id = params.id;
 	ajaxGetFeedback(id);
 
-	$('#btn-content').text('发送提醒');
-	$('#btn').on('click', function() {
-		ajaxNotifyThem(id);
-	});
+	// $('#btn-content').text('发送提醒');
+	// $('#btn').on('click', function() {
+	// 	ajaxNotifyThem(id);
+	// });
+	$('#btn').hide();
 });
 
 function ajaxGetFeedback(id) {
