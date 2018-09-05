@@ -184,6 +184,7 @@ function deployTongzhi(data) {
     // translate dataType into human-readable labels
     $('.tongzhi .sendee').each(function() {
         var type = parseInt($(this).attr('data-type'));
+        log(type)
         var text = '';
         switch(type) {
             case 1: text = '特定年级'; break;
@@ -209,7 +210,7 @@ function deployTongzhi(data) {
     $('.sendee').each(function() {
         var type = parseInt($(this).attr('data-type'));
         var sendTo = $(this).attr('data-send-to');
-        if ([1, 3, 6].indexOf(type) != -1)
+        if ([1, 3, 6].indexOf(type) != -1 && sendTo.length <= 9)
             $(this).text(sendTo);
     });
 
