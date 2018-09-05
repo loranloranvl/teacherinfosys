@@ -325,7 +325,7 @@ $(document).ready(function() {
 
 // /*
 //      功能：返回div 里面需要展示数据
-//      参数：data:信息数组，type：1：日常请假,2：节假日请假
+//      参数：data:信息数组，type：1：日常请假,2：节假日登记
 //  */
 // function getQingjiaDivHtml(data,type){
 //     var str = '';
@@ -402,7 +402,7 @@ $(document).ready(function() {
 
 //     //添加按钮的文字改变
 
-//     $('.info-container .button').html('添加节假日请假').on('click',function(){
+//     $('.info-container .button').html('添加节假日登记').on('click',function(){
 
 //         $('#my-prompt').modal({
 //             relatedTarget: this,

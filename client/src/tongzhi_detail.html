@@ -30,7 +30,7 @@
         <div class="container">
             <p class="title">{{title}}</p>
             <p class="channel">
-                <span class="sender">{{name}}</span> 
+                <span class="sender">{{teacher_name}}</span> 
             </p>
             <p class="content">{{content}}</p>
             <p class="date">{{created_at}}</p>
@@ -46,7 +46,7 @@
     {{#each this}}
     <p class="singular" style="margin-top: 20px">
 
-        <a href="{{url}}" data-name="{{name}}"><i class="am-icon-file-{{type}}-o"></i> {{name}}</a>
+        <a href="{{url}}" data-name="{{name}}" download><i class="am-icon-file-{{type}}-o"></i> {{name}}</a>
     </p>
     {{/each}}
 </script>

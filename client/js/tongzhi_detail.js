@@ -67,7 +67,7 @@ function deployTongzhi(data) {
                 }
                 files2.push({
                     name: element.match(/[^/]*$/)[0],
-                    url: 'element',
+                    url: element,
                     type: type
                 })
             })
