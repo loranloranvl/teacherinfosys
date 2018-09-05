@@ -84,16 +84,16 @@ function deployLeaveInfo(data) {
 		$('#holidayicon').attr('src', '../shared/img/holidays/' 
 			+ curHoliday + '.' + holidays[curHoliday].extension);
 		$('.sometitle').text(holidays[curHoliday].slogan);
-		$('#submit').on('click', function() {
-			if (!$('#where').val()) {
-				alert('你要去哪');
-				return;
-			}
-			ajaxSendLeaveRequest({
-				id: $('#holidays').val(),
-				destination: $('#where').val()
-			});
-		})
+	})
+	$('#submit').on('click', function() {
+		if (!$('#where').val()) {
+			alert('你要去哪');
+			return;
+		}
+		ajaxSendLeaveRequest({
+			id: $('#holidays').val(),
+			destination: $('#where').val()
+		});
 	})
 }
 
