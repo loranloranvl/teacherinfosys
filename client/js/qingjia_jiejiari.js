@@ -8,7 +8,9 @@ function ajaxSendLeaveRequest(params) {
 	    success: function(data) {
 	    	if (data.status == 200) {
 	    		dialog.success('发送成功');
-	    		reload();
+	    		setTimeout(function() {
+	    			location.href = 'qingjia_entry.html'
+	    		}, 800)
 	    	}
 	    }
 	})
@@ -22,7 +24,7 @@ function ajaxGetLeaveInfo() {
 				if (!data.data.length) {
 					layer.alert('现在不用登记', {icon: 6});
 					setTimeout(function() {
-						location.href = '..'
+						location.href = 'qingjia_entry.html'
 					}, 800)
 				} else {
 					deployLeaveInfo(data);

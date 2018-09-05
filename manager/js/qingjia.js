@@ -211,7 +211,7 @@ $(document).ready(function() {
             textDecoration: 'underline'
         })
     })
-    $('#top li').eq(2).click();
+    $('#top li').eq(0).click();
 
     $('.submit-agree').on('click', function() {
         ajaxAgree({
