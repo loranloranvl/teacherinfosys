@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -20,129 +20,16 @@
 <!-- No Baidu Siteapp-->
 <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
-<link rel="stylesheet" href="../shared/amazeui.min.css?t=1536155844444">
-<link rel="stylesheet" href="./css/nav.css?t=1536155844444">
-<script src="../shared/jquery.min.js?t=1536155844444"></script>
-<script src="../shared/amazeui.min.js?t=1536155844444"></script>
-<script src="../shared/handlebars.min.js?t=1536155844444"></script>
-<script src="../shared/layer/layer.js?t=1536155844444"></script>
-<script src="../shared/common.js?t=1536155844444"></script>
-<script src="./js/nav.js?t=1536155844444"></script>
-	<link rel="stylesheet" href="css/teaching.css?t=1536155844405">
-	<style>
-		#content-container1 .content-inner-top label,#content-container2 .content-inner-top label,#content-container7 .content-inner-top label{
-			margin:2%;
-		}
-		li{
-			list-style-type: none;
-		}
-		table{
-			table-layout:fixed
-		}
-		td{
-			height:80px
-		}
-		td,th{
-			background: white;
-		}
-
-		.content-container{
-			padding:20px;
-		}
-		.content-container .search-note label{
-			margin: 0 10px;
-		}
-		.content-container .show-note{
-			padding:30px 10px;
-		}
-		.create-note{
-			text-align: center;
-		}
-		.create-note pre{
-			font-size:18px;
-			font-family:'microsoft yahei';
-			/*overflow: scroll;*/
-		}
-		.create-note input{
-			border: none;
-			border-bottom: solid;
-			background: #f8f8f8;
-		}
-
-		#content-container3 li{
-			list-style: none;
-			margin: 2%;
-		}
-		#content-container3 .content-left li span{
-			cursor:pointer;
-		}
-		#content-container3 .content-right li{
-			cursor:pointer;
-			height:50px;
-		}
-		#content-container3 .content-left li span:hover{
-			background:rgb(14,144,210);
-		}
-		.detail-submittime{
-			float:right;padding-right: 20px;
-			font-size: 12px;
-			margin-top: 5px;
-		}
-		.edit{
-			padding-right:7px;
-			margin-top: 6px;
-		}
-		#content-container4 .content-inner-top-download{
-			position: absolute;
-			color:rgb(0,128,0);
-			font-size: 13px;
-			right:40px;
-			top:35%;
-		}
-		#content-container4 .content{
-			margin-top: 2%;
-		}
-		#content-container4 .content-inner-top{
-			color:#333333;
-			position: relative;
-		}
-		#content-container4 .content-inner-middle {
-			font-size:13px;
-			margin: 1% 0;
-		}
-		#content-container5 .content{
-			width:300px;
-			height:430px;
-			border: 1px solid rgb(232,232,232);
-			background: white;
-			display: inline-block;
-			margin:10px 15px;
-		}
-		#content-container5 .content-inner-bottom{
-			padding:15px 25px;
-		}
-		#content-container5 .content-inner-bottom p{
-			color:rgb(153,153,153);
-			line-height: 16px;
-
-		}
-		#content-container5 .content-inner-bottom span{
-			color:#666666;
-			font-size:13px;
-		}
-		#content-container6 .content-left,.content-right{
-			padding:2% 3%;
-		}
-		#content-container6 .content{
-			width:100%;
-			padding: 2% 0;
-		}
-		#content-container6 .content img{
-			display: inline-block;
-			width:150px;
-			height: 200px;
-		}
-	</style>
+<link rel="stylesheet" href="../shared/amazeui.min.css?t=1536239255465">
+<link rel="stylesheet" href="./css/nav.css?t=1536239255465">
+<link rel="stylesheet" href="./css/pagi.css?t=1536239255465">
+<script src="../shared/jquery.min.js?t=1536239255465"></script>
+<script src="../shared/amazeui.min.js?t=1536239255465"></script>
+<script src="../shared/handlebars.min.js?t=1536239255465"></script>
+<script src="../shared/layer/layer.js?t=1536239255465"></script>
+<script src="../shared/common.js?t=1536239255465"></script>
+<script src="./js/nav.js?t=1536239255465"></script>
+    <link rel="stylesheet" href="css/teaching.css?t=1536239255439">
 </head>
 <body>
 <div id="navc">
@@ -193,853 +80,163 @@
     </div>
 </script>
 
-<br><br><br>
-<p class="none">正在开发</p>
-<!-- <div id="main">
-	<div class="am-g info-container border-bt-l">
-		<div class="am-u-sm-3 am-text-center" >
-			<img  class="headimg" alt="" style="opacity: 0">
-			<form class="am-form-group am-form-file" id = "headFile">
-			  <i class="am-icon-cloud-upload"></i> 点击上传头像
-			  <input type="file" name="head" accept="image/jpeg,imgage/jpg,image/png" id="headimg">
-			  <input type="hidden" name="user" >
-			  <input type="hidden" name="token" >
-			  <input type="hidden" name="id" >
-		  </form>
-		</div>
-		<div class="am-u-sm-5" style="height:120px" >
-			<p class="info"></p>
-			<p class="info"></p>
-			<p class="info"></p>
-			<p class="info"></p>
-		</div>
-		<div class="am-u-sm-3">
-	        <div class="button am-vertical-align" style="height:60px;font-size:20px;margin-top:30px">
-
-	        </div>
-		</div>
-		<div class="am-u-sm-1"></div>
-
-	</div>
-
-	<div class="am-g option-container border-bt-l">
-		<ul class="am-avg-sm-9 menu">
-			<li>教学达成度计算<em class="underlist"></em></li>
-			<li>教学大纲<em class="underlist"></em></li>
-			<li>授课计划<em class="underlist"></em></li>
-			<li>上课信息<em class="underlist"></em></li>
-			<li>实验报告<em class="underlist"></em></li>
-			<li>公告<em class="underlist"></em></li>
-			<li>教学方面获奖<em class="underlist"></em></li>
-			<li>教学课题申报及立项<em class="underlist"></em></li>
-			<li>教学业绩考核<em class="underlist"></em></li>
-		</ul>
-	</div>
-	<div class="am-g content-container" id="content-container0" style="display:none">
-		<div class="search-note">
-
-		</div>
-		<div class="show-note">
-
-		</div>
-	</div>
-	<div class="am-g content-container" id="content-container1" style="display:none">
-		<div class="content-left am-u-sm-8" style="border-right:1px solid rgb(213,213,213)">
-			<div class="content am-g ">
-				<div class="content-inner-top">
-					<h3>理论课的课程简介</h3>
-					<h4>计算机科学与技术</h4>
-				</div>
-				<div class="content-inner-bottom" style="border:1px solid rgb(204,204,204);height:300px">
-
-				</div>
-			</div>
-		</div>
-		<div class="content-right am-u-sm-4">
-			<ul class="am-list am-list-static am-list-border">
-			  <li>
-			    <i class="am-icon-home am-icon-fw"></i>
-			    理论课的课程简介
-			  </li>
-			  <li>
-			    <i class="am-icon-book am-icon-fw"></i>
-			    实验课的课程简介
-			  </li>
-			  <li><i class="am-icon-pencil am-icon-fw"></i>
-				课程大纲
-			  </li>
-			</ul>
-		</div>
-	</div>
-	<div class="am-g content-container" id="content-container2" style="display:none">
-		<div class="content-left am-u-sm-8" style="border-right:1px solid rgb(213,213,213)">
-			<div class="content am-g ">
-				<div class="content-inner-top">
-					<label for="select0">
-						学年：
-						<select id="select0">
-						  <option value ="volvo">2015-2016</option>
-						  <option value ="saab">2014-2015</option>
-						</select>
-					</label>
-					<label for="select1">
-						学期：
-						<select id="select1">
-						  <option value ="volvo">第一学期</option>
-						  <option value ="saab">第二学期</option>
-						</select>
-					</label>
-					<label for="select2">
-						年级：
-						<select id="select2">
-						  <option value ="volvo">2013</option>
-						  <option value ="saab">2014</option>
-						  <option value ="saab">2015</option>
-						</select>
-					</label>
-					<label for="select3">
-						专业：
-						<select id="select3">
-						  <option value ="volvo">软件工程</option>
-						  <option value ="saab">计算机科学与技术</option>
-						   <option value ="saab">网络工程</option>
-						</select>
-					</label>
-					<label for="select4">
-						班级：
-						<select id="select4">
-						  <option value ="volvo">13092715</option>
-						  <option value ="saab">13092714</option>
-						  <option value ="saab">13092713</option>
-						</select>
-					</label>
-				</div>
-				<div class="content-inner-bottom" style="border:1px solid rgb(204,204,204)">
-					<table class="am-table am-table-hover">
-					    <thead>
-					        <tr>
-					            <th>班级</th>
-					            <th>学号</th>
-					            <th>姓名</th>
-								<th>备注</th>
-					        </tr>
-					    </thead>
-					    <tbody>
-					        <tr>
-					            <td>软件5班</td>
-					            <td>13902872</td>
-					            <td>张三</td>
-								<td>备注</td>
-					        </tr>
-					        <tr>
-							   <td>软件5班</td>
-	 						   <td>13902872</td>
-	 						   <td>张三</td>
-	 						   <td>备注</td>
-					        </tr>
-					        <tr>
-								<td>软件5班</td>
-					            <td>13902872</td>
-					            <td>张三</td>
-								<td>备注</td>
-					        </tr>
-					        <tr>
-								<td>软件5班</td>
-					            <td>13902872</td>
-					            <td>张三</td>
-								<td>备注</td>
-					        </tr>
-					    </tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="content-right am-u-sm-4">
-			<ul class="am-list am-list-static am-list-border">
-			  <li>
-			    <i class="am-icon-home am-icon-fw"></i>
-			    点名册
-			  </li>
-			  <li>
-			    <i class="am-icon-book am-icon-fw"></i>
-			    成绩单
-			  </li>
-			  <li><i class="am-icon-pencil am-icon-fw"></i>
-				试卷分析
-			  </li>
-			  <li><i class="am-icon-pencil am-icon-fw"></i>
-				小结表
-			  </li>
-			  <li><i class="am-icon-pencil am-icon-fw"></i>
-				监考
-			  </li>
-			</ul>
+<div id="main">
+    <h1>教学达成度计算</h1>
+    <h2>点击下载Excel文件</h2>
+    <div id="results">
+        <!-- ajax here -->
+    </div>
 
 
-		</div>
-	</div>
-	<div class="am-g content-container" id="content-container3" style="display:none">
-		<div class="content am-u-sm-12">
-			<div class="content-inner-top">
-				<label for="select0">
-					学年：
-					<select id="select0">
-					  <option value ="volvo">2015-2016</option>
-					  <option value ="saab">2014-2015</option>
-					</select>
-				</label>
-				<label for="select1">
-					学期：
-					<select id="select1">
-					  <option value ="volvo">第一学期</option>
-					  <option value ="saab">第二学期</option>
-					</select>
-				</label>
-				<label for="select2">
-					年级：
-					<select id="select2">
-					  <option value ="volvo">2013</option>
-					  <option value ="saab">2014</option>
-					  <option value ="saab">2015</option>
-					</select>
-				</label>
-				<label for="select2">
-					学院：
-					<select id="select2">
-					  <option value ="volvo">计算机学院</option>
-					  <option value ="saab">人文学院</option>
-					  <option value ="saab">会计学院</option>
-					</select>
-				</label>
-				<label for="select3">
-					专业：
-					<select id="select3">
-					  <option value ="volvo">软件工程</option>
-					  <option value ="saab">计算机科学与技术</option>
-					   <option value ="saab">网络工程</option>
-					</select>
-				</label>
-				<label for="select4">
-					班级：
-					<select id="select4">
-					  <option value ="volvo">13092715</option>
-					  <option value ="saab">13092714</option>
-					  <option value ="saab">13092713</option>
-					</select>
-				</label>
-			</div>
-			<div class="content-inner-bottom am-text-center">
-				<h2>九月 18-24 2016</h2>
-				<table class="am-table am-table-bordered am-table-centered">
-				  <tr>
-				    <th>时间</th>
-				    <th>星期一</th>
-				    <th>星期二</th>
-					<th>星期三</th>
-				    <th>星期四</th>
-				    <th>星期五</th>
-					<th>星期六</th>
-				    <th>星期日</th>
-				  </tr>
-				  <tr>
-					<td>早晨</td>
-				    <td></td>
-				    <td></td>
-					<td></td>
-				    <td></td>
-					<td></td>
-				    <td></td>
-				    <td></td>
-				  </tr>
-				  <tr>
-					  <th colspan="8" >上午</th>
-				  </tr>
-				  <tr>
-	  			    <td>第一节</td>
-					<td  rowspan="2">
-						操作系统
-						2节/周(01-16)
-						第6教研楼北118
-						8:05- 9:40
-					</td>
-	  			    <td></td>
-	  				<td></td>
-					<td  rowspan="2">
-						操作系统
-						2节/周(01-16)
-						第6教研楼北118
-						8:05- 9:40
-					</td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第二节</td>
+    <div class="pagi" id="#pagi">
+    <div class="pagi-first"><i class="am-icon-angle-double-left"></i></div>
+    <div class="pagi-prev"><i class="am-icon-angle-left"></i></div>
+    <div class="pagi-cur">1</div>
+    <div class="pagi-next"><i class="am-icon-angle-right"></i></div>
+    <div class="pagi-last"><i class="am-icon-angle-double-right"></i></div>
+</div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="upload-prompt">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <p><a href="https://cloudfiles.cloudshm.com/tis/%E8%BE%BE%E6%88%90%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%86%99%E6%A8%A1%E6%9D%BF.xlsx">先点这里下个模板 填好后上传</a></p>
+            <div>
+                <label for="year">学年</label>
+                <select data-am-selected="{btnWidth: '200px'}"  id="year">
+                    <option value="2018-2019">2018 - 2019</option>
+                </select>
+            </div><br>
+            <div>
+                <label for="term">学期</label>
+                <select data-am-selected="{btnWidth: '200px'}"  id="term">
+                    <option value="1">第一学期</option>
+                    <option value="2">第二学期</option>
+                </select>
+            </div><br>
+            <div>
+                <label for="course">课程名称</label>
+                <input type="text" id="course">
+            </div><br>
+            <div id="fileup">
+                <div class="am-form-group am-form-file">
+                    <button type="button" class="ambtnisugly">
+                        <i class="am-icon-cloud-upload"></i> 
+                        &nbsp;选择表格
+                    </button>
+                    <input type="file" name="file" id="fileinput" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                </div>
+                <p id="filelist"></p>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+        </div>
+    </div>
+</div>
+<script type="text/x-handlebars-template" id="ht-results">
+    {{#each data}}
+    <div class="am-show-sm">
+        <table class="sm">
+            <tr>
+                <td>课程目标</td>
+                <td>
+                    {{#each cg}}
+                        {{@key}} : {{this}}<br>
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td>毕业要求</td>
+                <td>
+                    {{#each gg}}
+                        {{@key}} : {{this}}<br>
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td>课程名称</td>
+                <td>{{course_name}}</td>
+            </tr>
+            <tr>
+                <td>学年学期</td>
+                <td>{{year}} #{{term}}</td>
+            </tr>
+            <tr>
+                <td>上传时间</td>
+                <td data-created="{{created_at}}">
+                                        
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="am-show-md">
+        <table>
+            <tr>
+                <th>课程目标</th>
+                <th>毕业要求</th>
+                <th>其余信息</th>
+            </tr>
+            <tr>
+                <td>
+                    {{#each cg}}
+                        <p class="item" style="width: 85px"> {{@key}} : {{this}}</p>
+                    {{/each}}
+                </td>
+                <td>
+                    {{#each gg}}
+                        <p class="item" style="width: 120px"> {{@key}} : {{this}}</p>
+                    {{/each}}
+                </td>
+                <td>
+                    {{course_name}}<br>
+                    {{year}} #{{term}}<br>
+                    <p data-created="{{created_at}}" style="margin: 5px 0 0 0">    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="am-show-lg">
+        <table>
+            <tr>
+                <th>课程目标</th>
+                <th>毕业要求</th>
+                <th>课程名称</th>
+                <th>学年 / 学期</th>
+                <th>上传时间</th>
+            </tr>
+            <tr>
+                <td>
+                    {{#each cg}}
+                        <p class="item" style="width: 85px"> {{@key}} : {{this}}</p>
+                    {{/each}}
+                </td>
+                <td>
+                    {{#each gg}}
+                        <p class="item" style="width: 120px"> {{@key}} : {{this}}</p>
+                    {{/each}}
+                </td>
+                <td>
+                    {{course_name}}
+                </td>
+                <td>
+                    {{year}} #{{term}}
+                </td>
+                <td data-created="{{created_at}}">
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
 
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-					<td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第三节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第四节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第五节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-					  <th colspan="8" style="">下午</th>
-				  </tr>
-				  <tr>
-	  			    <td>第五节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第六节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第七节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第八节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第九节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-					  <th colspan="8" >晚上</th>
-				  </tr>
-				  <tr>
-	  			    <td>第十节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第十一节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				  <tr>
-	  			    <td>第十二节</td>
-					<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  			    <td></td>
-				  </tr>
-				</table>
-				<h2>调，停（补）课信息</h2>
-				<table class="am-table am-table-bordered am-table-centered">
-				  <tr>
-				    <th>编号</th>
-				    <th>课程名称</th>
-				    <th>原上课地点</th>
-					<th>现上课地点</th>
-					<th>申请时间</th>
-				  </tr>
-				  <tr>
-				    <td></td>
-				    <td></td>
-					<td></td>
-				    <td></td>
-					<td></td>
-				  </tr>
-				  <tr>
-					 <td></td>
-	  			    <td></td>
-	  				<td></td>
-	  			    <td></td>
-	  				<td></td>
-				  </tr>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="am-g content-container" id="content-container4" style="display:none">
-		<div class="content-left am-u-sm-3 am-text-center" style="border-right:1px solid rgb(213,213,213)">
-			<select style="width:200px;font-size:20px">
-			  <option value ="volvo">2017</option>
-			  <option value ="saab">2016</option>
-			  <option value="opel">2015</option>
-			</select>
-			<br>
-			<div class="content">
-				<ul>
-					<li><span class="am-badge am-text-default">第一周</span></li>
-					<li><span class="am-badge am-text-default">第二周</span></li>
-					<li><span class="am-badge am-text-default">第三周</span></li>
-					<li><span class="am-badge am-text-default">第四周</span></li>
-					<li><span class="am-badge am-text-default">第五周</span></li>
-					<li><span class="am-badge am-text-default">第六周</span></li>
-					<li><span class="am-badge am-text-default">第七周</span></li>
-					<li><span class="am-badge am-text-default">第八周</span></li>
-					<li><span class="am-badge am-text-default">第九周</span></li>
-					<li><span class="am-badge am-text-default">第十周</span></li>
-					<li><span class="am-badge am-text-default">第十一周</span></li>
-					<li><span class="am-badge am-text-default">第十二周</span></li>
-					<li><span class="am-badge am-text-default">第十三周</span></li>
-					<li><span class="am-badge am-text-default">第十四周</span></li>
-					<li><span class="am-badge am-text-default">第十五周</span></li>
-					<li><span class="am-badge am-text-default">第十六周</span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="content-right am-u-sm-9">
-			<div class="content">
-				<ul class="am-list am-list-static" style="color:rgb(120,120,120);background:rgb(249,249,249)">
-				  <li><span  class="detail-tittle">计算机组成原理实验报告</span><span class="edit">导出</span><span class="detail-submittime">最后提交于2017-01-02 10：30</span></li>
-				  <li><span  class="detail-tittle">计算机组成原理实验报告</span><span class="edit">导出</span><span class="detail-submittime">最后提交于2017-01-02 10：30</span></li>
-				  <li><span  class="detail-tittle">计算机组成原理实验报告</span><span class="edit">导出</span><span class="detail-submittime">最后提交于2017-01-02 10：30</span></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="am-g content-container" id="content-container5" style="display:none">
-		<div class="content-left am-u-sm-8" style="border-right:1px solid rgb(213,213,213)">
-				<h3>相关文件</h3>
-				<div class="content border-bt-s">
-					<div class="content-inner-top">
-						<span>关于公布2016年卓越教师与青年教学新秀奖获奖教师通知</span>
-						<span class="content-inner-top-download">下载</span>
-					</div>
-					<div class="content-inner-middle">
-						党校办
-					</div>
-					<div class="content-inner-bottom">
-						2017-01-01  20：10    |（类型：校内文件）
-					</div>
-				</div>
-				<div class="content border-bt-s">
-					<div class="content-inner-top">
-						<span>关于公布2016年卓越教师与青年教学新秀奖获奖教师通知</span>
-						<span class="content-inner-top-download">下载</span>
-					</div>
-					<div class="content-inner-middle">
-						党校办
-					</div>
-					<div class="content-inner-bottom">
-						2017-01-01  20：10    |（类型：校内文件）
-					</div>
-				</div>
-				<div class="content border-bt-s">
-					<div class="content-inner-top">
-						<span>关于公布2016年卓越教师与青年教学新秀奖获奖教师通知</span>
-						<span class="content-inner-top-download">下载</span>
-					</div>
-					<div class="content-inner-middle">
-						党校办
-					</div>
-					<div class="content-inner-bottom">
-						2017-01-01  20：10    |（类型：校内文件）
-					</div>
-				</div>
-		</div>
-		<div class="content-right am-u-sm-4">
-			<ul class="am-list am-list-static am-list-border">
-			  <li>
-				<i class="am-icon-home am-icon-fw"></i>
-				教学类相关文件
-			  </li>
-			  <li>
-				<i class="am-icon-book am-icon-fw"></i>
-				规章制度
-			  </li>
-			  <li><i class="am-icon-pencil am-icon-fw"></i>
-				通知
-			  </li>
-			</ul>
-		</div>
-	</div>
-	<div class="am-g content-container" id="content-container6" style="display:none">
-		<div style="width:1000px;margin:0 auto">
-			<div class="content">
-				<div class="content-inner-top">
-					<img src="../shared/img/u4105.png" alt="">
-				</div>
-				<div class="content-inner-bottom">
-					<p>获奖类别：<span>竞赛获奖</span></p>
-					<p>奖励等级：<span>特等</span></p>
-					<p>获奖项目名称：<span>卓越教师</span></p>
-					<p>颁发日期：<span>2016-09-23</span></p>
-					<p>佐证材料：<span>关于执子量化的探讨</span></p>
-					<p>获奖类别：<span>竞赛获奖</span></p>
-				</div>
-			</div>
-			<div class="content">
-				<div class="content-inner-top">
-					<img src="../shared/img/u4105.png" alt="">
-				</div>
-				<div class="content-inner-bottom">
-					<p>获奖类别：<span>竞赛获奖</span></p>
-					<p>奖励等级：<span>特等</span></p>
-					<p>获奖项目名称：<span>卓越教师</span></p>
-					<p>颁发日期：<span>2016-09-23</span></p>
-					<p>佐证材料：<span>关于执子量化的探讨</span></p>
-					<p>获奖类别：<span>竞赛获奖</span></p>
-				</div>
-			</div>
-			<div class="content">
-				<div class="content-inner-top">
-					<img src="../shared/img/u4105.png" alt="">
-				</div>
-				<div class="content-inner-bottom">
-					<p>获奖类别：<span>竞赛获奖</span></p>
-					<p>奖励等级：<span>特等</span></p>
-					<p>获奖项目名称：<span>卓越教师</span></p>
-					<p>颁发日期：<span>2016-09-23</span></p>
-					<p>佐证材料：<span>关于执子量化的探讨</span></p>
-					<p>获奖类别：<span>竞赛获奖</span></p>
-				</div>
-			</div>
-			<div class="content">
-				<div class="content-inner-top">
-					<img src="../shared/img/u4105.png" alt="">
-				</div>
-				<div class="content-inner-bottom">
-					<p>获奖类别：<span>竞赛获奖</span></p>
-					<p>奖励等级：<span>特等</span></p>
-					<p>获奖项目名称：<span>卓越教师</span></p>
-					<p>颁发日期：<span>2016-09-23</span></p>
-					<p>佐证材料：<span>关于执子量化的探讨</span></p>
-					<p>获奖类别：<span>竞赛获奖</span></p>
-				</div>
-			</div>
-			<div class="content">
-				<div class="content-inner-top">
-					<img src="../shared/img/u4105.png" alt="">
-				</div>
-				<div class="content-inner-bottom">
-					<p>获奖类别：<span>竞赛获奖</span></p>
-					<p>奖励等级：<span>特等</span></p>
-					<p>获奖项目名称：<span>卓越教师</span></p>
-					<p>颁发日期：<span>2016-09-23</span></p>
-					<p>佐证材料：<span>关于执子量化的探讨</span></p>
-					<p>获奖类别：<span>竞赛获奖</span></p>
-				</div>
-			</div>
-			<div class="content">
-				<div class="content-inner-top">
-					<img src="../shared/img/u4105.png" alt="">
-				</div>
-				<div class="content-inner-bottom">
-					<p>获奖类别：<span>竞赛获奖</span></p>
-					<p>奖励等级：<span>特等</span></p>
-					<p>获奖项目名称：<span>卓越教师</span></p>
-					<p>颁发日期：<span>2016-09-23</span></p>
-					<p>佐证材料：<span>关于执子量化的探讨</span></p>
-					<p>获奖类别：<span>竞赛获奖</span></p>
-				</div>
-			</div>
-			<div class="content">
-				<div class="content-inner-top">
-					<img src="../shared/img/u4105.png" alt="">
-				</div>
-				<div class="content-inner-bottom">
-					<p>获奖类别：<span>竞赛获奖</span></p>
-					<p>奖励等级：<span>特等</span></p>
-					<p>获奖项目名称：<span>卓越教师</span></p>
-					<p>颁发日期：<span>2016-09-23</span></p>
-					<p>佐证材料：<span>关于执子量化的探讨</span></p>
-					<p>获奖类别：<span>竞赛获奖</span></p>
-				</div>
-			</div>
-		</div>
-
-
-	</div>
-	<div class="am-g content-container" id="content-container7" style="display:none">
-		<div class="content-left am-u-sm-6" style="border-right:1px solid rgb(213,213,213)">
-			<h3>类型</h3>
-			<div class="content border-tpbt-l am-g ">
-				<div class="content-inner-left am-u-sm-3">
-					<img src="../shared/img/u2075.png" alt="" style="width:100px;height:100px">
-				</div>
-				<div class="content-inner-rigth am-u-sm-9">
-					<h4>已申请项目</h4>
-					<h5>在这里你可以找到你的已申请项目</h5>
-					<br>
-					<br>
-					<br>
-					<br>
-					<h5>你有4个已申请项目</h5>
-				</div>
-
-			</div>
-			<div class="content border-tpbt-l am-g">
-				<div class="content-inner-left am-u-sm-3">
-					<img src="../shared/img/u2081.png" alt="" style="width:100px;height:100px">
-				</div>
-				<div class="content-inner-rigth am-u-sm-9">
-					<h4>待审核项目</h4>
-					<h5>在这里你可以查看你待审核项目</h5>
-					<br>
-					<br>
-					<br>
-					<br>
-					<h5>你有0个待审项目</h5>
-				</div>
-			</div>
-			<div class="content border-tpbt-l am-g">
-				<div class="content-inner-left am-u-sm-3">
-					<img src="../shared/img/u2081.png" alt="" style="width:100px;height:100px">
-				</div>
-				<div class="content-inner-rigth am-u-sm-9">
-					<h4>你的项目</h4>
-					<h5>在这里你可以查看你的项目</h5>
-					<br>
-					<br>
-					<br>
-					<br>
-					<h5>你有4个项目</h5>
-				</div>
-			</div>
-
-		</div>
-		<div class="content-right am-u-sm-6">
-			<h3>项目列表</h3>
-			<div class="content border-tpbt-l am-g ">
-				<div class="am-panel-group" id="accordion3">
-				  <div class="am-panel am-panel-default">
-					<div class="am-panel-hd">
-					  <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion3', target: '#do-not-say-3-1'}">
-						项目一
-					  </h4>
-					</div>
-					<div id="do-not-say-3-1" class="am-panel-collapse am-collapse am-in">
-					  <div class="am-panel-bd">
-						...
-					  </div>
-					</div>
-				  </div>
-				  <div class="am-panel am-panel-default">
-					<div class="am-panel-hd">
-					  <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion3', target: '#do-not-say-3-2'}">
-						项目二
-					  </h4>
-					</div>
-					<div id="do-not-say-3-2" class="am-panel-collapse am-collapse">
-					  <div class="am-panel-bd">
-						...
-					  </div>
-					</div>
-				  </div>
-				  <div class="am-panel am-panel-default">
-					<div class="am-panel-hd">
-					  <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion3', target: '#do-not-say-3-3'}">项目三</h4>
-					</div>
-					<div id="do-not-say-3-3" class="am-panel-collapse am-collapse">
-					  <div class="am-panel-bd">
-						...
-					  </div>
-					</div>
-				  </div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="am-g content-container" id="content-container8" style="display:none">
-		<div class="content am-u-sm-12">
-			<div class="content-inner-top">
-				<label for="select0">
-					学年：
-					<select id="select0">
-					  <option value ="volvo">2015-2016</option>
-					  <option value ="saab">2014-2015</option>
-					</select>
-				</label>
-				<label for="select1">
-					学期：
-					<select id="select1">
-					  <option value ="volvo">第一学期</option>
-					  <option value ="saab">第二学期</option>
-					</select>
-				</label>
-			</div>
-			<div class="content-inner-bottom am-text-center">
-				<h2>2015-2016教学业绩考核表</h2>
-				<table class="am-table am-table-bordered am-table-centered">
-				  <tr>
-					<th>一级指标</th>
-					<th>二级指标</th>
-					<th>得分</th>
-					<th>备注</th>
-				  </tr>
-				  <tr>
-					<td rowspan="2">教学工作</td>
-					<td>课程教学工作量</td>
-					<td></td>
-					<td></td>
-				  </tr>
-				  <tr>
-					<td>其他教学工作量</td>
-					<td></td>
-					<td></td>
-				  </tr>
-				  <tr>
-					<td rowspan="2">教学效果</td>
-					<td>教学质量</td>
-					<td></td>
-					<td></td>
-				  </tr>
-				  <tr>
-					<td>教学事故</td>
-					<td></td>
-					<td></td>
-				  </tr>
-				  <tr>
-					<td rowspan="2">教学改革与研究</td>
-					<td>教学改革研究与成果</td>
-					<td></td>
-					<td></td>
-				  </tr>
-				  <tr>
-					<td>教研教改论文与论著</td>
-					<td></td>
-					<td></td>
-				  </tr>
-				</table>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
-		<div class="am-modal-dialog">
-			<div class="am-modal-hd">添加学生成绩表格</div>
-			<div class="am-modal-bd">
-				提示：请先下载模板表格并按表格格式填写，否则会计算出错
-				<form class="am-form" enctype="multipart/form-data">
-					<br>
-					<a class="am-badge am-badge-success am-radius am-text-md am-text-lg" download href="" id="model">点击下载模板表格</a>
-					<br><br>
-					<div class="am-form-group">
-						<label for="course_name">请选择课程：</label>
-						<select id="course_name" name="course_name">
-							<option value="计算机网络">计算机网络</option>
-							<option value="计算机组成原理">计算机组成原理</option>
-						</select>
-					</div>
-					<div class="am-form-group">
-						<label for="year">请选择学年：</label>
-						<select id="year" name="year">
-
-						</select>
-					</div>
-					<div class="am-form-group">
-						<label for="term">请选择学期：</label>
-						<select id="term" name="term">
-							<option value="1">第一学期</option>
-							<option value="2">第二学期</option>
-						</select>
-					</div>
-
-					<div class="am-form-group am-form-file">
-						<button type="button" class="am-btn am-btn-default am-btn-sm">
-							<i class="am-icon-cloud-upload"></i> 选择上传文件（请上传添加学生信息后的模板）</button>
-						<input type="file" name="file" id="doc-form-file" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" >
-					</div>
-
-					<div class="am-modal-content">
-
-					</div>
-				</form>
-			</div>
-
-			<div class="am-modal-footer">
-				<span class="am-modal-btn" data-am-modal-cancel>取消</span>
-				<span class="am-modal-btn" data-am-modal-confirm>提交</span>
-			</div>
-		</div>
-
-	</div>
-
-
-	<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="progress">
-		<div class="am-modal-dialog" style="background: #636363;opacity: 1;z-index:999999999">
-			<div class="am-modal-hd">
-				<div class="am-progress am-progress-striped am-progress-sm am-active " >
-					<div class="am-progress-bar"  style="width:0"></div>
-				</div>
-				<h1 style="color:#f8f8f8">请稍候...</h1>
-			</div>
-		</div>
-	</div>
-</div> -->
-
-
-<script src="js/teaching.js?t=1536155844405"></script>
+    {{/each}}
+</script>
+<script type="text/x-handlebars-template" id="ht-option">
+    <option value="{{year}}" data-index="{{i}}">{{year_}}</option>
+</script>
+<script src="js/teaching.js?t=1536239255439"></script>
 </body>
 </html>

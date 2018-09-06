@@ -1,167 +1,107 @@
-body{
-	background: white;
+h1 {
+	text-align: center;
+	font-size: 30px;
+	color: #666;
+	font-weight: 500;
+	letter-spacing: 4px;
+	margin-bottom: 0;
 }
-.header{
-	height:50px;
-	background-color: #292b2c;
-}
-.tittle{
-	height: 50px;
-	line-height: 50px;
-	font-size: 24px;
+
+h2 {
+	text-align: center;
+	font-stretch: 20px;
+	color: #999;
 	font-weight: 400;
-	text-align: center;
-	color: white;
-}
-.button{
-	width: 200px;
-	height: 60px;
-	border: 1.4px solid black;
-	border-radius: 5px;
-	background-color: white;
-	color: black;
-	text-align: center;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	white-space:nowrap;
-	font-size: 20px;
-}
-.button span {
-	position: relative;
-	top: 2px;
-}
-.button:hover {
-	background: black;
-	color: white;
-}
-
-.info-container .button{
-	cursor:pointer;
-}
-.border-tp-l{
-	border-top: 2px solid #eee;
-}
-.border-bt-l{
-	border-bottom: 2px solid #eee;
-}
-.border-tp-s{
-	border-top: 1px solid #eee;
-}
-.border-bt-s{
-	border-bottom: 1px solid #eee;
-}
-.border-tpbt-l{
-	border-top: 3px solid #eee;
-	border-bottom: 3px solid #eee;
-}
-.border-tpbt-s{
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
-}
-.searchbtn{
-	height: 36px;
-	width: 160px;
-	padding: 4px 10px;
-	color: #464a4c;
-	background-color: #fff;
-	border: 1px solid rgba(0,0,0,.15);
-	border-radius: 4px;
-	margin-top: 7px;
-	font-size: 16px !important;
-}
-.searchicon{
-
-}
-.menu{
-
-}
-.menu li{
-	list-style: none;
-	line-height: 50px;
-	text-align: center;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	white-space:nowrap;
-	position: relative;
-
-}
-.menu li a:hover{
-	color: rgba(255, 255, 255, 0.9);
-	cursor: pointer;
-}
-.info-container{
-	height: 120px;
-}
-.info{
-	line-height: 30px;
-	font-size: 15px;
-	margin:0;
-}
-.menu li a{
-	color: rgba(255, 255, 255, 0.7);
-	overflow: hidden;
-
-}
-.menu li em{
-	display: none;
-}
-.menu li:hover em{
-	display: block;
-	overflow: hidden;
-	border: 10px solid  rgba(204,204,204,1);
-	border-color: rgba(204,204,204,1) #f9f9f9;
-	border-width: 0 10px 10px 10px;
-	position: absolute;
-	left: 45%;
-	top: 80%;
-}
-#usernamelogout span, #usernamelogout i{
-	color: white;
-}
-
-.user-name{
-	font-size: 12px;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	white-space:nowrap;
-	
-}
-.headimg{
-	border-radius: 100%;
-	border: 1px solid gray;
-	height: 80px;
-	width: 80px;
+	letter-spacing: 2px;
 	margin-top: 5px;
 }
-#headFile{
-	font-size: 12px;
-	margin: 10px 0 0 0;
-	cursor: pointer;
-	height: 15px;
+
+#main table {
+	@bradius: 0.8em;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	border-radius: @bradius;
+	box-shadow: 0.6px 0.8px 10px rgba(4, 0, 0, 0.3);
+	margin-bottom: 20px;
+	th, td {
+		text-align: center;
+		padding: 10px 4px;
+		letter-spacing: 1px;
+	}
+	th {
+		color: #4272d2;
+		font-size: 17px;
+		font-weight: 500;
+	}
+	td {
+		color: #333;
+	}
+	tr:nth-child(odd) {
+		background-color: white;
+	}
+	th:first-child, tr:first-child td:first-child {
+		border-top-left-radius: @bradius;
+	}
+	th:last-child, tr:first-child td:last-child {
+		border-top-right-radius: @bradius;
+	}
+	tr:last-child td:first-child {
+	    border-bottom-left-radius: @bradius;
+	}
+	tr:last-child td:last-child {
+	    border-bottom-right-radius: @bradius;
+	}
+	&.sm {
+		tr td:first-child {
+			color: #4272d2;
+		}
+		tr td:last-child {
+			padding-left: 20px;
+			text-align: left;
+		}
+	}
 }
 
-.logout{
-	font-size: 12px;
-	cursor: pointer;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	white-space:nowrap;
+.item {
+	text-align: left;
+	margin: auto;
 }
-.edit{
-	float: right;
-	font-size: 10px;
-	color:rgb(153,153,153)
-}
-.underlist{
 
-	font-style: italic;
-    text-decoration: underline;
-	font-size:130%;
-
-}
-.content-left,.content-right{
-	padding:2% 3%;
-}
-.download-button{
-	color: black;
+.am-modal-dialog{
+	background-color: white;
+	color: #333;
+	letter-spacing: 1px;
+	label {
+		width: 120px;
+		color: #333;
+		font-weight: 400;
+		font-size: 18px;
+		position: relative;
+		top: 2px;
+		text-align: left;
+	}
+	input {
+		width: 200px;
+		height: 37.2px;
+		border: none;
+		outline: 1px solid #e6e6e6;
+		padding: 10px;
+		color: #666;
+		&:focus {
+		  outline-offset: 0;
+		}
+	}
+	.ambtnisugly {
+		width: 290px;
+		height: 40px;
+		border: 1.6px dashed #666;
+		border-radius: 16px;
+		background-color: white;
+		font-size: 18px;
+	}
+	#fileup p {
+		text-align: center;
+		margin-top: -10px;
+	}
 }
