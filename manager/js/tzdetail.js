@@ -39,7 +39,7 @@ function ajaxNotifyThem(id) {
 
 function deployFeedback(data) {
 	HDeploy('main', data);
-	// $('#title').text(data[0].title);
+	$('#title').text(data[0].title);
 	var read = 0;
 	var nonRead = 0;
 	data.map(function(element) {

@@ -19,6 +19,20 @@ function ajaxGetTongzhi(id) {
     })
 }
 
+function ajaxSendMail(id) {
+    $.ajax({
+        url: 'info/wx/sendInfoEmail',
+        data: {
+            batch_id: id
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                dialog.success('已发送邮件至<br> ' + __INFO__.email)
+            }
+        }
+    })
+}
+
 /* -------------- deployers -----------------*/
 function deployTongzhi(data) {
     HDeploy('tongzhis', data);
@@ -119,4 +133,8 @@ function deployTongzhi(data) {
             $(this).find('.date').eq(1).find('i').attr('class', 'am-icon-calendar-check-o')
         }
     });
+
+    $('#mail').on('click', function() {
+        ajaxSendMail(getParam().id);
+    })
 }

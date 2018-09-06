@@ -57,3 +57,7 @@
 .tongzhi .container .files * {
   text-align: center;
 }
+#mail {
+  display: block;
+  margin: 30px auto;
+}
