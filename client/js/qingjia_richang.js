@@ -89,6 +89,7 @@ $(document).ready(function() {
             },
             removeCourse: function(index) {
                 this.courses.splice(index, 1)
+                setTimeout(function(){$('input').blur()}, 1)
             },
             findTeacherPhone: function(index) {
                 var self = this.$data
