@@ -18,8 +18,7 @@ function ajaxGetTongzhiByStudentIndex(page) {
             page: page
         },
         success: function (data) {
-            console.log(data.data);
-            if(data.status==200){
+            if(data.status == 200){
                 deployTongzhiTable(data.data);
             }
         }
@@ -31,23 +30,8 @@ function deployTongzhiTable(data) {
     var template = Handlebars.compile(source);
     $('#tongzhitable').html(template(data));
     $('#spinorclick').html('点击查看详情');
-    $('#btngroup1 .pagibtn').on('click', function() {
-            $('#pagi-cur span').html(__SPINNER__);
-            var pageURL = $(this).attr('data-targetpage');
-            if (pageURL) {
-                $('#histable').hide();
-                var page = pageURL.split('=').pop();
-                ajaxGetTongzhiByStudentIndex(page);
-            }
-        });
 
-    if (data.last_page <= 1) {
-            $('#btngroup1').remove();
-        } else if (data.current_page == 1) {
-            $('#pagi-first, #pagi-prev').remove();
-        } else if (data.current_page == data.last_page) {
-            $('#pagi-next, #pagi-last').remove();
-        }
+    deployPagi(data, ajaxGetTongzhiByStudentIndex)
 
     $('.clickme').on('click', function() {
         location.href = 'tongzhi_detail.html?id=' + $(this).attr('data-tongzhiid');
