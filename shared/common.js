@@ -165,7 +165,7 @@ $.ajaxSetup({
         if (!loader) {
             loader = layer.load();
         }
-        setTimeout(closeLoader, 2000)
+        setTimeout(closeLoader, 500)
     }
 });
 
