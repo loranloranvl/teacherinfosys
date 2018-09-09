@@ -102,7 +102,6 @@ $(document).ready(function() {
             },
             submit: function() {
                 var self = this.$data
-                log(self)
                 var sData = {courses: self.courses}
                 $('#basicc input, #basicc textarea').each(function() {
                     sData[$(this).attr('id')] = $(this).val()

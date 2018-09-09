@@ -1,9 +1,8 @@
-var log = console.log;
 var __SPINNER__ = '<i class="am-icon-spinner \
 	am-icon-spin"></i>';
 var  __URL__ = 'https://tis.hzcloudservice.com/api/v1/';
 var  __DURL__ = 'https://tis.hzcloudservice.com/';
-var __TOKEN__ = localStorage['token'];
+var __TOKEN__ = localStorage.getItem('token');
 var __INFO__;
 var info, info_level;
 
@@ -96,28 +95,24 @@ function deployPagi(data, callback, id) {
     // only show when data is correctly received
     // and there is more than 1 page
     if(data.data && data.last_page != 1) {
-        log(0)
         pagi.show();
     } else {
         pagi.hide();
     }
 
     if (data.current_page == 1) {
-        log(1)
         pagi.find('.pagi-first, .pagi-prev').hide();
     } else {
         pagi.find('.pagi-first, .pagi-prev').show();
     }
 
     if (data.current_page == data.last_page) {
-        log(2)
         pagi.find('.pagi-next, .pagi-last').hide();
     } else {
         pagi.find('.pagi-next, .pagi-last').show();
     }
 
     if (data.current_page == 1 && data.last_page == 1) {
-        log(3)
         pagi.find('.pagi-cur').hide();
     } else {
         pagi.find('.pagi-cur').show();
@@ -178,16 +173,16 @@ $(document).ajaxSuccess(function(event, xhr, settings) {
 	} 
 
     if (rjson.status == 200) {
-        log(settings.url, rjson.data);
+        console.log(settings.url, rjson.data);
     } else {
-        log(settings.url, rjson);
+        console.log(settings.url, rjson);
 		dialog.error(rjson.msg);
     }
 });
 
 // general ajax error handler
 $(document).ajaxError(function( event, jqxhr, settings, thrownError ) {
-	log(event, jqxhr, settings, thrownError);
+	console.log(event, jqxhr, settings, thrownError);
     dialog.error('网络错误')
 });
 
