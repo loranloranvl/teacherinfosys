@@ -13,8 +13,9 @@ nav {
 nav #nav-slogan {
   text-align: center;
   color: white;
-  font-size: 23px;
+  font-size: 21px;
   cursor: default;
+  letter-spacing: 1px;
 }
 nav li {
   list-style: none;

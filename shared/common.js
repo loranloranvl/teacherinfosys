@@ -8,7 +8,7 @@ var __INFO__;
 var info, info_level;
 
 var czy_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxNjI3MTExMCIsIm9wZW5pZCI6Im9Ua3FJMFpkZm44b1NKcG5aQ0FzNVJXcjU1YXciLCJzZXgiOiIxIiwibmFtZSI6Ilx1OTY0OFx1NGUyZFx1NmUwYSIsInVuaXQiOiJcdTdmNTFcdTdlZGNcdTdhN2FcdTk1ZjRcdTViODlcdTUxNjhcdTViNjZcdTk2NjJcdTMwMDFcdTZkNTlcdTZjNWZcdTRmZGRcdTViYzZcdTViNjZcdTk2NjIiLCJlbWFpbCI6IjExOTQ0NTI5NDBAcXEuY29tIiwicGhvbmUiOiIxODc2NzEyMDAxMCIsInRlYWNoZXJfaWQiOiIxIiwiY2xhc3MiOiIxNjI3MzYxMSIsImdyYWRlIjoiMjAxNiIsIm1ham9yIjoiXHU0ZmUxXHU2MDZmXHU1Yjg5XHU1MTY4IiwidXBkYXRlZF9hdCI6IjIwMTgtMDktMDcgMTc6NDc6NTciLCJjcmVhdGVkX2F0IjoiMjAxOC0wOS0wNyAxNzo0Nzo1NyIsImlkIjoyfQ.WfR8adMcYWs4TUM9TL_89A9ceXL5pkjG9l42Ckx6_DY'
-var hwt_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidWlkIjo0MTgwNCwibmFtZSI6Ilx1ODBlMVx1NGYxZlx1OTAxYSIsIm9wZW5pZCI6Im9Ua3FJMGRFS2pxMjRRbDlYQTRWWlJKS2hfQmMiLCJzZXgiOjEsInVuaXQiOiJcdTdmNTFcdTdlZGNcdTdhN2FcdTk1ZjRcdTViODlcdTUxNjhcdTViNjZcdTk2NjJcdTMwMDFcdTZkNTlcdTZjNWZcdTRmZGRcdTViYzZcdTViNjZcdTk2NjIiLCJlbWFpbCI6Imh3dEBoZHUuZWR1LmNuIiwicGhvbmUiOiIxMzUxNjcxOTExOSIsImNyZWF0ZWRfYXQiOiIyMDE4LTA5LTA3IDE1OjIzOjAxIiwidXBkYXRlZF9hdCI6IjIwMTgtMDktMDcgMTY6MzM6MDgifQ.IsTyF62cknujyJZa61cOlvj37GZG7Dl8U5mhwHc2WWs'
+var hwt_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NCwidWlkIjo0MTgwNCwibmFtZSI6Ilx1ODBlMVx1NGYxZlx1OTAxYSIsIm9wZW5pZCI6Im9Ua3FJMGRFS2pxMjRRbDlYQTRWWlJKS2hfQmMiLCJzZXgiOjEsInVuaXQiOiJcdTdmNTFcdTdlZGNcdTdhN2FcdTk1ZjRcdTViODlcdTUxNjhcdTViNjZcdTk2NjJcdTMwMDFcdTZkNTlcdTZjNWZcdTRmZGRcdTViYzZcdTViNjZcdTk2NjIiLCJlbWFpbCI6Imh3dEBoZHUuZWR1LmNuIiwicGhvbmUiOiIiLCJjcmVhdGVkX2F0IjoiMjAxNy0xMC0xNiAxNDo0NzozOSIsInVwZGF0ZWRfYXQiOiIyMDE4LTA2LTIzIDIwOjUyOjExIn0.Gn2SbMlCPU72L_wrZlja7GU_tw18LuU9oDPsAP4BZec'
 
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
@@ -146,21 +146,29 @@ function deployPagi(data, callback, id) {
 
 
 // general ajax settings
-var loader;
+var loader = 0;
+function closeLoader() {
+    layer.close(loader);
+    loader = 0;
+}
 $.ajaxSetup({
-	timeout: 10 * 60 * 1000,
-	dataType: 'json',
-	crossDomain: true,
-	xhrFields: {
-		withCredentials: true
-	},
-	headers: {
-		Authorization: __TOKEN__
-	},
-	beforeSend: function() {
-		loader = layer.load();
-	}
+    timeout: 10 * 60 * 1000,
+    dataType: 'json',
+    crossDomain: true,
+    xhrFields: {
+        withCredentials: true
+    },
+    headers: {
+        Authorization: __TOKEN__
+    },
+    beforeSend: function() {
+        if (!loader) {
+            loader = layer.load();
+        }
+        setTimeout(closeLoader, 2000)
+    }
 });
+
 
 // general ajax success handler
 $(document).ajaxSuccess(function(event, xhr, settings) {
@@ -184,7 +192,7 @@ $(document).ajaxError(function( event, jqxhr, settings, thrownError ) {
 });
 
 $(document).ajaxComplete(function() {
-	layer.close(loader);
+	closeLoader();
 })
 
 // handle redundant '/'
