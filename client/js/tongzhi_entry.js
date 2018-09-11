@@ -43,10 +43,16 @@ function deployTongzhiTable(data) {
     });
 
     $('.sliceme').each(function() {
-        var maxL = 8;
+        var maxL = 9;
         if ($(this).text().length > maxL) {
             $(this).text($(this).text().slice(0, maxL - 1) + '...');
         }
+    });
+
+    $('.slicedate').each(function() {
+        var text = $(this).text();
+        text = text.slice(0, text.length - 3)
+        $(this).text(text)
     });
 }
 

@@ -4,33 +4,49 @@
   margin: -25px auto 0;
   display: block;
 }
-.pagi-btngroup {
-  margin: 30px 0;
+#tongzhitable table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border-radius: 0.8em;
+  box-shadow: 0.6px 0.8px 10px rgba(4, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+#tongzhitable table th,
+#tongzhitable table td {
   text-align: center;
+  padding: 10px 4px;
+  letter-spacing: 1px;
 }
-.pagi-btngroup button {
-  width: 42px;
-  height: 42px;
-  border: none;
-  outline: none;
-  background-color: white;
-  box-shadow: 0.4px 0.8px 3px rgba(0, 0, 4, 0.4);
-  display: inline-block;
-  margin: 0 4px;
-  font-weight: 500;
+#tongzhitable table th {
+  color: #4272d2;
   font-size: 17px;
-  color: #666;
-  line-height: 42px;
-  position: relative;
-}
-.pagi-btngroup .pagibtn {
-  cursor: pointer;
-}
-#tongzhitable th {
   font-weight: 500;
-  font-size: 19px;
+}
+#tongzhitable table td {
   color: #333;
 }
-#tongzhitable td {
-  color: #333;
+#tongzhitable table tr:nth-child(odd) {
+  background-color: white;
+}
+#tongzhitable table tr:first-child:hover {
+  background-color: white;
+  cursor: default;
+}
+#tongzhitable table th:first-child,
+#tongzhitable table tr:first-child td:first-child {
+  border-top-left-radius: 0.8em;
+}
+#tongzhitable table th:last-child,
+#tongzhitable table tr:first-child td:last-child {
+  border-top-right-radius: 0.8em;
+}
+#tongzhitable table tr:last-child td:first-child {
+  border-bottom-left-radius: 0.8em;
+}
+#tongzhitable table tr:last-child td:last-child {
+  border-bottom-right-radius: 0.8em;
+}
+#tongzhitable table.md tr td:first-child {
+  color: #666;
 }

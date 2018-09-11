@@ -20,17 +20,17 @@
 <!-- No Baidu Siteapp-->
 <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
-<link rel="stylesheet" href="../shared/amazeui.min.css?t=1536470435590">
-<link rel="stylesheet" href="css/common.css?t=1536470435590">
-<link rel="stylesheet" href="css/pagi.css?t=1536470435590">
-<script src="../shared/jquery.min.js?t=1536470435590"></script>
-<script src="../shared/amazeui.min.js?t=1536470435590"></script>
-<script src="../shared/handlebars.min.js?t=1536470435590"></script>
-<script src="../shared/layer/layer.js?t=1536470435590"></script>
-<script src="../shared/common.js?t=1536470435590"></script>
-<script src="../shared/jweixin-1.2.0.min.js?t=1536470435590"></script>
-<script src="../shared/vue.js?t=1536470435590"></script>
-    <link rel="stylesheet" href="css/tongzhi_entry.css?t=1536470435558">
+<link rel="stylesheet" href="../shared/amazeui.min.css?t=1536668951590">
+<link rel="stylesheet" href="css/common.css?t=1536668951590">
+<link rel="stylesheet" href="css/pagi.css?t=1536668951590">
+<script src="../shared/jquery.min.js?t=1536668951590"></script>
+<script src="../shared/amazeui.min.js?t=1536668951590"></script>
+<script src="../shared/handlebars.min.js?t=1536668951590"></script>
+<script src="../shared/layer/layer.js?t=1536668951590"></script>
+<script src="../shared/common.js?t=1536668951590"></script>
+<script src="../shared/jweixin-1.2.0.min.js?t=1536668951590"></script>
+<script src="../shared/vue.js?t=1536668951590"></script>
+    <link rel="stylesheet" href="css/tongzhi_entry.css?t=1536668951555">
 </head>
 <body>
 <div id="main">
@@ -50,38 +50,28 @@
 </div>
 
 <script type="text/x-handlebars-template" id="handlebars-template-tongzhitable">
-    <table class="am-table am-table-bordered am-table-centered">
-        <thead>
+    {{#each data}}
+    <table class="md" data-tongzhiid="{{batch_id}}" class="clickme">
         <tr>
-            <th>通知标题</th>
-            <th>发送者</th>
-            <th>发送时间</th>
+            <td>通知标题</td>
+            <td class="sliceme">{{title}}</td>
         </tr>
-        </thead>
-        <tbody>
-            {{#each data}}
-                <tr data-tongzhiid="{{batch_id}}" class="clickme">
-                    <td class="sliceme">{{title}}</td>
-                    <td>{{teacher_name}}</td>
-                    <td class="splitme">{{created_at}}</td>
-                </tr>
-            {{else}}
-                <tr><td colspan="3" style="font-size:16px; font-weight:400;" class="am-text-middle am-text-center">暂时还没有通知</td></tr>
-            {{/each}}
-        </tbody>
+        <tr>
+            <td>发送人</td>
+            <td>{{teacher_name}}</td>
+        </tr>
+        <tr>
+            <td>发送时间</td>
+            <td class="slicedate">{{created_at}}</td>
+        </tr>
     </table>
-    {{#if data}}
-        <div class="pagi-btngroup" id="btngroup1">
-             <button class="pagibtn" id="pagi-first" data-targetpage="{{first_page_url}}">&lt;&lt;</button>
-             <button class="pagibtn" id="pagi-prev" data-targetpage="{{prev_page_url}}">&lt;</button>
-             <button id="pagi-cur"><span>{{current_page}}</span></button>
-             <button class="pagibtn" id="pagi-next" data-targetpage="{{next_page_url}}">&gt;</button>
-             <button class="pagibtn" id="pagi-last" data-targetpage="{{last_page_url}}">&gt;&gt;</button>
-         </div>
-    {{/if}}
+    {{else}}
+        <p colspan="3" style="font-size:16px; font-weight:400; text-align: center" class="am-text-middle am-text-center">暂时还没有通知</p>
+    {{/each}}
+
 </script>
 
 </body>
 
-<script src="js/tongzhi_entry.js?t=1536470435558"></script>
+<script src="js/tongzhi_entry.js?t=1536668951555"></script>
 </html>

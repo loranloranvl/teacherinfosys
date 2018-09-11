@@ -5,37 +5,49 @@
     display: block;
 }
 
-.pagi-btngroup {
-	margin: 30px 0;
-	text-align: center;
-	@pagiWidth: 42px;
-	button {
-		width: @pagiWidth;
-		height: @pagiWidth;
-		border: none;
-		outline: none;
-		background-color: white;
-		box-shadow: 0.4px 0.8px 3px rgba(0, 0, 4, 0.4);
-		display: inline-block;
-		margin: 0 4px;
-		font-weight: 500;
-		font-size: 17px;
-		color: #666;
-		line-height: @pagiWidth;
-		position: relative;
+#tongzhitable table {
+	@bradius: 0.8em;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	border-radius: @bradius;
+	box-shadow: 0.6px 0.8px 10px rgba(4, 0, 0, 0.2);
+	margin-bottom: 20px;
+	th, td {
+		text-align: center;
+		padding: 10px 4px;
+		letter-spacing: 1px;
 	}
-	.pagibtn {
-		cursor: pointer;
-	}
-}
-
-#tongzhitable {
 	th {
+		color: #4272d2;
+		font-size: 17px;
 		font-weight: 500;
-		font-size: 19px;
-		color: #333;
 	}
 	td {
 		color: #333;
+	}
+	tr:nth-child(odd) {
+		background-color: white;
+	}
+	tr:first-child:hover {
+		background-color: white;
+		cursor: default;
+	}
+	th:first-child, tr:first-child td:first-child {
+		border-top-left-radius: @bradius;
+	}
+	th:last-child, tr:first-child td:last-child {
+		border-top-right-radius: @bradius;
+	}
+	tr:last-child td:first-child {
+	    border-bottom-left-radius: @bradius;
+	}
+	tr:last-child td:last-child {
+	    border-bottom-right-radius: @bradius;
+	}
+	&.md {
+		tr td:first-child {
+			color: #666;
+		}
 	}
 }
