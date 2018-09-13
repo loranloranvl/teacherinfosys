@@ -507,7 +507,15 @@ function ajaxpostMsg(sData) {
             $.ajax({
                 url: 'writeLog',
                 data: {
-                    content: err
+                    content: JSON.stringify({
+                        err: err,
+                        browser: navigator.userAgent,
+                        sdata: {
+                            target: sendString,
+                            type: sendType
+                        },
+                        info: __INFO__
+                    })
                 },
                 global: false,
                 complete: function() {

@@ -183,7 +183,7 @@ $(document).ajaxSuccess(function(event, xhr, settings) {
 // general ajax error handler
 $(document).ajaxError(function( event, jqxhr, settings, thrownError ) {
 	console.log(event, jqxhr, settings, thrownError);
-    dialog.error('网络错误')
+    dialog.error(thrownError)
 });
 
 $(document).ajaxComplete(function() {
