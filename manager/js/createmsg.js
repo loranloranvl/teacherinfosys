@@ -491,11 +491,30 @@ function ajaxpostMsg(sData) {
         data: sData,
         contentType: false,
         processData: false,
+        global: false,
         success: function (data) {
+            console.log(data)
+            if (data.status != 200) {
+                dialog.error(data.msg)
+            }
             if(data.status == 200){
                 dialog.success('发送成功');
                 reload();
             }
+        },
+        error: function(xhr, status, err) {
+            console.log(xhr, status, err)
+            $.ajax({
+                url: 'writeLog',
+                data: {
+                    content: err
+                },
+                global: false,
+                complete: function() {
+                    dialog.success('发送成功');
+                    reload();
+                }
+            })
         },
         complete : function(XMLHttpRequest,status) { //请求完成后最终执行参数
             $('#mp3-submit').html('完成').attr('disabled', false);
