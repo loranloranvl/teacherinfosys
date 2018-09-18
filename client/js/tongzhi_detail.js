@@ -27,7 +27,7 @@ function ajaxSendMail(id) {
         },
         success: function(data) {
             if (data.status == 200) {
-                dialog.success('已发送邮件至<br> ' + __INFO__.email)
+                dialog.success('已发送邮件至<br> ' + __INFO__.email + '<br>可能会有延迟')
             }
         }
     })

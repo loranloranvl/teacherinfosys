@@ -53,7 +53,7 @@ $(document).ready(function() {
         '又来请假了呢'
     ]
 
-    var random = new Date().getTime() % 10
+    var random = new Date().getTime() % 30
     $('#pi').text(random == 0 ? pis[1] : pis[0])
 
     // submit
@@ -102,6 +102,20 @@ $(document).ready(function() {
             },
             submit: function() {
                 var self = this.$data
+                var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/
+                var sbReg = /(不知|不晓得)/
+                for (var i = 0; i < self.courses.length; ++i) {
+                    var phone = self.courses[i]['teacher_phone']
+                    if (phone.length && sbReg.test(phone)) {
+                        dialog.error('不知道就不要填了<br>别皮好吧<br>做开发很累的<br>(─__─)')
+                        return
+                    }
+                    if (phone.length && !phoneReg.test(phone)) {
+                        dialog.error('手机号码格式有误')
+                        return
+                    }
+                }
+            
                 var sData = {courses: self.courses}
                 $('#basicc input, #basicc textarea').each(function() {
                     sData[$(this).attr('id')] = $(this).val()

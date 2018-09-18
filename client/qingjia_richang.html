@@ -20,17 +20,17 @@
 <!-- No Baidu Siteapp-->
 <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
-<link rel="stylesheet" href="../shared/amazeui.min.css?t=1536808839389">
-<link rel="stylesheet" href="css/common.css?t=1536808839389">
-<link rel="stylesheet" href="css/pagi.css?t=1536808839389">
-<script src="../shared/jquery.min.js?t=1536808839389"></script>
-<script src="../shared/amazeui.min.js?t=1536808839389"></script>
-<script src="../shared/handlebars.min.js?t=1536808839389"></script>
-<script src="../shared/layer/layer.js?t=1536808839389"></script>
-<script src="../shared/common.js?t=1536808839389"></script>
-<script src="../shared/jweixin-1.2.0.min.js?t=1536808839389"></script>
-<script src="../shared/vue.js?t=1536808839389"></script>
-    <link rel="stylesheet" href="./css/qingjia_richang.css?t=1536808839343">
+<link rel="stylesheet" href="../shared/amazeui.min.css?t=1537238036863">
+<link rel="stylesheet" href="css/common.css?t=1537238036863">
+<link rel="stylesheet" href="css/pagi.css?t=1537238036863">
+<script src="../shared/jquery.min.js?t=1537238036863"></script>
+<script src="../shared/amazeui.min.js?t=1537238036863"></script>
+<script src="../shared/handlebars.min.js?t=1537238036863"></script>
+<script src="../shared/layer/layer.js?t=1537238036863"></script>
+<script src="../shared/common.js?t=1537238036863"></script>
+<script src="../shared/jweixin-1.2.0.min.js?t=1537238036863"></script>
+<script src="../shared/vue.js?t=1537238036863"></script>
+    <link rel="stylesheet" href="./css/qingjia_richang.css?t=1537238036822">
 </head>
 <body>
 <form class="am-form" id="main">
@@ -43,7 +43,7 @@
                 <input type="text" class="width form-datepicker" v-model="begin_time" readonly id="begin_time" placeholder="选择日期">
             </div>
             <div class="am-form-group line fright">
-                <label for="begin_course">从第__节课开始</label>
+                <label for="begin_course">第__节课起</label>
                 <input type="number" class="width form-coursestamp" v-model="begin_course"  id="begin_course" placeholder="1到12的整数">
             </div>
             <div class="am-form-group line">
@@ -51,7 +51,7 @@
                 <input type="text" class="width form-datepicker" v-model="end_time" readonly id="end_time" placeholder="选择日期">
             </div>
             <div class="am-form-group line fright">
-                <label for="end_course">到第__节课结束</label>
+                <label for="end_course">至第__节课</label>
                 <input type="number" class="width form-coursestamp" v-model="end_course"  id="end_course" placeholder="1到12的整数">
             </div>
             <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
@@ -107,6 +107,6 @@
 
     </fieldset>
 </form>
-<script src="js/qingjia_richang.js?t=1536808839343"></script>
+<script src="js/qingjia_richang.js?t=1537238036822"></script>
 </body>
 </html>
