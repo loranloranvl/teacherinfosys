@@ -4,7 +4,7 @@
     @@include('./partials/head.html', {
         "title": "请假"
     })
-    <link rel="stylesheet" href="css/qingjia.css?t=1537238036844">
+    <link rel="stylesheet" href="css/qingjia.css?t=1538977718257">
 </head>
 <body>
 @@include('./partials/nav.html')
@@ -292,7 +292,11 @@
 </script>
 
 <script type="text/x-handlebars-template" id="ht-jiejiari-detail">
-    <p id="detail-p"><span id="detail-title">{{title}}</span> <span id="detail-return">返回</span></p>
+    <p id="detail-p">
+        <span id="detail-title">{{title}}</span><br>
+        <span id="detail-return" class="am-badge am-radius">返回列表</span> 
+        <span class="am-badge am-badge-secondary am-radius" id="detail-down">导出表格</span>
+    </p>
     {{#if students}}
     <div class="am-show-lg">
         <table class="lg">
@@ -345,7 +349,7 @@
     {{/if}}
 </script>
 
-<script src="js/qingjia.js?t=1537238036844"></script>
+<script src="js/qingjia.js?t=1538977718257"></script>
 
 </body>
 </html>

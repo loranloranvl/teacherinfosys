@@ -120,15 +120,11 @@
   font-size: 30px;
   color: #666;
   font-weight: 500;
-  margin-right: 20px;
 }
 #detail-return {
-  font-size: 22px;
-  color: #666;
-  font-weight: 300;
-}
-#detail-return:hover {
   cursor: pointer;
-  border-bottom: 1px solid black;
-  color: black;
+  margin-right: 10px;
+}
+#detail-down {
+  cursor: pointer;
 }

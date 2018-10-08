@@ -85,6 +85,20 @@ function ajaxGetHolidayDetail(page, id) {
     })
 }
 
+function ajaxDownJiejiari(id) {
+    $.ajax({
+        url: 'leave/pc/exportHolidayLeave',
+        data: {
+            id: id
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                dialog.success('<a href="' + data.data.path + '">点击下载节假日登记情况表</a>')
+            }
+        }
+    })
+}
+
 /* deployers */
 
 function deployLeaveRequests(data) {
@@ -148,6 +162,9 @@ function deployHolidayDetail(data, id) {
     $('#detail-return').on('click', function() {
         $('#jiejiari-detail').hide();
         $('#jiejiari').show();
+    })
+    $('#detail-down').on('click', function() {
+        ajaxDownJiejiari(id)
     })
 }
 
