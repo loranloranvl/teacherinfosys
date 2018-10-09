@@ -137,4 +137,11 @@ function deployTongzhi(data) {
     $('#mail').on('click', function() {
         ajaxSendMail(getParam().id);
     })
+
+    $('.content').each(function() {
+        var pat = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+        var raw = $(this).html();
+        var processed = raw.replace(pat, '<a href="$&">$&</a>');
+        $(this).html(processed);
+    })
 }
