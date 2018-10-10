@@ -139,9 +139,21 @@ function deployTongzhi(data) {
     })
 
     $('.content').each(function() {
-        var pat = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+        var pat_with_or_without_http = /(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
         var raw = $(this).html();
-        var processed = raw.replace(pat, '<a href="$&">$&</a>');
+        var processed = raw.replace(pat_with_or_without_http, '<a href="$&">$&</a>');
         $(this).html(processed);
+
+        $(this).find('a').each(function() {
+            var href = $(this).attr('href');
+            var pat_email = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/g;
+            if (pat_email.test(href)) {
+                $(this).contents().unwrap();
+            }
+            if (href.slice(0, 4) != 'http') {
+                href = 'http://' + href;
+                $(this).attr('href', href);
+            }
+        })
     })
 }
