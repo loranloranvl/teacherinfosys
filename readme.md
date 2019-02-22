@@ -1,6 +1,6 @@
 ## Description
-Front-end of Information System being used in School of Cybersecurity of Hangzhou Dianzi Universty.
-Over 2,000 students and teachers have registered as our users.
+Front-end of Information System being used in School of Cybersecurity of Hangzhou Dianzi Universty.  
+Over 2,000 students and teachers have registered as our users and use it for school affairs.
 
 ## Website Preview
 ![alt text](assets/pic1.png)
