@@ -9,8 +9,6 @@ Over 2,000 students and teachers have registered as our users.
 ![alt text](assets/pic4.png)
 ![alt text](assets/pic5.png)
 ![alt text](assets/pic6.png)
-![alt text](assets/pic7.png)
-![alt text](assets/pic8.png)
 ![alt text](assets/pic9.png)
 ![alt text](assets/pic10.png)
 ![alt text](assets/pic11.png)
@@ -19,8 +17,3 @@ Over 2,000 students and teachers have registered as our users.
 ![alt text](assets/pic14.png)
 ![alt text](assets/pic15.png)
 ![alt text](assets/pic16.png)
-
-<div style="text-align:center">
-    <img src="assets/pic7.png" style="width: 50%">
-    <!-- <img src="assets/pic8.png" style="width: 50%"> -->
-</div>
